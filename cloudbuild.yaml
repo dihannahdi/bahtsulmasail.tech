@@ -1,0 +1,119 @@
+steps:
+  # Build Next.js frontend
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA'
+      - './frontend'
+    id: 'Build Frontend'
+
+  # Build Django backend
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA'
+      - './backend'
+    id: 'Build Backend'
+
+  # Build Celery worker
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA'
+      - '-f'
+      - './backend/Dockerfile.celery'  # Assuming a separate Dockerfile for Celery
+      - './backend'
+    id: 'Build Celery Worker'
+
+  # Push frontend image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA']
+    id: 'Push Frontend Image'
+
+  # Push backend image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA']
+    id: 'Push Backend Image'
+
+  # Push Celery worker image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA']
+    id: 'Push Celery Image'
+
+  # Deploy frontend to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'bahtsulmasail-tech-frontend'
+      - '--image=gcr.io/$PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--port=3000'
+    id: 'Deploy Frontend'
+
+  # Deploy backend to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'bahtsulmasail-tech-backend'
+      - '--image=gcr.io/$PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--port=8080'
+      - '--set-env-vars=^##^DJANGO_SETTINGS_MODULE=core.settings##DJANGO_DEBUG=False##PYTHONUNBUFFERED=1##DB_NAME=postgres##DB_USER=postgres##CLOUD_SQL_CONNECTION_NAME=bahtsul-masail-457713:us-central1:lbmdb##REDIS_HOST=10.107.218.243##REDIS_PORT=6379##GS_BUCKET_NAME=lbmbucket##PORT=8080'
+      - '--set-secrets=DB_PASSWORD=lbmdbpass:latest,DJANGO_SECRET_KEY=djangosecret:latest'
+      - '--cloud-sql-instances=bahtsul-masail-457713:us-central1:lbmdb'
+      - '--vpc-connector=projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc'
+    id: 'Deploy Backend'
+
+  # Deploy Celery worker to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'bahtsulmasail-tech-celery'
+      - '--image=gcr.io/$PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--set-env-vars=^##^DJANGO_SETTINGS_MODULE=core.settings##DJANGO_DEBUG=False##PYTHONUNBUFFERED=1##DB_NAME=postgres##DB_USER=postgres##CLOUD_SQL_CONNECTION_NAME=bahtsul-masail-457713:us-central1:lbmdb##REDIS_HOST=10.107.218.243##REDIS_PORT=6379##GS_BUCKET_NAME=lbmbucket'
+      - '--set-secrets=DB_PASSWORD=lbmdbpass:latest,DJANGO_SECRET_KEY=djangosecret:latest'
+      - '--cloud-sql-instances=bahtsul-masail-457713:us-central1:lbmdb'
+      - '--vpc-connector=projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc'
+      - '--no-cpu-throttling'
+      - '--min-instances=1'
+    id: 'Deploy Celery Worker'
+
+  # Optional: Run Django database migrations
+  # This step requires the backend service to be able to connect to the Cloud SQL instance.
+  # It might be better to run migrations as part of the backend container startup script
+  # or via a one-off job if your setup is complex.
+  # - name: 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA' # Use the newly built backend image
+  #   entrypoint: 'python'
+  #   args:
+  #     - 'manage.py'
+  #     - 'migrate'
+  #     - '--noinput'
+  #   id: 'Run DB Migrations'
+
+images:
+  - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA'
+
+# Replace YOUR_GCP_REGION, YOUR_DB_USER_HERE, YOUR_DB_PASSWORD_SECRET_ID, YOUR_DJANGO_SECRET_KEY_SECRET_ID, YOUR_VPC_CONNECTOR_NAME.
+# Ensure the Django SECRET_KEY is also managed via Secret Manager for production.
+# YOUR_VPC_CONNECTOR_NAME is the full name: projects/YOUR_PROJECT_ID/locations/YOUR_REGION/connectors/YOUR_CONNECTOR_NAME
+# The Django Dockerfile currently uses `CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]`.
+# For production with Gunicorn (which is in requirements.txt), you'd change this CMD in the Dockerfile to something like:
+# `CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "core.wsgi:application"]`
+# Then Cloud Run's PORT env var (default 8080) will be used by Gunicorn.
+# If you keep runserver, ensure --port in cloudbuild matches the runserver port (e.g., 8000). 
