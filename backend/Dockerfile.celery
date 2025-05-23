@@ -20,6 +20,15 @@ RUN pip install --upgrade pip && \
 # Copy project
 COPY . /app/
 
-# Command to run Celery worker
-# Replace 'core' with your Django project name if different
-CMD ["celery", "-A", "core", "worker", "-l", "info"] 
+# Add health server and run script
+COPY health_server.py /app/health_server.py
+COPY run.sh /app/run.sh
+RUN chmod +x /app/run.sh
+
+# Ensure 'nobody' user and 'nogroup' group exist and set up basic permissions
+# This is a common setup; adjust if your base image or needs are different.
+RUN if ! getent group nogroup > /dev/null; then groupadd -r nogroup; fi && \
+    if ! id nobody > /dev/null 2>&1; then useradd --system --no-create-home --gid nogroup -s /bin/false nobody; fi
+
+# Command to run Celery worker and health check server
+CMD ["/app/run.sh"] 
