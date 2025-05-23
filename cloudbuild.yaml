@@ -92,6 +92,12 @@ steps:
       - '--vpc-connector=projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc'
       - '--no-cpu-throttling'
       - '--min-instances=1'
+      # Add an exec startup probe that will always succeed for a non-HTTP worker
+      - '--startup-probe-type=exec'
+      - '--startup-probe-exec-command=true'
+      - '--startup-probe-period-seconds=10' # How often to probe
+      - '--startup-probe-timeout-seconds=5' # How long to wait for the probe command
+      - '--startup-probe-failure-threshold=3' # How many failures before giving up
     id: 'Deploy Celery Worker'
 
   # Optional: Run Django database migrations
