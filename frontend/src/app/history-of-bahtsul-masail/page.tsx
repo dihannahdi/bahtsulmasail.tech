@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { containerVariant, fadeUp } from '@/lib/animations';
 import { Button } from '@/components/ui/button';
@@ -9,9 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { 
-  BookOpen, Users, Globe, ChevronRight, Clock, Award, Lightbulb, ArrowRight,
-  Scroll, History, Building, BookText, ChevronsDown, ChevronsUp, ExternalLink,
-  GraduationCap, Scale, Landmark, Search, Menu
+  BookOpen, Users, Globe, ChevronRight, Clock, Award, Lightbulb, ArrowRight
 } from 'lucide-react'; 
 
 // Types for structured content

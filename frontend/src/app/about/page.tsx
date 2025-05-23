@@ -6,8 +6,8 @@ import Image from 'next/image'; // Import Next/Image
 import { motion } from 'framer-motion';
 import { fadeUp, containerVariant, itemVariant, stagger } from '@/lib/animations';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ChevronLeft, Info, Target, Eye, Users, BookOpen, Database, Archive, Github, Mail, Linkedin, ExternalLink, Handshake, Sparkles, ArrowRight } from 'lucide-react';
+import {  } from '@/components/ui/card'; // Removed Card, CardContent, CardHeader, CardTitle
+import { ChevronLeft, Users, BookOpen, Database, Archive, Github, Mail, Linkedin, ExternalLink, Handshake, Sparkles, ArrowRight } from 'lucide-react'; // Removed Info, Target, Eye
 
 // Expanded section definitions to match Vite About page structure
 const aboutContent = {

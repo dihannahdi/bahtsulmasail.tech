@@ -4,7 +4,7 @@ import React, { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
-import { BookText, Tag, CalendarDays, TrendingUp, Users, CheckCircle, FileText } from 'lucide-react';
+import { BookText, Tag, CalendarDays, TrendingUp, Users, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { containerVariant, fadeUp, itemVariant } from '@/lib/animations';
@@ -94,7 +94,7 @@ const truncateText = (text: string, maxLength: number): string => {
   return text.substring(0, maxLength) + '...';
 };
 
-const DocumentCard: React.FC<{ document: Document; index: number }> = ({ document, index }) => {
+const DocumentCard: React.FC<{ document: Document; _index: number }> = ({ document, _index }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const colorName = getCategoryColor(document.category);
   const cardColorClass = `bg-${colorName}/10 dark:bg-${colorName}/20 border-${colorName}/30 dark:border-${colorName}/50`;
@@ -197,7 +197,7 @@ const RecentDocumentsSection: React.FC = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
         >
           {mockDocuments.map((doc, index) => (
-            <DocumentCard key={doc.id} document={doc} index={index} />
+            <DocumentCard key={doc.id} document={doc} _index={index} />
           ))}
         </motion.div>
 

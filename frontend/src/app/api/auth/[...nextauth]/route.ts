@@ -14,7 +14,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email", placeholder: "user@example.com" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials, _req) {
         // Add logic here to look up the user from the credentials supplied
         // This is where you would call your Django backend API to verify credentials
         console.log("NextAuth authorize: ", credentials);
@@ -79,7 +79,7 @@ export const authOptions: NextAuthOptions = {
       // session.accessToken = token.accessToken as string; // Deprecated: custom field not directly on session
       // To pass accessToken to client, add it to session.user or a custom field within session
       if (token.accessToken) {
-        (session as any).accessToken = token.accessToken; // Or define a more specific session type
+        session.accessToken = token.accessToken;
       }
       return session;
     },

@@ -208,9 +208,13 @@ export default function DocumentManagementPage() {
       setIsUploadModalOpen(false);
       alert(`Mock upload successful for: ${newDocument.title}`);
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Upload error:', error);
-      setUploadError(error.message || 'An unexpected error occurred during upload.');
+      if (error instanceof Error) {
+        setUploadError(error.message);
+      } else {
+        setUploadError('An unexpected error occurred during upload.');
+      }
     } finally {
       setIsUploading(false);
     }
