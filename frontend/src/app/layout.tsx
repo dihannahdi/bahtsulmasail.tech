@@ -17,8 +17,30 @@ import MainLayout from "@/components/layout/MainLayout"; // Import MainLayout
 // });
 
 export const metadata: Metadata = {
-  title: "BahtsulMasail.tech - Islamic Insight Nexus",
+  title: "BahtsulMasail.tech | Bahtsul Masail untuk Islam Digdaya",
   description: "Platform komprehensif untuk menjelajahi teks-teks hukum Islam dengan kemampuan pencarian lanjutan dan alat analisis modern.",
+  openGraph: {
+    title: "BahtsulMasail.tech",
+    description: "Platform untuk teks hukum Islam dan analisis modern.",
+    url: "https://www.bahtsulmasail.tech",
+    siteName: "BahtsulMasail.tech",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "BahtsulMasail.tech - Bahtsul Masail untuk Islam Digdaya",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BahtsulMasail.tech",
+    description: "Platform untuk teks hukum Islam dan analisis modern.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({

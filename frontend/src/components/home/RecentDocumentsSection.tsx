@@ -94,7 +94,7 @@ const truncateText = (text: string, maxLength: number): string => {
   return text.substring(0, maxLength) + '...';
 };
 
-const DocumentCard: React.FC<{ document: Document; _index: number }> = ({ document, _index }) => {
+const DocumentCard: React.FC<{ document: Document }> = ({ document }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const colorName = getCategoryColor(document.category);
   const cardColorClass = `bg-${colorName}/10 dark:bg-${colorName}/20 border-${colorName}/30 dark:border-${colorName}/50`;
@@ -196,8 +196,8 @@ const RecentDocumentsSection: React.FC = () => {
           variants={containerVariant}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
         >
-          {mockDocuments.map((doc, index) => (
-            <DocumentCard key={doc.id} document={doc} _index={index} />
+          {mockDocuments.map((doc) => (
+            <DocumentCard key={doc.id} document={doc} />
           ))}
         </motion.div>
 

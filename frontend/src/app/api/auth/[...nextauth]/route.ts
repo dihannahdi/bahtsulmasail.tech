@@ -14,7 +14,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email", placeholder: "user@example.com" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, _req) {
+      async authorize(credentials) {
         // Add logic here to look up the user from the credentials supplied
         // This is where you would call your Django backend API to verify credentials
         console.log("NextAuth authorize: ", credentials);

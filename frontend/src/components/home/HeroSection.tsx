@@ -132,10 +132,9 @@ const HeroSection = () => {
             variants={itemVariants}
           >
             <p className="w-full text-sm text-foreground/60 mb-2">Topik Populer:</p>
-            {["Shalat", "Puasa", "Keuangan", "Pernikahan", "Waris", "Zakat"].map((topic, _index) => (
+            {["Shalat", "Puasa", "Keuangan", "Pernikahan", "Waris", "Zakat"].map((topic) => (
               <motion.div
                 key={topic}
-                // custom={index} // Not used by buttonVariants directly here
                 variants={buttonVariants} // Apply hidden/visible directly
                 initial="hidden" // Ensure these also animate in
                 animate="visible"
