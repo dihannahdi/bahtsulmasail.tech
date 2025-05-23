@@ -11,8 +11,19 @@
 - [ ] API endpoints for tagging, version management, and document retrieval
 
 **Frontend:**
-- [ ] UI for document upload and management (Admin/privileged users)
+- [x] UI for document upload and management (Admin/privileged users)
+  - [x] Document upload form (modal)
+  - [x] File type and size validation
+  - [x] Mock upload process with UI feedback
+  - [x] Document list display
+  - [x] Edit metadata modal
+  - [x] Delete confirmation modal
+  - [x] View details modal
 - [ ] Document list interface with advanced filtering/sorting (Awwwards-caliber design)
+  - [x] Basic list interface with advanced client-side pagination
+  - [ ] Advanced filtering (by status, date range, etc.)
+  - [ ] Sorting (by title, date, status)
+  - [ ] Awwwards-caliber visual design and UX enhancements
 
 ### 2. AI-Powered Deep Text Analysis
 
@@ -71,11 +82,13 @@
 ### 6. "Minbar Al-Hikmah" (Homepage & Core Navigation)
 
 **Frontend:**
-- [ ] Design and implement Awwwards-caliber homepage (enhancing placeholder `/`)
+- [~] Design and implement Awwwards-caliber homepage (enhancing placeholder `/`)
     - [ ] Bold typography, dynamic geometric patterns
-    - [ ] Prominent semantic search bar
-    - [ ] Purposeful navigation with clear visual cues
-    - [ ] "Narratives of Impact" sections
+    - [~] Prominent semantic search bar (mockup implemented, glow effect added)
+    - [x] Purposeful navigation with clear visual cues (Navbar styling enhanced: active links, button colors, site title font, links updated)
+    - [x] "Narratives of Impact" sections (Scholarly Quotes beautified with light theme, Testimonials removed)
+    - [ ] Hero section with compelling visuals/messaging (search bar glow added)
+    - [ ] Call to Action (CTA) refinement
 
 ### 7. User Authentication & Authorization
 
@@ -84,7 +97,13 @@
 - [ ] Role-based permissions for API endpoints
 
 **Frontend:**
-- [ ] `NextAuth.js` (or similar) integration for login, registration, session management
+- [x] `NextAuth.js` (or similar) integration for login, registration, session management
+    - [x] Mock CredentialsProvider setup
+    - [x] JWT session strategy with custom callbacks (user ID, accessToken)
+    - [x] Custom sign-in page (`/auth/signin`)
+    - [x] `SessionProvider` wrapping the application
+    - [x] Conditional Sign In/Sign Out in Navbar
+    - [x] Augment `Session` and `User` types (`next-auth.d.ts`)
 - [ ] Profile management UI
 
 ### 8. Admin Dashboard
@@ -103,9 +122,9 @@
 ### 9. Informational Pages
 
 **Frontend:**
-- [ ] Align `AboutPage` with "Narratives of Purpose" & "Islam Digdaya" vision
-- [ ] Create "History of Bahtsul Masail" page
-- [ ] Create "FAQ" page
+- [x] Align `AboutPage` with "Narratives of Purpose" & "Islam Digdaya" vision (extensive beautification and styling alignment done, including specific section repairs)
+- [x] Create "History of Bahtsul Masail" page (placeholder content)
+- [x] Create "FAQ" page (placeholder content with accordion)
 - [ ] Create "Privacy Policy" page
 - [ ] Create "Terms of Use" page
 - [ ] Create "Contact" page
@@ -114,10 +133,10 @@
 
 - [ ] Detailed Design Work (Wireframes, Mockups, Prototypes)
 - [ ] Meticulous Frontend Implementation:
-    - [ ] Purposeful animation & micro-interactions (GSAP/Framer Motion)
+    - [~] Purposeful animation & micro-interactions (GSAP/Framer Motion used, glow effect JS, homepage section animations)
     - [ ] Bespoke iconography & visual motifs
-    - [ ] Empowering color palette
-    - [ ] Heavy customization of Tailwind CSS & `shadcn-ui`
+    - [x] Empowering color palette (thematic colors refined across About page, Scholarly Quotes, Navbar)
+    - [x] Heavy customization of Tailwind CSS & `shadcn-ui` (globals.css updates, component-specific styling)
 - [ ] Accessibility (WCAG AA/AAA) considerations
 - [ ] Performance Optimization (Ongoing)
 

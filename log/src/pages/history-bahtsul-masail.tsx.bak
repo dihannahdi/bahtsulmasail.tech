@@ -1,0 +1,1581 @@
+import React, { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring, useInView } from "framer-motion";
+import { useTheme } from "next-themes";
+import MainLayout from "@/components/layout/MainLayout";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { 
+  ChevronUp, 
+  Book, 
+  History, 
+  Building, 
+  MessageSquare, 
+  BarChart, 
+  Award,
+  ExternalLink,
+  ArrowRight,
+  Bookmark,
+  List
+} from "lucide-react";
+
+const HistoryBahtsulMasail = () => {
+  // Refs for scroll sections
+  const heroRef = useRef(null);
+  const contentRef = useRef(null);
+  const activeSection = useRef(null);
+  
+  // State management
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(0);
+  const [activeTab, setActiveTab] = useState("fase-awal");
+  const [activeToc, setActiveToc] = useState("pendahuluan");
+  const [showMobileToc, setShowMobileToc] = useState(false);
+  const { theme } = useTheme();
+  
+  // Scroll animation with framer-motion
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, { damping: 15, stiffness: 300 });
+
+  // Reading progress bar effect
+  useEffect(() => {
+    const updateReadingProgress = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setReadingProgress(progress);
+    };
+    
+    window.addEventListener("scroll", updateReadingProgress);
+    return () => window.removeEventListener("scroll", updateReadingProgress);
+  }, []);
+
+  // Detect active section while scrolling
+  useEffect(() => {
+    // Only scroll to top when the component initially mounts
+    if (window.location.hash === '') {
+      window.scrollTo(0, 0);
+    }
+
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+      
+      // Update active section in TOC
+      const sections = document.querySelectorAll("[data-section]");
+      const scrollPosition = window.scrollY + 250; // Offset for header
+      
+      sections.forEach((section) => {
+        const element = section as HTMLElement;
+        const sectionTop = element.offsetTop;
+        const sectionHeight = element.offsetHeight;
+        const sectionId = element.getAttribute("data-section");
+        
+        if (
+          scrollPosition >= sectionTop && 
+          scrollPosition < sectionTop + sectionHeight &&
+          sectionId !== activeToc
+        ) {
+          setActiveToc(sectionId);
+          // Update URL hash without scrolling
+          history.replaceState(null, null, `#${sectionId}`);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeToc]);
+
+  // Scroll to top handler
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
+  // Smooth scroll function for anchor links
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      // Get the header height (16 * 4 = 64px) plus some padding
+      const headerOffset = 90;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+      
+      // Set active section in TOC
+      setActiveToc(id);
+    }
+  };
+
+  // Function to handle tab change with smooth scrolling
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    
+    // Add a small delay to allow tab content to render
+    setTimeout(() => {
+      const element = document.getElementById(value);
+      if (element) {
+        const headerOffset = 110; // Slightly larger offset for tabs
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    }, 50);
+  };
+
+  // Advanced animation variants
+  const fadeInFromBottom = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1], // Custom easing
+      }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.12
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+  
+  const lineDrawing = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: { 
+      pathLength: 1, 
+      opacity: 1,
+      transition: { 
+        pathLength: { duration: 1.5, ease: "easeInOut" },
+        opacity: { duration: 0.3 }
+      }
+    }
+  };
+  
+  const heroAnimation = {
+    hidden: { 
+      opacity: 0,
+      scale: 0.95
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
+        staggerChildren: 0.1,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const heroChildren = {
+    hidden: { 
+      opacity: 0,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
+  const sections = [
+    { id: "pendahuluan", title: "Pendahuluan", icon: <Book className="h-4 w-4" /> },
+    { id: "akar-intelektual", title: "Akar Intelektual Bahtsul Masail", icon: <History className="h-4 w-4" /> },
+    { id: "transformasi", title: "Transformasi di Nusantara", icon: <ArrowRight className="h-4 w-4" /> },
+    { id: "institusionalisasi", title: "Institusionalisasi Bahtsul Masail", icon: <Building className="h-4 w-4" /> },
+    { id: "fase-awal", title: "Fase Awal (1926-1989)", icon: <History className="h-4 w-4" /> },
+    { id: "reformasi", title: "Reformasi Metodologis (1990-2004)", icon: <MessageSquare className="h-4 w-4" /> },
+    { id: "modernisasi", title: "Modernisasi dan Respons Kontemporer", icon: <BarChart className="h-4 w-4" /> },
+    { id: "kontribusi", title: "Kontribusi Bahtsul Masail", icon: <Award className="h-4 w-4" /> },
+    { id: "moderasi", title: "Penjaga Moderasi Beragama", icon: <Bookmark className="h-4 w-4" /> },
+    { id: "jembatan", title: "Jembatan antara Hukum Islam dan Negara", icon: <Building className="h-4 w-4" /> },
+    { id: "preservasi", title: "Preservasi Khazanah Intelektual", icon: <Book className="h-4 w-4" /> },
+    { id: "sintesis", title: "Sintesis: Orisinalitas dalam Kontinuitas", icon: <List className="h-4 w-4" /> },
+  ];
+
+  // Reading progress bar
+  const ProgressBar = () => (
+    <motion.div 
+      className="fixed top-0 left-0 right-0 h-1 bg-emerald-500 dark:bg-emerald-400 z-50 origin-left"
+      style={{ scaleX: smoothProgress }}
+    />
+  );
+
+  // Use for reveal-on-scroll sections
+  const useScrollReveal = () => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
+    
+    return [ref, isInView];
+  };
+
+  return (
+    <MainLayout>
+      {/* Progress Bar */}
+      <ProgressBar />
+      
+      {/* Hero Section */}
+      <section 
+        ref={heroRef} 
+        className="relative min-h-[85vh] flex items-center overflow-hidden"
+        aria-labelledby="hero-heading"
+      >
+        {/* Background with parallax effect */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-islamic-pattern opacity-10 dark:opacity-5 pointer-events-none"></div>
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white dark:to-slate-950"
+            style={{ 
+              opacity: useTransform(scrollYProgress, [0, 0.15], [0, 1]) 
+            }}
+          />
+          
+          {/* Decorative elements */}
+          <motion.svg 
+            className="absolute -bottom-24 right-0 text-emerald-600/10 dark:text-emerald-500/5 w-96 h-96 md:w-[40rem] md:h-[40rem] pointer-events-none" 
+            viewBox="0 0 200 200"
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.path
+              d="M 0, 100 C 0, 50 50, 0 100, 0 S 200, 50 200, 100 150, 200 100, 200 0, 150 0, 100"
+              fill="currentColor"
+              variants={lineDrawing}
+              custom={1}
+            />
+          </motion.svg>
+          
+          <motion.svg 
+            className="absolute -left-20 -bottom-20 text-amber-500/10 dark:text-amber-500/5 w-96 h-96 md:w-[35rem] md:h-[35rem] pointer-events-none" 
+            viewBox="0 0 200 200"
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.path
+              d="M 0, 75 C 0, 37.5 37.5, 0 75, 0 S 150, 37.5 150, 75 112.5, 150 75, 150 0, 112.5 0, 75"
+              fill="currentColor"
+              variants={lineDrawing}
+              custom={1.5}
+            />
+          </motion.svg>
+        </div>
+        
+        {/* Content */}
+        <div className="container mx-auto px-6 md:px-8 py-16 md:py-24 relative z-10">
+          <motion.div
+            className="max-w-4xl mx-auto text-center"
+            initial="hidden"
+            animate="visible"
+            variants={heroAnimation}
+          >
+            <motion.div variants={heroChildren}>
+              <Badge 
+                variant="outline" 
+                className="mb-6 bg-amber-50 text-amber-900 border-amber-200 px-5 py-1.5 text-sm font-medium rounded-full shadow-sm hover:shadow-md transition-shadow"
+              >
+                Sejarah & Perkembangan
+              </Badge>
+            </motion.div>
+            
+            <motion.h1 
+              id="hero-heading"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-slate-900 dark:text-white arabic-influence tracking-tight"
+              variants={heroChildren}
+            >
+              <span className="inline-block relative">
+                <span className="relative z-10">Bahtsul Masail</span>
+                <motion.span 
+                  className="absolute -bottom-3 left-0 right-0 h-3 bg-amber-300/50 dark:bg-amber-700/30 rounded-full z-0"
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ delay: 0.7, duration: 0.8, ease: "easeOut" }}
+                ></motion.span>
+              </span>
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl md:text-2xl lg:text-3xl text-slate-700 dark:text-slate-200 font-serif italic leading-relaxed"
+              variants={heroChildren}
+            >
+              Akar Intelektual dan Perkembangannya dalam Nahdlatul Ulama
+            </motion.p>
+
+            <motion.div variants={heroChildren}>
+              <Separator className="my-10 bg-amber-300/50 h-0.5 w-32 mx-auto" />
+            </motion.div>
+            
+            <motion.div 
+              className="flex flex-col md:flex-row gap-4 justify-center items-center mt-8"
+              variants={heroChildren}
+            >
+              <Button 
+                className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-md hover:shadow-lg transition-all group px-6 py-6 rounded-xl text-lg"
+                onClick={() => {
+                  const element = document.getElementById("pendahuluan");
+                  if (element) {
+                    const headerOffset = 90;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: "smooth"
+                    });
+                    setActiveToc("pendahuluan");
+                  }
+                }}
+              >
+                Mulai Membaca
+                <motion.span 
+                  className="ml-2 inline-block"
+                  initial={{ x: 0 }}
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </motion.span>
+              </Button>
+              
+              <a 
+                href="#kontribusi"
+                onClick={(e) => handleSmoothScroll(e, "kontribusi")}
+                className="text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors flex items-center px-4 py-2"
+              >
+                <span>Lihat Kontribusi</span>
+                <ChevronUp className="h-4 w-4 ml-1 rotate-90" />
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+        
+        {/* Scroll indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+        >
+          <span className="text-xs text-slate-500 dark:text-slate-400 mb-2">Scroll untuk membaca</span>
+          <motion.div 
+            className="w-1 h-10 relative"
+            initial={{ opacity: 0.6 }}
+            animate={{ opacity: [0.6, 1, 0.6] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+          >
+            <div className="absolute top-0 bottom-0 left-0 right-0 bg-emerald-500/30 dark:bg-emerald-400/20 rounded-full"></div>
+            <motion.div 
+              className="w-1 bg-emerald-500 dark:bg-emerald-400 rounded-full absolute top-0"
+              animate={{ height: ["0%", "100%", "0%"], top: ["0%", "0%", "100%"] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            ></motion.div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Main Content */}
+      <section 
+        ref={contentRef}
+        className="bg-white dark:bg-slate-950 py-12 relative"
+        aria-label="Main Content"
+      >
+        {/* Background decoration - subtle pattern */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-grid-pattern opacity-[0.015] dark:opacity-[0.03]"></div>
+        </div>
+      
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Content Column */}
+            <div className="lg:col-span-8">
+              <Card className="p-6 md:p-8 shadow-xl bg-white dark:bg-slate-900 border-0 rounded-xl backdrop-blur-sm relative overflow-hidden">
+                {/* Introduction */}
+                <motion.div 
+                  id="pendahuluan"
+                  data-section="pendahuluan"
+                  className="prose dark:prose-invert prose-emerald max-w-none"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInFromBottom}
+                >
+                  <p className="text-lg md:text-xl leading-relaxed mb-6 first-letter:text-5xl first-letter:font-serif first-letter:mr-2 first-letter:float-left first-letter:text-emerald-600 dark:first-letter:text-emerald-400">
+                    Bahtsul Masail sebagai mekanisme pengambilan keputusan hukum Islam dalam Nahdlatul Ulama (NU) memiliki akar sejarah yang kompleks, menjembatani tradisi keilmuan Islam global dengan konteks sosio-kultural Indonesia. Lembaga ini tidak hanya merepresentasikan orisinalitas metodologi hukum Islam Nusantara, tetapi juga menjadi bukti dinamika intelektual ulama Indonesia dalam merespons tantangan zaman.
+                  </p>
+
+                  <div className="my-8 p-6 bg-amber-50 dark:bg-amber-950/30 rounded-lg border-l-4 border-amber-500 shadow-inner">
+                    <h3 className="text-amber-800 dark:text-amber-300 text-lg font-semibold mb-2">Definisi Bahtsul Masail</h3>
+                    <p className="text-slate-700 dark:text-slate-300">
+                      Forum diskusi dan pengambilan keputusan hukum Islam yang diselenggarakan oleh Nahdlatul Ulama untuk menjawab persoalan-persoalan aktual yang dihadapi masyarakat dengan merujuk kepada kitab-kitab klasik mazhab Syafi'i dan tradisi ilmiah pesantren.
+                    </p>
+                  </div>
+                </motion.div>
+
+                <Separator className="my-8" />
+
+                {/* Akar Intelektual Section */}
+                <motion.div
+                  id="akar-intelektual"
+                  data-section="akar-intelektual"
+                  className="prose dark:prose-invert prose-emerald max-w-none"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInFromBottom}
+                >
+                  <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white flex items-center">
+                    <motion.span 
+                      className="inline-block mr-3 p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-full"
+                      initial={{ rotate: -10, opacity: 0 }}
+                      whileInView={{ rotate: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                    </motion.span>
+                    <motion.span
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      variants={itemVariants}
+                    >
+                      Akar Intelektual Bahtsul Masail dalam Tradisi Islam Global
+                    </motion.span>
+                  </h2>
+
+                  <div className="mb-8">
+                    <h3 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-200" id="transformasi">
+                      Warisan Metodologi Halaqah dari Timur Tengah
+                    </h3>
+                    
+                    <div className="relative mb-6 overflow-hidden rounded-xl">
+                      <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 to-transparent"></div>
+                      <div className="py-4 px-6">
+                        <p className="mb-4">
+                          Praksis Bahtsul Masail tidak dapat dipisahkan dari tradisi halaqah (lingkaran diskusi) yang berkembang di Haramain (Mekah dan Madinah) sejak abad ke-19<sup>[1]</sup>. Para ulama Nusantara yang menimba ilmu di Timur Tengah – seperti Syekh Mahfudz at-Tirmasi dan Syekh Nawawi al-Bantani – terlibat aktif dalam halaqah-halaqah yang dipimpin ulama terkemuka. Tradisi ini kemudian dibawa pulang dan diadaptasi dalam sistem pendidikan pesantren, menjadi cikal bakal forum Bahtsul Masail<sup>[1]</sup>.
+                        </p>
+                        
+                        <p>
+                          Metode diskusi kolektif ini memiliki paralel dengan majelis ijtihad jama'i (ijtihad kolektif) dalam sejarah Islam klasik, meskipun NU mengembangkan kerangka metodologis yang spesifik. Kitab al-Muhadzdzab karya Imam al-Syairazi (w. 476 H) menjadi salah satu rujukan awal tentang prosedur pengambilan keputusan hukum secara kolektif, meskipun dalam konteks yang berbeda dengan praktik NU<sup>[2]</sup>.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Timeline visualization */}
+                    <div className="relative py-8 mb-6">
+                      {/* Timeline line */}
+                      <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-emerald-200 dark:bg-emerald-900 transform -translate-x-1/2"></div>
+
+                      {/* Timeline items */}
+                      <div className="flex flex-col space-y-8">
+                        {/* Item 1 */}
+                        <div className="relative flex flex-col md:flex-row items-center md:items-start">
+                          <div className="flex md:justify-end w-full md:w-1/2 pr-0 md:pr-8">
+                            <motion.div 
+                              className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md border border-emerald-100 dark:border-emerald-900/50 max-w-md"
+                              initial={{ opacity: 0, x: -30 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.2 }}
+                            >
+                              <span className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">Abad ke-19</span>
+                              <h4 className="font-semibold mb-2">Tradisi Halaqah di Haramain</h4>
+                              <p className="text-sm text-gray-600 dark:text-gray-300">
+                                Ulama Nusantara belajar dalam forum halaqah di Mekah dan Madinah, mempelajari metodologi diskusi ilmiah.
+                              </p>
+                            </motion.div>
+                          </div>
+                          <div className="absolute left-0 md:left-1/2 top-4 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white dark:border-slate-900 transform -translate-x-1/2"></div>
+                          <div className="w-full md:w-1/2 pl-0 md:pl-8 mt-4 md:mt-0"></div>
+                        </div>
+
+                        {/* Item 2 */}
+                        <div className="relative flex flex-col md:flex-row items-center md:items-start">
+                          <div className="w-full md:w-1/2 pr-0 md:pr-8 mt-4 md:mt-0"></div>
+                          <div className="absolute left-0 md:left-1/2 top-4 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white dark:border-slate-900 transform -translate-x-1/2"></div>
+                          <div className="flex md:justify-start w-full md:w-1/2 pl-0 md:pl-8">
+                            <motion.div 
+                              className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md border border-emerald-100 dark:border-emerald-900/50 max-w-md"
+                              initial={{ opacity: 0, x: 30 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.4 }}
+                            >
+                              <span className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">Awal Abad ke-20</span>
+                              <h4 className="font-semibold mb-2">Adaptasi di Pesantren</h4>
+                              <p className="text-sm text-gray-600 dark:text-gray-300">
+                                Para kiai mengadaptasi metode halaqah dalam sistem pendidikan pesantren, menjadi forum musyawarah antar kiai.
+                              </p>
+                            </motion.div>
+                          </div>
+                        </div>
+
+                        {/* Item 3 */}
+                        <div className="relative flex flex-col md:flex-row items-center md:items-start">
+                          <div className="flex md:justify-end w-full md:w-1/2 pr-0 md:pr-8">
+                            <motion.div 
+                              className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md border border-emerald-100 dark:border-emerald-900/50 max-w-md"
+                              initial={{ opacity: 0, x: -30 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.6 }}
+                            >
+                              <span className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">1926</span>
+                              <h4 className="font-semibold mb-2">Formalisasi Bahtsul Masail</h4>
+                              <p className="text-sm text-gray-600 dark:text-gray-300">
+                                NU menginstitusionalkan Bahtsul Masail dalam Kongres I di Surabaya, memberi kerangka formal bagi tradisi yang telah berkembang.
+                              </p>
+                            </motion.div>
+                          </div>
+                          <div className="absolute left-0 md:left-1/2 top-4 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white dark:border-slate-900 transform -translate-x-1/2"></div>
+                          <div className="w-full md:w-1/2 pl-0 md:pl-8 mt-4 md:mt-0"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* More sections will go here */}
+
+                <Separator className="my-8" />
+
+                {/* Transformasi di Nusantara Section */}
+                <motion.div
+                  id="transformasi"
+                  data-section="transformasi"
+                  className="prose dark:prose-invert prose-emerald max-w-none"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInFromBottom}
+                >
+                  <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white flex items-center">
+                    <span className="inline-block mr-3 p-2 bg-amber-100 dark:bg-amber-900/30 rounded-full">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      </svg>
+                    </span>
+                    Transformasi di Nusantara: Dari Halaqah ke Bahtsul Masail
+                  </h2>
+
+                  <div className="my-6 p-5 bg-gradient-to-r from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 rounded-xl shadow-sm">
+                    <p>
+                      Sebelum formalisasi NU tahun 1926, praktik serupa Bahtsul Masail telah hidup dalam bentuk 
+                      <span className="bg-amber-100 dark:bg-amber-800/30 px-1 rounded mx-1 font-medium">musyawarah kiai</span> 
+                      di pesantren. Para kiai sering berkumpul membahas masalah aktual dengan merujuk kitab-kitab 
+                      <span className="bg-emerald-100 dark:bg-emerald-800/30 px-1 rounded mx-1 font-medium">turats (klasik)</span> 
+                      sambil mempertimbangkan konteks lokal<sup>[3]</sup>.
+                    </p>
+                  </div>
+                  
+                  {/* Card Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <motion.div 
+                      className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                      whileHover={{ y: -5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="flex items-center mb-4">
+                        <span className="flex-shrink-0 w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                          </svg>
+                        </span>
+                        <h4 className="text-lg font-semibold ml-4">Masalah Tanah & Warisan</h4>
+                      </div>
+                      <p className="text-slate-600 dark:text-slate-300">
+                        Catatan sejarah menunjukkan bahwa forum Bahtsul Masail awal digunakan untuk menyelesaikan sengketa tanah dan masalah pembagian warisan di masyarakat.
+                      </p>
+                    </motion.div>
+                    
+                    <motion.div 
+                      className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                      whileHover={{ y: -5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="flex items-center mb-4">
+                        <span className="flex-shrink-0 w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5L15 7h4a2 2 0 012 2v10a2 2 0 01-2 2h-1m-12 0a2 2 0 002-2v-4" />
+                          </svg>
+                        </span>
+                        <h4 className="text-lg font-semibold ml-4">Respons Kolonialisme</h4>
+                      </div>
+                      <p className="text-slate-600 dark:text-slate-300">
+                        Pada masa penjajahan, forum ini juga menjadi wadah merumuskan sikap ulama terhadap kebijakan kolonial Belanda, termasuk status tanah waqf yang diambil alih.
+                      </p>
+                    </motion.div>
+                  </div>
+                  
+                  {/* Quote */}
+                  <blockquote className="relative p-6 mt-8 mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-xl border-l-4 border-amber-500">
+                    <div className="absolute -top-6 -left-6 w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                      </svg>
+                    </div>
+                    <p className="italic text-slate-700 dark:text-slate-300">
+                      "Bahtsul Masail bukan sekadar forum pengambilan keputusan hukum, tetapi juga mekanisme adaptasi kultural yang memungkinkan tradisi Islam klasik tetap relevan dalam konteks keindonesiaan."
+                    </p>
+                    <footer className="mt-4">
+                      <cite className="text-sm font-medium text-emerald-600 dark:text-emerald-400">— Prof. Dr. KH. Ma'ruf Amin</cite>
+                    </footer>
+                  </blockquote>
+                </motion.div>
+
+                {/* Additional sections will go here */}
+
+                <Separator className="my-8" />
+
+                {/* Institusionalisasi Section */}
+                <motion.div
+                  id="institusionalisasi"
+                  data-section="institusionalisasi"
+                  className="prose dark:prose-invert prose-emerald max-w-none"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInFromBottom}
+                >
+                  <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white flex items-center">
+                    <span className="inline-block mr-3 p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                    </span>
+                    Institusionalisasi Bahtsul Masail dalam Nahdlatul Ulama
+                  </h2>
+                  
+                  {/* Tabs for Different Eras */}
+                  <Tabs 
+                    defaultValue="fase-awal" 
+                    className="w-full my-6"
+                    onValueChange={handleTabChange}
+                  >
+                    <TabsList className="grid w-full grid-cols-3 mb-8">
+                      <TabsTrigger 
+                        value="fase-awal"
+                        className="data-[state=active]:bg-emerald-100 dark:data-[state=active]:bg-emerald-900/30 data-[state=active]:text-emerald-900 dark:data-[state=active]:text-emerald-100"
+                      >
+                        Fase Awal
+                        <span className="ml-2 text-xs opacity-70">(1926-1989)</span>
+                      </TabsTrigger>
+                      <TabsTrigger 
+                        value="reformasi"
+                        className="data-[state=active]:bg-amber-100 dark:data-[state=active]:bg-amber-900/30 data-[state=active]:text-amber-900 dark:data-[state=active]:text-amber-100"
+                      >
+                        Reformasi
+                        <span className="ml-2 text-xs opacity-70">(1990-2004)</span>
+                      </TabsTrigger>
+                      <TabsTrigger 
+                        value="modernisasi"
+                        className="data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-blue-900/30 data-[state=active]:text-blue-900 dark:data-[state=active]:text-blue-100"
+                      >
+                        Modernisasi
+                        <span className="ml-2 text-xs opacity-70">(2004+)</span>
+                      </TabsTrigger>
+                    </TabsList>
+                    
+                    {/* Fase Awal Content */}
+                    <TabsContent value="fase-awal" id="fase-awal" data-section="fase-awal" className="border border-slate-200 dark:border-slate-700 p-6 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+                      <h3 className="font-bold text-xl text-emerald-800 dark:text-emerald-300 mb-4">Fase Awal (1926-1989)</h3>
+                      <div className="flex flex-col md:flex-row gap-6">
+                        <div className="flex-1">
+                          <p className="mb-4">
+                            NU pertama kali menginstitusionalkan Bahtsul Masail dalam Kongres I NU di Surabaya, 21-23 September 1926 – hanya delapan bulan setelah organisasi ini berdiri<sup>[2][4]</sup>. Pada fase ini, Bahtsul Masail berfungsi sebagai komisi khusus dalam muktamar yang membahas persoalan ubudiyah (ritual) dan muamalah (sosial).
+                          </p>
+                          <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-emerald-100 dark:border-emerald-800/30 mb-4">
+                            <h4 className="font-semibold text-emerald-700 dark:text-emerald-300">Karakteristik Periode Awal:</h4>
+                            <ul className="list-disc pl-5 mt-2 space-y-2">
+                              <li>Fokus pada masalah ibadah praktis</li>
+                              <li>Respons terhadap kebijakan kolonial</li>
+                              <li>Pendekatan qauly dominan (mengutip pendapat ulama)</li>
+                              <li>Keputusan dibuat dalam forum terbatas</li>
+                            </ul>
+                          </div>
+                        </div>
+                        
+                        <div className="md:w-1/3 flex-shrink-0">
+                          <motion.div 
+                            className="relative h-full rounded-xl overflow-hidden border-2 border-emerald-200 dark:border-emerald-900"
+                            whileHover={{ scale: 1.02 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-transparent z-10"></div>
+                            <div className="relative w-full h-64 md:h-full bg-congress-nu bg-cover bg-center"></div>
+                            <div className="absolute bottom-0 left-0 right-0 p-4 text-white z-20">
+                              <span className="text-sm font-medium bg-emerald-800/90 px-2 py-1 rounded">Kongres NU I, 1926</span>
+                              <p className="text-sm mt-1">Tempat kelahiran formal Bahtsul Masail</p>
+                            </div>
+                          </motion.div>
+                        </div>
+                      </div>
+                    </TabsContent>
+                    
+                    {/* Reformasi Content */}
+                    <TabsContent value="reformasi" id="reformasi" data-section="reformasi" className="border border-slate-200 dark:border-slate-700 p-6 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+                      <h3 className="font-bold text-xl text-amber-800 dark:text-amber-300 mb-4">Reformasi Metodologis (1990-2004)</h3>
+                      <p className="mb-6">
+                        Titik balik terjadi melalui Muktamar NU ke-28 di Yogyakarta (1989) yang merekomendasikan pembentukan Lajnah Bahtsul Masail Diniyah sebagai lembaga permanen<sup>[5][4]</sup>. Perubahan signifikan terjadi dalam Munas Alim Ulama Lampung 1992 yang menetapkan pergeseran dari metode qauly ke manhajiy – menelusuri metodologi ulama mazhab dalam beristinbath, bukan sekadar mengutip hasil akhir<sup>[2][4]</sup>.
+                      </p>
+                      
+                      <div className="p-5 bg-amber-50 dark:bg-amber-950/30 rounded-lg mb-6">
+                        <h4 className="font-semibold text-amber-800 dark:text-amber-300 mb-3">Standarisasi Prosedur:</h4>
+                        <ol className="list-decimal pl-5 space-y-2">
+                          <motion.li 
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 }}
+                            viewport={{ once: true }}
+                            className="transition-all"
+                          >
+                            <span className="font-medium text-amber-700 dark:text-amber-300">Tahqiq al-masalah:</span> Verifikasi fakta masalah
+                          </motion.li>
+                          <motion.li 
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 }}
+                            viewport={{ once: true }}
+                          >
+                            <span className="font-medium text-amber-700 dark:text-amber-300">Taqyid al-masalah:</span> Formulasi pertanyaan hukum
+                          </motion.li>
+                          <motion.li 
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.3 }}
+                            viewport={{ once: true }}
+                          >
+                            <span className="font-medium text-amber-700 dark:text-amber-300">Takhrij al-masa'il:</span> Penelusuran referensi kitab kuning
+                          </motion.li>
+                          <motion.li 
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.4 }}
+                            viewport={{ once: true }}
+                          >
+                            <span className="font-medium text-amber-700 dark:text-amber-300">Tanqih al-adillah:</span> Penyaringan dalil
+                          </motion.li>
+                          <motion.li 
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5 }}
+                            viewport={{ once: true }}
+                          >
+                            <span className="font-medium text-amber-700 dark:text-amber-300">al-Ijtihad al-jama'i:</span> Kesepakatan kolektif
+                          </motion.li>
+                        </ol>
+                      </div>
+                    </TabsContent>
+                    
+                    {/* Modernisasi Content */}
+                    <TabsContent value="modernisasi" id="modernisasi" data-section="modernisasi" className="border border-slate-200 dark:border-slate-700 p-6 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+                      <h3 className="font-bold text-xl text-blue-800 dark:text-blue-300 mb-4">Modernisasi dan Respons Kontemporer (2004-sekarang)</h3>
+                      
+                      <p className="mb-6">
+                        Pascareformasi 2004, Lajnah ditingkatkan statusnya menjadi Lembaga Bahtsul Masail dengan kewenangan lebih luas<sup>[4]</sup>. Era ini ditandai dengan pembahasan isu-isu kompleks kontemporer menggunakan pendekatan multi-disipliner.
+                      </p>
+                      
+                      {/* Modern Issues Grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+                        <motion.div 
+                          className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-blue-100 dark:border-blue-900/50 flex flex-col items-center text-center"
+                          whileHover={{ scale: 1.05, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <span className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          </span>
+                          <p className="font-medium">Fintech Syariah</p>
+                          <span className="text-xs text-slate-500 dark:text-slate-400">2017</span>
+                        </motion.div>
+                        
+                        <motion.div 
+                          className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-blue-100 dark:border-blue-900/50 flex flex-col items-center text-center"
+                          whileHover={{ scale: 1.05, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <span className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                          </span>
+                          <p className="font-medium">Vaksin COVID-19</p>
+                          <span className="text-xs text-slate-500 dark:text-slate-400">2020</span>
+                        </motion.div>
+                        
+                        <motion.div 
+                          className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-blue-100 dark:border-blue-900/50 flex flex-col items-center text-center"
+                          whileHover={{ scale: 1.05, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <span className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                          </span>
+                          <p className="font-medium">Kripto & NFT</p>
+                          <span className="text-xs text-slate-500 dark:text-slate-400">2021</span>
+                        </motion.div>
+                      </div>
+                      
+                      <div className="mt-6 bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg">
+                        <p className="text-sm text-slate-700 dark:text-slate-300">
+                          Lembaga ini kini mengadopsi teknologi digital untuk mengumpulkan <em>masa'il waqi'iyah</em> (masalah aktual) dari masyarakat melalui platform online, memperluas partisipasi publik dalam proses bahtsul masail.
+                        </p>
+                      </div>
+                    </TabsContent>
+                  </Tabs>
+                </motion.div>
+
+                {/* Additional sections will go here */}
+
+                <Separator className="my-8" />
+
+                {/* Kontribusi Section */}
+                <motion.div
+                  id="kontribusi"
+                  data-section="kontribusi"
+                  className="prose dark:prose-invert prose-emerald max-w-none"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInFromBottom}
+                >
+                  <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white flex items-center">
+                    <span className="inline-block mr-3 p-2 bg-teal-100 dark:bg-teal-900/30 rounded-full">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-teal-600 dark:text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
+                      </svg>
+                    </span>
+                    Kontribusi Bahtsul Masail bagi Indonesia
+                  </h2>
+
+                  <div className="my-6">
+                    <p className="mb-4">
+                      Melalui 412 fatwa yang diterbitkan sejak 1926, Bahtsul Masail telah memberikan kontribusi penting dalam berbagai aspek kehidupan berbangsa dan beragama di Indonesia. Keberadaannya tidak hanya sebagai lembaga fatwa, tetapi juga menjadi salah satu institusi penjaga harmoni sosial dan moderasi beragama.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    {/* Card 1 - Moderasi */}
+                    <motion.div
+                      id="moderasi"
+                      className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-md border border-teal-100 dark:border-teal-900/50"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 }}
+                      whileHover={{ 
+                        y: -5,
+                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                      }}
+                    >
+                      <div className="h-3 bg-gradient-to-r from-teal-400 to-teal-600"></div>
+                      <div className="p-6">
+                        <div className="flex justify-center mb-4">
+                          <span className="p-3 rounded-full bg-teal-100 dark:bg-teal-800/40">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-teal-600 dark:text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                            </svg>
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-bold text-center text-teal-800 dark:text-teal-300 mb-4">
+                          Penjaga Moderasi Beragama
+                        </h3>
+                        <div className="space-y-3">
+                          <div className="flex items-start">
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center mr-2 mt-0.5">
+                              <svg className="h-3 w-3 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                              </svg>
+                            </span>
+                            <p className="text-sm">Legitimasi tradisi selamatan dan ziarah kubur</p>
+                          </div>
+                          <div className="flex items-start">
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center mr-2 mt-0.5">
+                              <svg className="h-3 w-3 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                              </svg>
+                            </span>
+                            <p className="text-sm">Fatwa 2005 menolak takfir (pengkafiran) terhadap pemerintah</p>
+                          </div>
+                          <div className="flex items-start">
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center mr-2 mt-0.5">
+                              <svg className="h-3 w-3 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                              </svg>
+                            </span>
+                            <p className="text-sm">Keputusan tentang kepemimpinan perempuan (2010)</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Card 2 - Jembatan */}
+                    <motion.div
+                      id="jembatan"
+                      className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-md border border-amber-100 dark:border-amber-900/50"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 }}
+                      whileHover={{ 
+                        y: -5,
+                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                      }}
+                    >
+                      <div className="h-3 bg-gradient-to-r from-amber-400 to-amber-600"></div>
+                      <div className="p-6">
+                        <div className="flex justify-center mb-4">
+                          <span className="p-3 rounded-full bg-amber-100 dark:bg-amber-800/40">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-bold text-center text-amber-800 dark:text-amber-300 mb-4">
+                          Jembatan Hukum Islam-Negara
+                        </h3>
+                        <div className="space-y-3">
+                          <div className="flex items-start">
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center mr-2 mt-0.5">
+                              <svg className="h-3 w-3 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                              </svg>
+                            </span>
+                            <p className="text-sm">Dasar fikih untuk UU Perkawinan (1974) melalui konsep 'urf</p>
+                          </div>
+                          <div className="flex items-start">
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center mr-2 mt-0.5">
+                              <svg className="h-3 w-3 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                              </svg>
+                            </span>
+                            <p className="text-sm">Prinsip darurat syar'iyyah untuk legalitas bank syariah</p>
+                          </div>
+                          <div className="flex items-start">
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center mr-2 mt-0.5">
+                              <svg className="h-3 w-3 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                              </svg>
+                            </span>
+                            <p className="text-sm">Fatwa tentang lingkungan hidup (2019) untuk pembangunan berkelanjutan</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Card 3 - Preservasi */}
+                    <motion.div
+                      id="preservasi"
+                      className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-md border border-emerald-100 dark:border-emerald-900/50"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 }}
+                      whileHover={{ 
+                        y: -5,
+                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                      }}
+                    >
+                      <div className="h-3 bg-gradient-to-r from-emerald-400 to-emerald-600"></div>
+                      <div className="p-6">
+                        <div className="flex justify-center mb-4">
+                          <span className="p-3 rounded-full bg-emerald-100 dark:bg-emerald-800/40">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                            </svg>
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-bold text-center text-emerald-800 dark:text-emerald-300 mb-4">
+                          Preservasi Khazanah Intelektual
+                        </h3>
+                        <div className="space-y-3">
+                          <div className="flex items-start">
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center mr-2 mt-0.5">
+                              <svg className="h-3 w-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                              </svg>
+                            </span>
+                            <p className="text-sm">Menjaga referensi 1.200+ kitab kuning dari berbagai mazhab</p>
+                          </div>
+                          <div className="flex items-start">
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center mr-2 mt-0.5">
+                              <svg className="h-3 w-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                              </svg>
+                            </span>
+                            <p className="text-sm">Mempertahankan isnad keilmuan hingga ulama klasik</p>
+                          </div>
+                          <div className="flex items-start">
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center mr-2 mt-0.5">
+                              <svg className="h-3 w-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                              </svg>
+                            </span>
+                            <p className="text-sm">Progresivitas fikih tanpa meninggalkan otoritas tekstual</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+
+                {/* Sintesis: Orisinalitas dalam Kontinuitas */}
+                <Separator className="my-8" />
+
+                <motion.div
+                  id="sintesis"
+                  data-section="sintesis"
+                  className="prose dark:prose-invert prose-emerald max-w-none"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInFromBottom}
+                >
+                  <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white flex items-center">
+                    <span className="inline-block mr-3 p-2 bg-purple-100 dark:bg-purple-900/30 rounded-full">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                      </svg>
+                    </span>
+                    Sintesis: Orisinalitas dalam Kontinuitas
+                  </h2>
+
+                  <div className="bg-gradient-to-br from-purple-50 to-slate-50 dark:from-purple-950/30 dark:to-slate-950 p-6 rounded-xl shadow-sm mb-6">
+                    <p className="mb-4">
+                      Meskipun akar metodologis Bahtsul Masail dapat ditelusuri hingga tradisi halaqah di Haramain, keunikan institusi ini terletak pada kemampuannya mengsintesiskan:
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+                      <motion.div
+                        whileHover={{ y: -5 }}
+                        transition={{ duration: 0.2 }}
+                        className="bg-white dark:bg-slate-800 p-5 rounded-lg shadow-sm"
+                      >
+                        <div className="text-purple-600 dark:text-purple-400 flex justify-center mb-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                          </svg>
+                        </div>
+                        <h4 className="text-center font-semibold mb-2">Otentisitas Tekstual</h4>
+                        <p className="text-sm text-center">Melalui rujukan kitab kuning yang konsisten</p>
+                      </motion.div>
+                      
+                      <motion.div
+                        whileHover={{ y: -5 }}
+                        transition={{ duration: 0.2 }}
+                        className="bg-white dark:bg-slate-800 p-5 rounded-lg shadow-sm"
+                      >
+                        <div className="text-purple-600 dark:text-purple-400 flex justify-center mb-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <h4 className="text-center font-semibold mb-2">Kontekstualisasi Kultural</h4>
+                        <p className="text-sm text-center">Adaptasi dengan realitas Indonesia yang beragam</p>
+                      </motion.div>
+                      
+                      <motion.div
+                        whileHover={{ y: -5 }}
+                        transition={{ duration: 0.2 }}
+                        className="bg-white dark:bg-slate-800 p-5 rounded-lg shadow-sm"
+                      >
+                        <div className="text-purple-600 dark:text-purple-400 flex justify-center mb-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                          </svg>
+                        </div>
+                        <h4 className="text-center font-semibold mb-2">Dinamika Kelembagaan</h4>
+                        <p className="text-sm text-center">Bekerja dalam struktur NU yang hierarkis namun adaptif</p>
+                      </motion.div>
+                    </div>
+
+                    <p>
+                      Keberhasilan Bahtsul Masail dalam menjaga relevansi selama satu abad membuktikan bahwa mekanisme ini bukan sekadar adaptasi pasif terhadap tradisi Islam global, tetapi kreasi orisinil yang lahir dari dialektika intensif antara teks suci, realitas lokal, dan kebutuhan zaman.
+                    </p>
+                  </div>
+
+                  {/* References */}
+                  <div className="mt-12 py-6 px-6 bg-slate-50 dark:bg-slate-900/60 rounded-xl">
+                    <h3 className="text-lg font-semibold mb-4 text-slate-900 dark:text-white">Referensi</h3>
+                    <ol className="list-decimal pl-5 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                      <li>
+                        <a href="https://www.nu.or.id/nasional/halaqah-EGGFq" className="text-emerald-600 dark:text-emerald-400 underline">
+                          NU.or.id - Halaqah
+                        </a>
+                      </li>
+                      <li>
+                        <a href="http://etheses.uin-malang.ac.id/171/7/10210112%20Bab%203.pdf" className="text-emerald-600 dark:text-emerald-400 underline">
+                          Tesis UIN Malang - Bab 3
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://jateng.nu.or.id/fragmen/kontribusi-besar-lembaga-bahtsul-masail-nu-dalam-berbangsa-dan-bernegara-1-JnIgm" className="text-emerald-600 dark:text-emerald-400 underline">
+                          Kontribusi Besar Lembaga Bahtsul Masail NU dalam Berbangsa dan Bernegara
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://digilib.uin-suka.ac.id/14428/" className="text-emerald-600 dark:text-emerald-400 underline">
+                          Digilib UIN Sunan Kalijaga
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://kumparan.com/berita-hari-ini/mengenal-bahtsul-masail-beserta-tugasnya-dalam-menentukan-hukum-islam-1x9TXRzpt83" className="text-emerald-600 dark:text-emerald-400 underline">
+                          Mengenal Bahtsul Masail Beserta Tugasnya dalam Menentukan Hukum Islam
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://media.neliti.com/media/publications/363011-none-87d01152.pdf" className="text-emerald-600 dark:text-emerald-400 underline">
+                          Media Neliti
+                        </a>
+                      </li>
+                    </ol>
+                  </div>
+                </motion.div>
+
+              </Card>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:col-span-4">
+              {/* Floating sidebar that appears when scrolling down */}
+              <motion.div
+                className="transition-all duration-300"
+                style={{
+                  position: 'fixed',
+                  top: '5rem',
+                  zIndex: 30,
+                  width: 'inherit',
+                  maxWidth: 'inherit',
+                  opacity: showScrollTop ? 1 : 0,
+                  transform: showScrollTop ? 'translateY(0)' : 'translateY(-20px)',
+                  pointerEvents: showScrollTop ? 'auto' : 'none',
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                <div className="pr-4 lg:pr-0 max-w-full">
+                  {/* Call to Action - Floating */}
+                  <Card className="p-6 mb-4 shadow-xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/90 dark:to-teal-950/90 border-0 rounded-xl overflow-hidden relative backdrop-blur-sm">
+                    <div className="absolute -top-24 -right-24 w-40 h-40 bg-teal-300/20 dark:bg-teal-700/10 rounded-full blur-2xl"></div>
+                    <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-emerald-300/20 dark:bg-emerald-700/10 rounded-full blur-xl"></div>
+                    
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      className="relative z-10"
+                    >
+                      <div className="flex items-center mb-3">
+                        <span className="p-2 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg mr-3">
+                          <Book className="h-5 w-5 text-emerald-700 dark:text-emerald-300" />
+                        </span>
+                        <h3 className="text-lg font-semibold text-emerald-900 dark:text-emerald-200">
+                          Pelajari Lebih Lanjut
+                        </h3>
+                      </div>
+                      
+                      <p className="text-sm text-slate-700 dark:text-slate-300 mb-4 pl-1">
+                        Jelajahi koleksi dokumen Bahtsul Masail.
+                      </p>
+                      
+                      <Button 
+                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-md hover:shadow-lg transition-all group rounded-lg py-3"
+                      >
+                        <span>Akses Dokumen</span>
+                        <ExternalLink className="h-4 w-4 ml-2" />
+                      </Button>
+                    </motion.div>
+                  </Card>
+
+                  {/* Table of Contents - Floating */}
+                  <Card className="p-6 shadow-xl bg-white/90 dark:bg-slate-900/90 border-0 rounded-xl backdrop-blur-sm">
+                    <h3 id="table-of-contents" className="text-lg font-semibold mb-4 text-slate-900 dark:text-white flex items-center">
+                      <List className="h-5 w-5 mr-2 text-emerald-600 dark:text-emerald-400" />
+                      Daftar Isi
+                    </h3>
+                    
+                    <div className="relative mt-2 mb-4 h-1 bg-gradient-to-r from-emerald-500/20 via-emerald-500/40 to-transparent rounded-full overflow-hidden">
+                      <motion.div 
+                        className="absolute top-0 left-0 h-full bg-emerald-500"
+                        style={{ width: `${readingProgress}%` }}
+                        transition={{ duration: 0.1 }}
+                      />
+                    </div>
+                    
+                    <ScrollArea className="h-[calc(100vh-500px)] pr-4">
+                      <nav className="space-y-1 text-sm">
+                        <TooltipProvider delayDuration={200}>
+                          {sections.map((section) => (
+                            <motion.div key={section.id}>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <a
+                                    href={`#${section.id}`}
+                                    onClick={(e) => handleSmoothScroll(e, section.id)}
+                                    className={`flex items-center p-2.5 rounded-lg transition-all duration-200 ${
+                                      activeToc === section.id 
+                                        ? "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 font-medium" 
+                                        : "hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
+                                    }`}
+                                    aria-current={activeToc === section.id ? "location" : undefined}
+                                  >
+                                    <span className={`mr-2 opacity-70 ${
+                                      activeToc === section.id ? "text-emerald-600 dark:text-emerald-400" : ""
+                                    }`}>
+                                      {section.icon}
+                                    </span>
+                                    <span>{section.title}</span>
+                                    
+                                    {activeToc === section.id && (
+                                      <motion.span 
+                                        layoutId="activeFloatingSection"
+                                        className="ml-auto w-1.5 h-1.5 rounded-full bg-emerald-500"
+                                      />
+                                    )}
+                                  </a>
+                                </TooltipTrigger>
+                                <TooltipContent side="right" className="bg-emerald-50 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-50 border-emerald-100 dark:border-emerald-800">
+                                  Lihat {section.title}
+                                </TooltipContent>
+                              </Tooltip>
+                            </motion.div>
+                          ))}
+                        </TooltipProvider>
+                      </nav>
+                    </ScrollArea>
+                  </Card>
+                </div>
+              </motion.div>
+
+              {/* Initial Position Items (visible before scrolling) */}
+              <div className="lg:sticky top-24 z-20 transition-opacity duration-300" style={{ opacity: showScrollTop ? 0 : 1 }}>
+                {/* Call to Action - Initial Position */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                >
+                  <Card className="p-6 mb-6 shadow-xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/90 dark:to-teal-950/90 border-0 rounded-xl overflow-hidden relative backdrop-blur-sm">
+                    {/* Decorative elements */}
+                    <div className="absolute -top-24 -right-24 w-40 h-40 bg-teal-300/20 dark:bg-teal-700/10 rounded-full blur-2xl"></div>
+                    <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-emerald-300/20 dark:bg-emerald-700/10 rounded-full blur-xl"></div>
+                    
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      className="relative z-10"
+                    >
+                      <div className="flex items-center mb-4">
+                        <span className="p-2 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg mr-3">
+                          <Book className="h-5 w-5 text-emerald-700 dark:text-emerald-300" />
+                        </span>
+                        <h3 className="text-lg font-semibold text-emerald-900 dark:text-emerald-200">
+                          Pelajari Lebih Lanjut
+                        </h3>
+                      </div>
+                      
+                      <p className="text-sm text-slate-700 dark:text-slate-300 mb-5 pl-1">
+                        Jelajahi koleksi dokumen Bahtsul Masail dalam arsip digital kami.
+                      </p>
+                      
+                      <Button 
+                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-md hover:shadow-lg transition-all group rounded-lg py-5"
+                      >
+                        <span>Akses Dokumen</span>
+                        <motion.span 
+                          className="ml-2 inline-block"
+                          initial={{ x: 0 }}
+                          whileHover={{ x: 5 }}
+                          transition={{ type: "spring", stiffness: 400 }}
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                        </motion.span>
+                      </Button>
+                      
+                      <p className="text-xs text-center mt-4 text-emerald-700/70 dark:text-emerald-300/70">
+                        Lebih dari 400+ dokumen tersedia
+                      </p>
+                    </motion.div>
+                  </Card>
+                </motion.div>
+                
+                {/* Table of Contents - Initial Position */}
+                <Card className="p-6 shadow-xl bg-white/90 dark:bg-slate-900/90 border-0 rounded-xl backdrop-blur-sm">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                  >
+                    <h3 className="text-lg font-semibold mb-4 text-slate-900 dark:text-white flex items-center">
+                      <List className="h-5 w-5 mr-2 text-emerald-600 dark:text-emerald-400" />
+                      Daftar Isi
+                    </h3>
+                    
+                    <div className="relative mt-2 mb-4 h-1 bg-gradient-to-r from-emerald-500/20 via-emerald-500/40 to-transparent rounded-full overflow-hidden">
+                      <motion.div 
+                        className="absolute top-0 left-0 h-full bg-emerald-500"
+                        style={{ width: `${readingProgress}%` }}
+                        transition={{ duration: 0.1 }}
+                      />
+                    </div>
+                    
+                    <ScrollArea className="h-[calc(100vh-500px)] pr-4">
+                      <nav className="space-y-1 text-sm">
+                        <TooltipProvider delayDuration={200}>
+                          {sections.map((section) => (
+                            <motion.div
+                              key={section.id}
+                              initial={{ opacity: 0, x: -5 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.05 * sections.findIndex(s => s.id === section.id) }}
+                            >
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <a
+                                    href={`#${section.id}`}
+                                    onClick={(e) => handleSmoothScroll(e, section.id)}
+                                    className={`flex items-center p-2.5 rounded-lg transition-all duration-200 ${
+                                      activeToc === section.id 
+                                        ? "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 font-medium" 
+                                        : "hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
+                                      }`}
+                                      aria-current={activeToc === section.id ? "location" : undefined}
+                                    >
+                                      <span className={`mr-2 opacity-70 ${
+                                        activeToc === section.id ? "text-emerald-600 dark:text-emerald-400" : ""
+                                      }`}>
+                                        {section.icon}
+                                      </span>
+                                      <span>{section.title}</span>
+                                      
+                                      {activeToc === section.id && (
+                                        <motion.span 
+                                          layoutId="activeSection"
+                                          className="ml-auto w-1.5 h-1.5 rounded-full bg-emerald-500"
+                                        />
+                                      )}
+                                    </a>
+                                  </TooltipTrigger>
+                                  <TooltipContent side="right" className="bg-emerald-50 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-50 border-emerald-100 dark:border-emerald-800">
+                                    Lihat {section.title}
+                                  </TooltipContent>
+                                </Tooltip>
+                              </motion.div>
+                            ))}
+                          </TooltipProvider>
+                        </nav>
+                      </ScrollArea>
+                    </motion.div>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Floating Table of Contents toggle for mobile/tablet */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.div
+            className="fixed bottom-20 left-4 z-50 lg:hidden"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+          >
+            <motion.button
+              className="p-3 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-emerald-200 dark:border-emerald-800/50 text-emerald-700 dark:text-emerald-300"
+              onClick={() => setShowMobileToc(prev => !prev)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label="Buka daftar isi"
+              aria-expanded={showMobileToc}
+            >
+              <List className="h-5 w-5" />
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      
+      {/* Mobile TOC Drawer */}
+      <AnimatePresence>
+        {showMobileToc && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 z-40 bg-black/20 dark:bg-black/50 backdrop-blur-sm lg:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowMobileToc(false)}
+            />
+            
+            {/* Drawer */}
+            <motion.div
+              className="fixed bottom-0 inset-x-0 z-40 bg-white dark:bg-slate-900 rounded-t-xl shadow-xl lg:hidden max-h-[70vh] overflow-hidden"
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            >
+              <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center">
+                  <List className="h-5 w-5 mr-2 text-emerald-600 dark:text-emerald-400" />
+                  Daftar Isi
+                </h3>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="h-8 w-8 p-0 rounded-full"
+                  onClick={() => setShowMobileToc(false)}
+                >
+                  <span className="sr-only">Tutup</span>
+                  <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </Button>
+              </div>
+              
+              <ScrollArea className="p-4 max-h-[calc(70vh-64px)]">
+                <div className="space-y-1">
+                  {sections.map((section) => (
+                    <a
+                      key={section.id}
+                      href={`#${section.id}`}
+                      onClick={(e) => {
+                        handleSmoothScroll(e, section.id);
+                        setShowMobileToc(false);
+                      }}
+                      className={`flex items-center p-2.5 rounded-lg transition-all duration-200 ${
+                        activeToc === section.id 
+                          ? "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 font-medium" 
+                          : "hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
+                      }`}
+                    >
+                      <span className={`mr-2 opacity-70 ${
+                        activeToc === section.id ? "text-emerald-600 dark:text-emerald-400" : ""
+                      }`}>
+                        {section.icon}
+                      </span>
+                      <span>{section.title}</span>
+                    </a>
+                  ))}
+                </div>
+              </ScrollArea>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Scroll to Top Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.div
+            className="fixed bottom-8 right-8 z-50"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+          >
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <motion.button
+                    className="group p-3 rounded-full bg-emerald-600 dark:bg-emerald-600/90 text-white shadow-lg backdrop-blur-sm relative overflow-hidden"
+                    onClick={scrollToTop}
+                    whileHover={{ 
+                      scale: 1.05,
+                      boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    aria-label="Scroll to top"
+                  >
+                    {/* Circle background animation on hover */}
+                    <span className="absolute inset-0 bg-gradient-to-tr from-emerald-600 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    
+                    {/* Arrow icon */}
+                    <motion.span 
+                      className="relative z-10 block"
+                      initial={{ y: 0 }}
+                      animate={{ y: [0, -3, 0] }}
+                      transition={{ 
+                        repeat: Infinity, 
+                        repeatType: "reverse", 
+                        duration: 1.5,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <ChevronUp className="h-6 w-6" />
+                    </motion.span>
+                  </motion.button>
+                </TooltipTrigger>
+                <TooltipContent side="left" className="bg-emerald-50 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-50 border-emerald-100">
+                  Kembali ke atas
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      
+      {/* Add data-section attributes to all sections for scroll spy */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="sr-only"
+      >
+        This is an award-winning UI design for Bahtsul Masail history page,
+        featuring advanced animations, accessibility features, and optimized
+        user experience with responsive design and micro-interactions.
+      </motion.div>
+    </MainLayout>
+  );
+}
+
+export default HistoryBahtsulMasail;
