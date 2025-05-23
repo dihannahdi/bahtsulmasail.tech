@@ -1,0 +1,4076 @@
+[
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": 7cf3296e96a9: Pull complete",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-674",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:35.712136933Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #6 - \"Deploy Frontend\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:01:36.311548356Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": fe57cca868a9: Pull complete",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-675",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:40.568918393Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #6 - \"Deploy Frontend\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:01:41.308903149Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": 7de324c4fa33: Pull complete",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-676",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:40.644059549Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #6 - \"Deploy Frontend\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:01:41.308903149Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": Digest: sha256:42028575c20811e52dec067cf12a4dde0943a01f5a0db351074f1657f270116b",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-677",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:40.656116267Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #6 - \"Deploy Frontend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:01:41.308903149Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": Status: Downloaded newer image for gcr.io/google.com/cloudsdktool/cloud-sdk:latest",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-678",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "project_id": "bahtsul-masail-457713",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:40.662528958Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #6 - \"Deploy Frontend\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:01:41.308903149Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": gcr.io/google.com/cloudsdktool/cloud-sdk:latest",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-679",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:40.666785970Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #6 - \"Deploy Frontend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:01:41.308903149Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": Deploying container to Cloud Run service [bahtsulmasail-tech-frontend] in project [bahtsul-masail-457713] region [us-central1]",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-680",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:44.673280027Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #6 - \"Deploy Frontend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:01:45.317063032Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": Deploying...",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-681",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:44.673607660Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #6 - \"Deploy Frontend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:01:45.317063032Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+        "principalSubject": "serviceAccount:bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "34.27.91.100",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/523.0.0 command/gcloud.run.deploy invocation-id/153aa48f88da45c8b76fcb4e569a2c7b environment/GCE environment-version/None client-os/LINUX client-os-ver/5.10.0 client-pltf-arch/x86_64 interactive/False from-script/False python/3.12.10 term/ (Linux 5.10.0-32-cloud-amd64),gzip(gfe)",
+        "requestAttributes": {
+          "time": "2025-05-23T12:01:44.930697Z",
+          "auth": {}
+        },
+        "destinationAttributes": {}
+      },
+      "serviceName": "run.googleapis.com",
+      "methodName": "google.cloud.run.v1.Services.ReplaceService",
+      "authorizationInfo": [
+        {
+          "resource": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-frontend",
+          "permission": "run.services.update",
+          "granted": true,
+          "resourceAttributes": {},
+          "permissionType": "ADMIN_WRITE"
+        },
+        {
+          "resource": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-frontend",
+          "permission": "run.services.update",
+          "granted": true,
+          "resourceAttributes": {
+            "service": "run.googleapis.com/",
+            "name": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-frontend",
+            "type": "run.googleapis.com/Service"
+          },
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-frontend",
+      "request": {
+        "name": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-frontend",
+        "@type": "type.googleapis.com/google.cloud.run.v1.ReplaceServiceRequest",
+        "service": {
+          "apiVersion": "serving.knative.dev/v1",
+          "status": {
+            "traffic": [
+              {
+                "revisionName": "bahtsulmasail-tech-frontend-00008-pbs",
+                "percent": 100,
+                "latestRevision": true
+              }
+            ],
+            "conditions": [
+              {
+                "type": "Ready",
+                "status": "True",
+                "lastTransitionTime": "2025-05-23T11:41:11.912865Z"
+              },
+              {
+                "status": "True",
+                "type": "ConfigurationsReady",
+                "lastTransitionTime": "2025-05-23T11:41:11.272951Z"
+              },
+              {
+                "type": "RoutesReady",
+                "status": "True",
+                "lastTransitionTime": "2025-05-23T11:41:11.877345Z"
+              }
+            ],
+            "latestCreatedRevisionName": "bahtsulmasail-tech-frontend-00008-pbs",
+            "latestReadyRevisionName": "bahtsulmasail-tech-frontend-00008-pbs",
+            "url": "https://bahtsulmasail-tech-frontend-m26aep4haa-uc.a.run.app",
+            "observedGeneration": 8
+          },
+          "metadata": {
+            "generation": 8,
+            "uid": "4ab4ecf9-4814-4356-ab1d-9c3f91f4057f",
+            "creationTimestamp": "2025-05-23T10:04:13.871253Z",
+            "annotations": {
+              "serving.knative.dev/lastModifier": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+              "run.googleapis.com/urls": "[\"https://bahtsulmasail-tech-frontend-768277453755.us-central1.run.app\",\"https://bahtsulmasail-tech-frontend-m26aep4haa-uc.a.run.app\"]",
+              "run.googleapis.com/client-name": "gcloud",
+              "run.googleapis.com/operation-id": "ec32ab58-b2a4-46c3-ba82-32e754a56fea",
+              "run.googleapis.com/client-version": "523.0.0",
+              "run.googleapis.com/ingress-status": "all",
+              "serving.knative.dev/creator": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+              "run.googleapis.com/ingress": "all"
+            },
+            "selfLink": "/apis/serving.knative.dev/v1/namespaces/768277453755/services/bahtsulmasail-tech-frontend",
+            "resourceVersion": "AAY1zBMyEaE",
+            "name": "bahtsulmasail-tech-frontend",
+            "namespace": "768277453755",
+            "labels": {
+              "cloud.googleapis.com/location": "us-central1"
+            }
+          },
+          "spec": {
+            "traffic": [
+              {
+                "percent": 100,
+                "latestRevision": true
+              }
+            ],
+            "template": {
+              "metadata": {
+                "labels": {
+                  "run.googleapis.com/startupProbeType": "Default",
+                  "client.knative.dev/nonce": "zskafjyoxi"
+                },
+                "annotations": {
+                  "run.googleapis.com/client-version": "523.0.0",
+                  "run.googleapis.com/startup-cpu-boost": "true",
+                  "autoscaling.knative.dev/maxScale": "3",
+                  "run.googleapis.com/client-name": "gcloud"
+                }
+              },
+              "spec": {
+                "timeoutSeconds": 300,
+                "containers": [
+                  {
+                    "image": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-frontend:4adf3a4ec93904787c7984ed363da116f73b3c2a",
+                    "resources": {
+                      "limits": {
+                        "memory": "512Mi",
+                        "cpu": "1000m"
+                      }
+                    }
+                  }
+                ],
+                "serviceAccountName": "768277453755-compute@developer.gserviceaccount.com",
+                "containerConcurrency": 80
+              }
+            }
+          },
+          "kind": "Service"
+        }
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1"
+        ]
+      }
+    },
+    "insertId": "nv4yxve20zvx",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "",
+        "project_id": "bahtsul-masail-457713",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1",
+        "revision_name": ""
+      }
+    },
+    "timestamp": "2025-05-23T12:01:44.730408Z",
+    "severity": "NOTICE",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "receiveTimestamp": "2025-05-23T12:01:45.247652153Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com"
+      },
+      "serviceName": "iam.googleapis.com",
+      "methodName": "iam.serviceAccounts.actAs",
+      "authorizationInfo": [
+        {
+          "resource": "projects/-/serviceAccounts/768277453755-compute@developer.gserviceaccount.com",
+          "permission": "iam.serviceAccounts.actAs",
+          "granted": true,
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "projects/-/serviceAccounts/768277453755-compute@developer.gserviceaccount.com",
+      "request": {
+        "@type": "type.googleapis.com/CanActAsServiceAccountRequest",
+        "name": "768277453755-compute@developer.gserviceaccount.com",
+        "project_number": "768277453755"
+      },
+      "response": {
+        "success": true,
+        "@type": "type.googleapis.com/CanActAsServiceAccountResponse"
+      }
+    },
+    "insertId": "1g7z9cdf1glkef",
+    "resource": {
+      "type": "audited_resource",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "method": "iam.serviceAccounts.actAs",
+        "service": "iam.googleapis.com"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:44.880608198Z",
+    "severity": "NOTICE",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "receiveTimestamp": "2025-05-23T12:01:44.880608198Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+        "principalSubject": "serviceAccount:bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "34.27.91.100",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/523.0.0 command/gcloud.run.deploy invocation-id/153aa48f88da45c8b76fcb4e569a2c7b environment/GCE environment-version/None client-os/LINUX client-os-ver/5.10.0 client-pltf-arch/x86_64 interactive/False from-script/False python/3.12.10 term/ (Linux 5.10.0-32-cloud-amd64),gzip(gfe)",
+        "requestAttributes": {
+          "time": "2025-05-23T12:01:45.418471Z",
+          "auth": {}
+        },
+        "destinationAttributes": {}
+      },
+      "serviceName": "run.googleapis.com",
+      "methodName": "google.cloud.run.v1.Services.SetIamPolicy",
+      "authorizationInfo": [
+        {
+          "resource": "projects/bahtsul-masail-457713/locations/us-central1/services/bahtsulmasail-tech-frontend",
+          "permission": "run.services.setIamPolicy",
+          "granted": true,
+          "resourceAttributes": {},
+          "permissionType": "ADMIN_WRITE"
+        },
+        {
+          "permission": "run.services.setIamPolicy",
+          "granted": true,
+          "resourceAttributes": {},
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "projects/bahtsul-masail-457713/locations/us-central1/services/bahtsulmasail-tech-frontend",
+      "request": {
+        "resource": "projects/bahtsul-masail-457713/locations/us-central1/services/bahtsulmasail-tech-frontend",
+        "@type": "type.googleapis.com/google.iam.v1.SetIamPolicyRequest",
+        "policy": {
+          "etag": "BwY1zA2z9hk=",
+          "bindings": [
+            {
+              "role": "roles/run.invoker",
+              "members": [
+                "allUsers"
+              ]
+            }
+          ]
+        }
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1"
+        ]
+      }
+    },
+    "insertId": "1dg39mye1w50b",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "",
+        "revision_name": "",
+        "location": "us-central1",
+        "service_name": "",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:45.169998Z",
+    "severity": "NOTICE",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "receiveTimestamp": "2025-05-23T12:01:45.946881757Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": Setting IAM Policy..........done",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-682",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:45.421994027Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #6 - \"Deploy Frontend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:01:46.306478523Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "status": {
+        "message": "Ready condition status changed to True for Revision bahtsulmasail-tech-frontend-00009-ccz."
+      },
+      "serviceName": "run.googleapis.com",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/bahtsul-masail-457713/revisions/bahtsulmasail-tech-frontend-00009-ccz",
+      "response": {
+        "metadata": {
+          "name": "bahtsulmasail-tech-frontend-00009-ccz",
+          "namespace": "768277453755",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/768277453755/revisions/bahtsulmasail-tech-frontend-00009-ccz",
+          "uid": "020b6076-6e48-4caf-997e-8391e054c026",
+          "resourceVersion": "AAY1zFzjufg",
+          "generation": 1,
+          "creationTimestamp": "2025-05-23T12:01:44.983997Z",
+          "labels": {
+            "client.knative.dev/nonce": "zskafjyoxi",
+            "serving.knative.dev/configuration": "bahtsulmasail-tech-frontend",
+            "serving.knative.dev/configurationGeneration": "9",
+            "serving.knative.dev/service": "bahtsulmasail-tech-frontend",
+            "serving.knative.dev/serviceUid": "4ab4ecf9-4814-4356-ab1d-9c3f91f4057f",
+            "cloud.googleapis.com/location": "us-central1",
+            "run.googleapis.com/startupProbeType": "Default"
+          },
+          "annotations": {
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/client-version": "523.0.0",
+            "run.googleapis.com/startup-cpu-boost": "true",
+            "run.googleapis.com/operation-id": "1b7f27d1-884a-4a82-b982-3b9e8f70c4b5",
+            "autoscaling.knative.dev/maxScale": "3",
+            "serving.knative.dev/creator": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com"
+          },
+          "ownerReferences": [
+            {
+              "kind": "Configuration",
+              "name": "bahtsulmasail-tech-frontend",
+              "uid": "4013c572-15b9-4a1f-b839-ab6097e6a7a1",
+              "apiVersion": "serving.knative.dev/v1",
+              "controller": true,
+              "blockOwnerDeletion": true
+            }
+          ]
+        },
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Revision",
+        "spec": {
+          "containerConcurrency": 80,
+          "timeoutSeconds": 300,
+          "serviceAccountName": "768277453755-compute@developer.gserviceaccount.com",
+          "containers": [
+            {
+              "name": "bahtsulmasail-tech-frontend-1",
+              "image": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-frontend@sha256:a9c0ff74cc05fedf635e95d4ed14905673921303bffdd807545e27d3271af4c1",
+              "ports": [
+                {
+                  "name": "http1",
+                  "containerPort": 3000
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "1000m",
+                  "memory": "512Mi"
+                }
+              },
+              "startupProbe": {
+                "timeoutSeconds": 240,
+                "periodSeconds": 240,
+                "failureThreshold": 1,
+                "tcpSocket": {
+                  "port": 3000
+                }
+              }
+            }
+          ]
+        },
+        "status": {
+          "observedGeneration": 1,
+          "conditions": [
+            {
+              "type": "Ready",
+              "status": "True",
+              "lastTransitionTime": "2025-05-23T12:01:48.292600Z"
+            },
+            {
+              "type": "ContainerReady",
+              "status": "True",
+              "message": "Container image import completed in 2.42s.",
+              "lastTransitionTime": "2025-05-23T12:01:48.177721Z"
+            }
+          ],
+          "logUrl": "https://console.cloud.google.com/logs/viewer?project=bahtsul-masail-457713&resource=cloud_run_revision/service_name/bahtsulmasail-tech-frontend/revision_name/bahtsulmasail-tech-frontend-00009-ccz&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22bahtsulmasail-tech-frontend%22%0Aresource.labels.revision_name%3D%22bahtsulmasail-tech-frontend-00009-ccz%22",
+          "imageDigest": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-frontend@sha256:a9c0ff74cc05fedf635e95d4ed14905673921303bffdd807545e27d3271af4c1",
+          "containerStatuses": [
+            {
+              "name": "bahtsulmasail-tech-frontend-1",
+              "imageDigest": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-frontend@sha256:a9c0ff74cc05fedf635e95d4ed14905673921303bffdd807545e27d3271af4c1"
+            }
+          ]
+        },
+        "@type": "type.googleapis.com/google.cloud.run.v1.Revision"
+      }
+    },
+    "insertId": "-zh4c0jdxr74",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "service_name": "",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:01:48.342467Z",
+    "severity": "INFO",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "receiveTimestamp": "2025-05-23T12:01:48.448185321Z"
+  },
+  {
+    "textPayload": "2025-05-23 12:02:40.970 UTC [20]: [155-1] db=,user=,host= LOG:  checkpoint starting: time",
+    "insertId": "s=13623482e3e74aaa89e046340f935200;i=1d60c;b=4eb96b28f4d840d7b72684c22878dfe7;m=55936db9d;t=635cc6007876c;x=16d5d442dc040c06-0@a1",
+    "resource": {
+      "type": "cloudsql_database",
+      "labels": {
+        "database_id": "bahtsul-masail-457713:lbmdb",
+        "region": "us-central",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:02:40.970604Z",
+    "severity": "INFO",
+    "labels": {
+      "LOG_BUCKET_NUM": "50",
+      "PROJECT_NUMBER": "768277453755",
+      "SOURCE_ID": "343263363838633432646330343134392d666261",
+      "INSTANCE_UID": "1-190fc9f8-53d3-49ad-8936-7dc496a1af22"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudsql.googleapis.com%2Fpostgres.log",
+    "receiveTimestamp": "2025-05-23T12:02:47.888854801Z"
+  },
+  {
+    "textPayload": "2025-05-23 12:02:41.196 UTC [20]: [156-1] db=,user=,host= LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.210 s, sync=0.004 s, total=0.227 s; sync files=3, longest=0.002 s, average=0.002 s; distance=65536 kB, estimate=65536 kB; lsn=1/38004420, redo lsn=1/380043C8",
+    "insertId": "s=13623482e3e74aaa89e046340f935200;i=1d60d;b=4eb96b28f4d840d7b72684c22878dfe7;m=5593a501b;t=635cc600afbea;x=48dc7f8d8fa83a73-0@a1",
+    "resource": {
+      "type": "cloudsql_database",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "database_id": "bahtsul-masail-457713:lbmdb",
+        "region": "us-central"
+      }
+    },
+    "timestamp": "2025-05-23T12:02:41.197034Z",
+    "severity": "INFO",
+    "labels": {
+      "SOURCE_ID": "343263363838633432646330343134392d666261",
+      "LOG_BUCKET_NUM": "50",
+      "PROJECT_NUMBER": "768277453755",
+      "INSTANCE_UID": "1-190fc9f8-53d3-49ad-8936-7dc496a1af22"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudsql.googleapis.com%2Fpostgres.log",
+    "receiveTimestamp": "2025-05-23T12:03:25.585504632Z"
+  },
+  {
+    "textPayload": "Default STARTUP TCP probe succeeded after 1 attempt for container \"bahtsulmasail-tech-frontend-1\" on port 3000.",
+    "insertId": "683064100009768f7b77ed61",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "location": "us-central1",
+        "project_id": "bahtsul-masail-457713",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "configuration_name": "bahtsulmasail-tech-frontend"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:28.620175Z",
+    "severity": "INFO",
+    "labels": {
+      "instanceId": "007f65c6d22f03775ff76ee0473bb41ead425ae119a8814b573d91c560468d577b278b5fa6dcc0aed1fb8a8702a33c6c20ac5197cd5301a290131b8cda17038c4e7428fda0f4e100ea63fb822a0129"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+    "receiveTimestamp": "2025-05-23T12:03:28.624989497Z"
+  },
+  {
+    "textPayload": "   ▲ Next.js 15.1.8",
+    "insertId": "6830641000098ceb3d6702c1",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:28.625899Z",
+    "labels": {
+      "instanceId": "007f65c6d22f03775ff76ee0473bb41ead425ae119a8814b573d91c560468d577b278b5fa6dcc0aed1fb8a8702a33c6c20ac5197cd5301a290131b8cda17038c4e7428fda0f4e100ea63fb822a0129"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2025-05-23T12:03:28.630536859Z"
+  },
+  {
+    "textPayload": "   - Local:        http://localhost:3000",
+    "insertId": "6830641000098e2a2dae20b7",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:28.626218Z",
+    "labels": {
+      "instanceId": "007f65c6d22f03775ff76ee0473bb41ead425ae119a8814b573d91c560468d577b278b5fa6dcc0aed1fb8a8702a33c6c20ac5197cd5301a290131b8cda17038c4e7428fda0f4e100ea63fb822a0129"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2025-05-23T12:03:28.969080042Z"
+  },
+  {
+    "textPayload": "   - Network:      http://0.0.0.0:3000",
+    "insertId": "6830641000098e77d8ca0cdd",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "service_name": "bahtsulmasail-tech-frontend"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:28.626295Z",
+    "labels": {
+      "instanceId": "007f65c6d22f03775ff76ee0473bb41ead425ae119a8814b573d91c560468d577b278b5fa6dcc0aed1fb8a8702a33c6c20ac5197cd5301a290131b8cda17038c4e7428fda0f4e100ea63fb822a0129"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2025-05-23T12:03:28.969080042Z"
+  },
+  {
+    "textPayload": " ✓ Starting...",
+    "insertId": "6830641000098f46f8bc442d",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "service_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1",
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:28.626502Z",
+    "labels": {
+      "instanceId": "007f65c6d22f03775ff76ee0473bb41ead425ae119a8814b573d91c560468d577b278b5fa6dcc0aed1fb8a8702a33c6c20ac5197cd5301a290131b8cda17038c4e7428fda0f4e100ea63fb822a0129"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2025-05-23T12:03:28.969080042Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "status": {
+        "message": "Ready condition status changed to True for Revision bahtsulmasail-tech-frontend-00009-ccz with message: Deploying revision succeeded in 1m43.72s."
+      },
+      "serviceName": "run.googleapis.com",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/bahtsul-masail-457713/revisions/bahtsulmasail-tech-frontend-00009-ccz",
+      "response": {
+        "metadata": {
+          "name": "bahtsulmasail-tech-frontend-00009-ccz",
+          "namespace": "768277453755",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/768277453755/revisions/bahtsulmasail-tech-frontend-00009-ccz",
+          "uid": "020b6076-6e48-4caf-997e-8391e054c026",
+          "resourceVersion": "AAY1zGLf9+I",
+          "generation": 1,
+          "creationTimestamp": "2025-05-23T12:01:44.983997Z",
+          "labels": {
+            "client.knative.dev/nonce": "zskafjyoxi",
+            "serving.knative.dev/configuration": "bahtsulmasail-tech-frontend",
+            "serving.knative.dev/configurationGeneration": "9",
+            "serving.knative.dev/service": "bahtsulmasail-tech-frontend",
+            "serving.knative.dev/serviceUid": "4ab4ecf9-4814-4356-ab1d-9c3f91f4057f",
+            "serving.knative.dev/route": "bahtsulmasail-tech-frontend",
+            "cloud.googleapis.com/location": "us-central1",
+            "run.googleapis.com/startupProbeType": "Default"
+          },
+          "annotations": {
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/client-version": "523.0.0",
+            "run.googleapis.com/startup-cpu-boost": "true",
+            "run.googleapis.com/operation-id": "1b7f27d1-884a-4a82-b982-3b9e8f70c4b5",
+            "autoscaling.knative.dev/maxScale": "3",
+            "serving.knative.dev/creator": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com"
+          },
+          "ownerReferences": [
+            {
+              "kind": "Configuration",
+              "name": "bahtsulmasail-tech-frontend",
+              "uid": "4013c572-15b9-4a1f-b839-ab6097e6a7a1",
+              "apiVersion": "serving.knative.dev/v1",
+              "controller": true,
+              "blockOwnerDeletion": true
+            }
+          ]
+        },
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Revision",
+        "spec": {
+          "containerConcurrency": 80,
+          "timeoutSeconds": 300,
+          "serviceAccountName": "768277453755-compute@developer.gserviceaccount.com",
+          "containers": [
+            {
+              "name": "bahtsulmasail-tech-frontend-1",
+              "image": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-frontend@sha256:a9c0ff74cc05fedf635e95d4ed14905673921303bffdd807545e27d3271af4c1",
+              "ports": [
+                {
+                  "name": "http1",
+                  "containerPort": 3000
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "1000m",
+                  "memory": "512Mi"
+                }
+              },
+              "startupProbe": {
+                "timeoutSeconds": 240,
+                "periodSeconds": 240,
+                "failureThreshold": 1,
+                "tcpSocket": {
+                  "port": 3000
+                }
+              }
+            }
+          ]
+        },
+        "status": {
+          "observedGeneration": 1,
+          "conditions": [
+            {
+              "type": "Ready",
+              "status": "True",
+              "message": "Deploying revision succeeded in 1m43.72s.",
+              "lastTransitionTime": "2025-05-23T12:03:28.709602Z"
+            },
+            {
+              "type": "ContainerHealthy",
+              "status": "True",
+              "message": "Containers became healthy in 2.01s.",
+              "lastTransitionTime": "2025-05-23T12:03:28.633352Z"
+            },
+            {
+              "type": "ContainerReady",
+              "status": "True",
+              "message": "Container image import completed in 2.42s.",
+              "lastTransitionTime": "2025-05-23T12:01:48.177721Z"
+            },
+            {
+              "type": "ResourcesAvailable",
+              "status": "True",
+              "message": "Provisioning imported containers completed in 1m38.21s. Checking container health. This will wait for up to 4m for the configured startup probe, including an initial delay of 0s.",
+              "lastTransitionTime": "2025-05-23T12:03:26.387876Z"
+            }
+          ],
+          "logUrl": "https://console.cloud.google.com/logs/viewer?project=bahtsul-masail-457713&resource=cloud_run_revision/service_name/bahtsulmasail-tech-frontend/revision_name/bahtsulmasail-tech-frontend-00009-ccz&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22bahtsulmasail-tech-frontend%22%0Aresource.labels.revision_name%3D%22bahtsulmasail-tech-frontend-00009-ccz%22",
+          "imageDigest": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-frontend@sha256:a9c0ff74cc05fedf635e95d4ed14905673921303bffdd807545e27d3271af4c1",
+          "containerStatuses": [
+            {
+              "name": "bahtsulmasail-tech-frontend-1",
+              "imageDigest": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-frontend@sha256:a9c0ff74cc05fedf635e95d4ed14905673921303bffdd807545e27d3271af4c1"
+            }
+          ]
+        },
+        "@type": "type.googleapis.com/google.cloud.run.v1.Revision"
+      }
+    },
+    "insertId": "vx1h1zdqvgg",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:28.721422Z",
+    "severity": "INFO",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "receiveTimestamp": "2025-05-23T12:03:28.884535961Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "status": {
+        "message": "Ready condition status changed to True for Service bahtsulmasail-tech-frontend."
+      },
+      "serviceName": "run.googleapis.com",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-frontend",
+      "response": {
+        "metadata": {
+          "name": "bahtsulmasail-tech-frontend",
+          "namespace": "768277453755",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/768277453755/services/bahtsulmasail-tech-frontend",
+          "uid": "4ab4ecf9-4814-4356-ab1d-9c3f91f4057f",
+          "resourceVersion": "AAY1zGLz25k",
+          "generation": 9,
+          "creationTimestamp": "2025-05-23T10:04:13.871253Z",
+          "labels": {
+            "cloud.googleapis.com/location": "us-central1"
+          },
+          "annotations": {
+            "serving.knative.dev/creator": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+            "serving.knative.dev/lastModifier": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/client-version": "523.0.0",
+            "run.googleapis.com/operation-id": "1b7f27d1-884a-4a82-b982-3b9e8f70c4b5",
+            "run.googleapis.com/ingress": "all",
+            "run.googleapis.com/ingress-status": "all",
+            "run.googleapis.com/urls": "[\"https://bahtsulmasail-tech-frontend-768277453755.us-central1.run.app\",\"https://bahtsulmasail-tech-frontend-m26aep4haa-uc.a.run.app\"]"
+          }
+        },
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Service",
+        "spec": {
+          "template": {
+            "metadata": {
+              "labels": {
+                "client.knative.dev/nonce": "zskafjyoxi",
+                "run.googleapis.com/startupProbeType": "Default"
+              },
+              "annotations": {
+                "autoscaling.knative.dev/maxScale": "3",
+                "run.googleapis.com/client-name": "gcloud",
+                "run.googleapis.com/client-version": "523.0.0",
+                "run.googleapis.com/startup-cpu-boost": "true"
+              }
+            },
+            "spec": {
+              "containerConcurrency": 80,
+              "timeoutSeconds": 300,
+              "serviceAccountName": "768277453755-compute@developer.gserviceaccount.com",
+              "containers": [
+                {
+                  "image": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-frontend:4adf3a4ec93904787c7984ed363da116f73b3c2a",
+                  "ports": [
+                    {
+                      "name": "http1",
+                      "containerPort": 3000
+                    }
+                  ],
+                  "resources": {
+                    "limits": {
+                      "cpu": "1000m",
+                      "memory": "512Mi"
+                    }
+                  },
+                  "startupProbe": {
+                    "timeoutSeconds": 240,
+                    "periodSeconds": 240,
+                    "failureThreshold": 1,
+                    "tcpSocket": {
+                      "port": 3000
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "traffic": [
+            {
+              "percent": 100,
+              "latestRevision": true
+            }
+          ]
+        },
+        "status": {
+          "observedGeneration": 9,
+          "conditions": [
+            {
+              "type": "Ready",
+              "status": "True",
+              "lastTransitionTime": "2025-05-23T12:03:30.013081Z"
+            },
+            {
+              "type": "ConfigurationsReady",
+              "status": "True",
+              "lastTransitionTime": "2025-05-23T12:03:28.751470Z"
+            },
+            {
+              "type": "RoutesReady",
+              "status": "True",
+              "lastTransitionTime": "2025-05-23T12:03:29.972540Z"
+            }
+          ],
+          "latestReadyRevisionName": "bahtsulmasail-tech-frontend-00009-ccz",
+          "latestCreatedRevisionName": "bahtsulmasail-tech-frontend-00009-ccz",
+          "traffic": [
+            {
+              "revisionName": "bahtsulmasail-tech-frontend-00009-ccz",
+              "percent": 100,
+              "latestRevision": true
+            }
+          ],
+          "url": "https://bahtsulmasail-tech-frontend-m26aep4haa-uc.a.run.app",
+          "address": {
+            "url": "https://bahtsulmasail-tech-frontend-m26aep4haa-uc.a.run.app"
+          }
+        },
+        "@type": "type.googleapis.com/google.cloud.run.v1.Service"
+      }
+    },
+    "insertId": "-hr4liodq5bo",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1",
+        "revision_name": "",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "configuration_name": ""
+      }
+    },
+    "timestamp": "2025-05-23T12:03:30.032843Z",
+    "severity": "INFO",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "receiveTimestamp": "2025-05-23T12:03:30.073602658Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": Creating Revision............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................done",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-683",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:30.084727349Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #6 - \"Deploy Frontend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:30.325589977Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": Routing traffic.....done",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-684",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:30.084738734Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #6 - \"Deploy Frontend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:30.325589977Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": Done.",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-685",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:30.317692973Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #6 - \"Deploy Frontend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:31.313595443Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": Service [bahtsulmasail-tech-frontend] revision [bahtsulmasail-tech-frontend-00009-ccz] has been deployed and is serving 100 percent of traffic.",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-686",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:30.338851539Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #6 - \"Deploy Frontend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:31.313595443Z"
+  },
+  {
+    "textPayload": "Step #6 - \"Deploy Frontend\": Service URL: https://bahtsulmasail-tech-frontend-768277453755.us-central1.run.app",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-687",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:30.338863899Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #6 - \"Deploy Frontend\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:31.313595443Z"
+  },
+  {
+    "textPayload": "Finished Step #6 - \"Deploy Frontend\"",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-688",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:30.778448430Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "MAIN",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:31.313595443Z"
+  },
+  {
+    "textPayload": "Starting Step #7 - \"Deploy Backend\"",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-689",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:30.778585687Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "MAIN",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:31.313595443Z"
+  },
+  {
+    "textPayload": "Step #7 - \"Deploy Backend\": Already have image (with digest): gcr.io/google.com/cloudsdktool/cloud-sdk",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-690",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:30.779952575Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #7 - \"Deploy Backend\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:31.313595443Z"
+  },
+  {
+    "textPayload": "   ▲ Next.js 15.1.8",
+    "insertId": "68306413000b6b6fb36d5acb",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "service_name": "bahtsulmasail-tech-frontend",
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1",
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:31.748399Z",
+    "labels": {
+      "instanceId": "007f65c6d2f626e0480f904148e6a44215a7f55eeb447015ca14935e0eda902abec4d1e63cb61b69e5d7e79c04bc163247384fc4dfcf55fe68a77cc4f25bcde2d4bb22479d0841e527501bcf24693e"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2025-05-23T12:03:31.752384325Z"
+  },
+  {
+    "textPayload": "   - Local:        http://localhost:3000",
+    "insertId": "68306413000b6c611920c88a",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:31.748641Z",
+    "labels": {
+      "instanceId": "007f65c6d2f626e0480f904148e6a44215a7f55eeb447015ca14935e0eda902abec4d1e63cb61b69e5d7e79c04bc163247384fc4dfcf55fe68a77cc4f25bcde2d4bb22479d0841e527501bcf24693e"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2025-05-23T12:03:32.085562248Z"
+  },
+  {
+    "textPayload": "   - Network:      http://0.0.0.0:3000",
+    "insertId": "68306413000b6c8dd0149386",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:31.748685Z",
+    "labels": {
+      "instanceId": "007f65c6d2f626e0480f904148e6a44215a7f55eeb447015ca14935e0eda902abec4d1e63cb61b69e5d7e79c04bc163247384fc4dfcf55fe68a77cc4f25bcde2d4bb22479d0841e527501bcf24693e"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2025-05-23T12:03:32.085562248Z"
+  },
+  {
+    "textPayload": " ✓ Starting...",
+    "insertId": "68306413000b6d67fe5912cd",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "service_name": "bahtsulmasail-tech-frontend",
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:31.748903Z",
+    "labels": {
+      "instanceId": "007f65c6d2f626e0480f904148e6a44215a7f55eeb447015ca14935e0eda902abec4d1e63cb61b69e5d7e79c04bc163247384fc4dfcf55fe68a77cc4f25bcde2d4bb22479d0841e527501bcf24693e"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2025-05-23T12:03:32.085562248Z"
+  },
+  {
+    "textPayload": "Default STARTUP TCP probe succeeded after 1 attempt for container \"bahtsulmasail-tech-frontend-1\" on port 3000.",
+    "insertId": "68306413000b96b5fd2e7e78",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:31.759477Z",
+    "severity": "INFO",
+    "labels": {
+      "instanceId": "007f65c6d2f626e0480f904148e6a44215a7f55eeb447015ca14935e0eda902abec4d1e63cb61b69e5d7e79c04bc163247384fc4dfcf55fe68a77cc4f25bcde2d4bb22479d0841e527501bcf24693e"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+    "receiveTimestamp": "2025-05-23T12:03:31.764770994Z"
+  },
+  {
+    "textPayload": "Step #7 - \"Deploy Backend\": Deploying container to Cloud Run service [bahtsulmasail-tech-backend] in project [bahtsul-masail-457713] region [us-central1]",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-691",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:33.239573462Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #7 - \"Deploy Backend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:33.303617067Z"
+  },
+  {
+    "textPayload": "Step #7 - \"Deploy Backend\": Deploying...",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-692",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:33.239824553Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #7 - \"Deploy Backend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:33.303617067Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+        "principalSubject": "serviceAccount:bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "34.27.91.100",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/523.0.0 command/gcloud.run.deploy invocation-id/3ce3982197624517a423a6bb9fcc385a environment/GCE environment-version/None client-os/LINUX client-os-ver/5.10.0 client-pltf-arch/x86_64 interactive/False from-script/False python/3.12.10 term/ (Linux 5.10.0-32-cloud-amd64),gzip(gfe)",
+        "requestAttributes": {
+          "time": "2025-05-23T12:03:33.480705Z",
+          "auth": {}
+        },
+        "destinationAttributes": {}
+      },
+      "serviceName": "run.googleapis.com",
+      "methodName": "google.cloud.run.v1.Services.ReplaceService",
+      "authorizationInfo": [
+        {
+          "resource": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-backend",
+          "permission": "run.services.update",
+          "granted": true,
+          "resourceAttributes": {},
+          "permissionType": "ADMIN_WRITE"
+        },
+        {
+          "resource": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-backend",
+          "permission": "run.services.update",
+          "granted": true,
+          "resourceAttributes": {
+            "service": "run.googleapis.com/",
+            "name": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-backend",
+            "type": "run.googleapis.com/Service"
+          },
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-backend",
+      "request": {
+        "service": {
+          "kind": "Service",
+          "metadata": {
+            "labels": {
+              "cloud.googleapis.com/location": "us-central1"
+            },
+            "generation": 6,
+            "selfLink": "/apis/serving.knative.dev/v1/namespaces/768277453755/services/bahtsulmasail-tech-backend",
+            "annotations": {
+              "serving.knative.dev/creator": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+              "run.googleapis.com/urls": "[\"https://bahtsulmasail-tech-backend-768277453755.us-central1.run.app\",\"https://bahtsulmasail-tech-backend-m26aep4haa-uc.a.run.app\"]",
+              "run.googleapis.com/client-version": "523.0.0",
+              "run.googleapis.com/operation-id": "0b0a9141-3714-4012-8873-84835db71764",
+              "serving.knative.dev/lastModifier": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+              "run.googleapis.com/ingress": "all",
+              "run.googleapis.com/ingress-status": "all",
+              "run.googleapis.com/client-name": "gcloud"
+            },
+            "namespace": "768277453755",
+            "creationTimestamp": "2025-05-23T10:23:13.746126Z",
+            "resourceVersion": "AAY1zBR45qg",
+            "name": "bahtsulmasail-tech-backend",
+            "uid": "a3211a5e-f1ad-4d2d-9436-c5242df11978"
+          },
+          "status": {
+            "latestReadyRevisionName": "bahtsulmasail-tech-backend-00006-pg2",
+            "observedGeneration": 6,
+            "conditions": [
+              {
+                "status": "True",
+                "type": "Ready",
+                "lastTransitionTime": "2025-05-23T11:41:33.332136Z"
+              },
+              {
+                "lastTransitionTime": "2025-05-23T11:41:32.063398Z",
+                "type": "ConfigurationsReady",
+                "status": "True"
+              },
+              {
+                "type": "RoutesReady",
+                "lastTransitionTime": "2025-05-23T11:41:33.295507Z",
+                "status": "True"
+              }
+            ],
+            "traffic": [
+              {
+                "percent": 100,
+                "revisionName": "bahtsulmasail-tech-backend-00006-pg2",
+                "latestRevision": true
+              }
+            ],
+            "url": "https://bahtsulmasail-tech-backend-m26aep4haa-uc.a.run.app",
+            "latestCreatedRevisionName": "bahtsulmasail-tech-backend-00006-pg2"
+          },
+          "spec": {
+            "template": {
+              "metadata": {
+                "labels": {
+                  "run.googleapis.com/startupProbeType": "Default",
+                  "client.knative.dev/nonce": "evcjgtwebg"
+                },
+                "annotations": {
+                  "autoscaling.knative.dev/maxScale": "3",
+                  "run.googleapis.com/startup-cpu-boost": "true",
+                  "run.googleapis.com/vpc-access-connector": "projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc",
+                  "run.googleapis.com/client-version": "523.0.0",
+                  "run.googleapis.com/cloudsql-instances": "bahtsul-masail-457713:us-central1:lbmdb",
+                  "run.googleapis.com/vpc-access-egress": "private-ranges-only",
+                  "run.googleapis.com/client-name": "gcloud"
+                }
+              },
+              "spec": {
+                "containers": [
+                  {
+                    "resources": {
+                      "limits": {
+                        "memory": "512Mi",
+                        "cpu": "1000m"
+                      }
+                    },
+                    "image": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-backend:4adf3a4ec93904787c7984ed363da116f73b3c2a"
+                  }
+                ],
+                "timeoutSeconds": 300,
+                "serviceAccountName": "768277453755-compute@developer.gserviceaccount.com",
+                "containerConcurrency": 80
+              }
+            },
+            "traffic": [
+              {
+                "latestRevision": true,
+                "percent": 100
+              }
+            ]
+          },
+          "apiVersion": "serving.knative.dev/v1"
+        },
+        "name": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-backend",
+        "@type": "type.googleapis.com/google.cloud.run.v1.ReplaceServiceRequest"
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1"
+        ]
+      }
+    },
+    "insertId": "5ttivde34u9k",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "",
+        "project_id": "bahtsul-masail-457713",
+        "service_name": "bahtsulmasail-tech-backend",
+        "location": "us-central1",
+        "revision_name": ""
+      }
+    },
+    "timestamp": "2025-05-23T12:03:33.298652Z",
+    "severity": "NOTICE",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "receiveTimestamp": "2025-05-23T12:03:34.419106932Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com"
+      },
+      "serviceName": "iam.googleapis.com",
+      "methodName": "iam.serviceAccounts.actAs",
+      "authorizationInfo": [
+        {
+          "resource": "projects/-/serviceAccounts/768277453755-compute@developer.gserviceaccount.com",
+          "permission": "iam.serviceAccounts.actAs",
+          "granted": true,
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "projects/-/serviceAccounts/768277453755-compute@developer.gserviceaccount.com",
+      "request": {
+        "@type": "type.googleapis.com/CanActAsServiceAccountRequest",
+        "project_number": "768277453755",
+        "name": "768277453755-compute@developer.gserviceaccount.com"
+      },
+      "response": {
+        "success": true,
+        "@type": "type.googleapis.com/CanActAsServiceAccountResponse"
+      }
+    },
+    "insertId": "1g7z9cdf1gm9i9",
+    "resource": {
+      "type": "audited_resource",
+      "labels": {
+        "service": "iam.googleapis.com",
+        "method": "iam.serviceAccounts.actAs",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:33.469231762Z",
+    "severity": "NOTICE",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "receiveTimestamp": "2025-05-23T12:03:33.469231762Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+        "principalSubject": "serviceAccount:bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "34.27.91.100",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/523.0.0 command/gcloud.run.deploy invocation-id/3ce3982197624517a423a6bb9fcc385a environment/GCE environment-version/None client-os/LINUX client-os-ver/5.10.0 client-pltf-arch/x86_64 interactive/False from-script/False python/3.12.10 term/ (Linux 5.10.0-32-cloud-amd64),gzip(gfe)",
+        "requestAttributes": {
+          "time": "2025-05-23T12:03:33.887962Z",
+          "auth": {}
+        },
+        "destinationAttributes": {}
+      },
+      "serviceName": "run.googleapis.com",
+      "methodName": "google.cloud.run.v1.Services.SetIamPolicy",
+      "authorizationInfo": [
+        {
+          "resource": "projects/bahtsul-masail-457713/locations/us-central1/services/bahtsulmasail-tech-backend",
+          "permission": "run.services.setIamPolicy",
+          "granted": true,
+          "resourceAttributes": {},
+          "permissionType": "ADMIN_WRITE"
+        },
+        {
+          "permission": "run.services.setIamPolicy",
+          "granted": true,
+          "resourceAttributes": {},
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "projects/bahtsul-masail-457713/locations/us-central1/services/bahtsulmasail-tech-backend",
+      "request": {
+        "resource": "projects/bahtsul-masail-457713/locations/us-central1/services/bahtsulmasail-tech-backend",
+        "@type": "type.googleapis.com/google.iam.v1.SetIamPolicyRequest",
+        "policy": {
+          "etag": "BwY1zBNuWRk=",
+          "bindings": [
+            {
+              "role": "roles/run.invoker",
+              "members": [
+                "allUsers"
+              ]
+            }
+          ]
+        }
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1"
+        ]
+      }
+    },
+    "insertId": "eh8zlve1q5lz",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "service_name": "",
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "",
+        "configuration_name": "",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:33.660002Z",
+    "severity": "NOTICE",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "receiveTimestamp": "2025-05-23T12:03:34.100940080Z"
+  },
+  {
+    "textPayload": "Step #7 - \"Deploy Backend\": Setting IAM Policy.........done",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-693",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:33.891542096Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #7 - \"Deploy Backend\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:34.296533330Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "status": {},
+      "authenticationInfo": {
+        "principalEmail": "dihannahdii@gmail.com"
+      },
+      "requestMetadata": {
+        "callerIp": "::1",
+        "requestAttributes": {
+          "time": "2025-05-23T12:03:40.045880889Z",
+          "reason": "8uSywAYQGg5Db2xpc2V1bSBGbG93cw",
+          "auth": {}
+        },
+        "destinationAttributes": {}
+      },
+      "serviceName": "memorystore.googleapis.com",
+      "methodName": "google.cloud.memorystore.v1alpha.Memorystore.DeleteInstance",
+      "authorizationInfo": [
+        {
+          "resource": "projects/bahtsul-masail-457713/locations/us-central1/instances/lbmredis",
+          "permission": "memorystore.instances.delete",
+          "granted": true,
+          "resourceAttributes": {
+            "service": "memorystore.googleapis.com",
+            "name": "projects/bahtsul-masail-457713/locations/us-central1/instances/lbmredis",
+            "type": "memorystore.googleapis.com/Instance"
+          },
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "projects/bahtsul-masail-457713/locations/us-central1/instances/lbmredis",
+      "request": {
+        "@type": "type.googleapis.com/google.cloud.memorystore.v1alpha.DeleteInstanceRequest",
+        "name": "projects/bahtsul-masail-457713/locations/us-central1/instances/lbmredis"
+      },
+      "response": {
+        "@type": "type.googleapis.com/google.longrunning.Operation"
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1"
+        ]
+      }
+    },
+    "insertId": "1pneervag",
+    "resource": {
+      "type": "audited_resource",
+      "labels": {
+        "method": "google.cloud.memorystore.v1alpha.Memorystore.DeleteInstance",
+        "service": "memorystore.googleapis.com",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:40.347817966Z",
+    "severity": "NOTICE",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "projects/bahtsul-masail-457713/locations/us-central1/operations/operation-1748001820052-635cc638d0a74-b4479ec6-56fca75c",
+      "producer": "memorystore.googleapis.com",
+      "first": true
+    },
+    "receiveTimestamp": "2025-05-23T12:03:40.408001038Z"
+  },
+  {
+    "textPayload": " ✓ Ready in 11.4s",
+    "insertId": "6830641f0002ee1e264afb69",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1",
+        "configuration_name": "bahtsulmasail-tech-frontend"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:43.192030Z",
+    "labels": {
+      "instanceId": "007f65c6d2f626e0480f904148e6a44215a7f55eeb447015ca14935e0eda902abec4d1e63cb61b69e5d7e79c04bc163247384fc4dfcf55fe68a77cc4f25bcde2d4bb22479d0841e527501bcf24693e"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2025-05-23T12:03:43.408538289Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "private",
+        "callerSuppliedUserAgent": "google-api-go-client/0.5",
+        "requestAttributes": {
+          "time": "2025-05-23T12:03:44.503503Z",
+          "auth": {}
+        },
+        "destinationAttributes": {}
+      },
+      "serviceName": "compute.googleapis.com",
+      "methodName": "v1.compute.forwardingRules.delete",
+      "authorizationInfo": [
+        {
+          "resource": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-a33b44bf-a53c-4048-ac4f-210892c16ce5",
+          "permission": "compute.forwardingRules.delete",
+          "granted": true,
+          "resourceAttributes": {
+            "service": "compute",
+            "name": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-a33b44bf-a53c-4048-ac4f-210892c16ce5",
+            "type": "compute.forwardingRules"
+          },
+          "permissionType": "ADMIN_WRITE"
+        },
+        {
+          "resource": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-a33b44bf-a53c-4048-ac4f-210892c16ce5",
+          "permission": "compute.forwardingRules.pscDelete",
+          "granted": true,
+          "resourceAttributes": {
+            "service": "compute",
+            "name": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-a33b44bf-a53c-4048-ac4f-210892c16ce5",
+            "type": "compute.forwardingRules"
+          },
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-a33b44bf-a53c-4048-ac4f-210892c16ce5",
+      "request": {
+        "@type": "type.googleapis.com/compute.forwardingRules.delete",
+        "requestId": "6f23eaee-c911-42d6-9330-6112d74a9a1e"
+      },
+      "response": {
+        "selfLink": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/operations/operation-1748001824150-635cc63cb9396-86e5f58d-2407f06e",
+        "@type": "type.googleapis.com/operation",
+        "name": "operation-1748001824150-635cc63cb9396-86e5f58d-2407f06e",
+        "status": "RUNNING",
+        "targetId": "9210854112921235494",
+        "progress": "0",
+        "clientOperationId": "6f23eaee-c911-42d6-9330-6112d74a9a1e",
+        "region": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1",
+        "targetLink": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-a33b44bf-a53c-4048-ac4f-210892c16ce5",
+        "operationType": "deleteRegionPscForwardingRule",
+        "id": "2583364664865708751",
+        "startTime": "2025-05-23T05:03:44.442-07:00",
+        "insertTime": "2025-05-23T05:03:44.428-07:00",
+        "user": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com",
+        "selfLinkWithId": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/operations/2583364664865708751"
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1"
+        ]
+      }
+    },
+    "insertId": "-8mytee1acmi",
+    "resource": {
+      "type": "gce_forwarding_rule",
+      "labels": {
+        "forwarding_rule_id": "9210854112921235494",
+        "region": "us-central1",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:44.187133Z",
+    "severity": "NOTICE",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "acee1386-b7f3-421d-9026-84d39009015f"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operation-1748001824150-635cc63cb9396-86e5f58d-2407f06e",
+      "producer": "compute.googleapis.com",
+      "first": true
+    },
+    "receiveTimestamp": "2025-05-23T12:03:44.997901895Z"
+  },
+  {
+    "textPayload": " ✓ Ready in 15.7s",
+    "insertId": "68306420000682c5c59ee1f8",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "location": "us-central1",
+        "project_id": "bahtsul-masail-457713",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "configuration_name": "bahtsulmasail-tech-frontend"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:44.426693Z",
+    "labels": {
+      "instanceId": "007f65c6d22f03775ff76ee0473bb41ead425ae119a8814b573d91c560468d577b278b5fa6dcc0aed1fb8a8702a33c6c20ac5197cd5301a290131b8cda17038c4e7428fda0f4e100ea63fb822a0129"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2025-05-23T12:03:44.430348736Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "private",
+        "callerSuppliedUserAgent": "google-api-go-client/0.5",
+        "requestAttributes": {
+          "time": "2025-05-23T12:03:44.954154Z",
+          "auth": {}
+        },
+        "destinationAttributes": {}
+      },
+      "serviceName": "compute.googleapis.com",
+      "methodName": "v1.compute.forwardingRules.delete",
+      "authorizationInfo": [
+        {
+          "resource": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-2afbd696-a77c-4328-90ce-7079e0094a8b",
+          "permission": "compute.forwardingRules.delete",
+          "granted": true,
+          "resourceAttributes": {
+            "service": "compute",
+            "name": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-2afbd696-a77c-4328-90ce-7079e0094a8b",
+            "type": "compute.forwardingRules"
+          },
+          "permissionType": "ADMIN_WRITE"
+        },
+        {
+          "resource": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-2afbd696-a77c-4328-90ce-7079e0094a8b",
+          "permission": "compute.forwardingRules.pscDelete",
+          "granted": true,
+          "resourceAttributes": {
+            "service": "compute",
+            "name": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-2afbd696-a77c-4328-90ce-7079e0094a8b",
+            "type": "compute.forwardingRules"
+          },
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-2afbd696-a77c-4328-90ce-7079e0094a8b",
+      "request": {
+        "@type": "type.googleapis.com/compute.forwardingRules.delete",
+        "requestId": "d6b7fed8-5ae5-4789-bbc7-9b4fddbcb802"
+      },
+      "response": {
+        "name": "operation-1748001824620-635cc63d2c07c-3b45eb86-6779d47f",
+        "clientOperationId": "d6b7fed8-5ae5-4789-bbc7-9b4fddbcb802",
+        "region": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1",
+        "insertTime": "2025-05-23T05:03:44.873-07:00",
+        "selfLink": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/operations/operation-1748001824620-635cc63d2c07c-3b45eb86-6779d47f",
+        "id": "8128534186964146895",
+        "selfLinkWithId": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/operations/8128534186964146895",
+        "operationType": "deleteRegionPscForwardingRule",
+        "progress": "0",
+        "status": "RUNNING",
+        "targetLink": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-2afbd696-a77c-4328-90ce-7079e0094a8b",
+        "@type": "type.googleapis.com/operation",
+        "targetId": "3780781798730870822",
+        "startTime": "2025-05-23T05:03:44.884-07:00",
+        "user": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com"
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1"
+        ]
+      }
+    },
+    "insertId": "-6c7t3rdr3sa",
+    "resource": {
+      "type": "gce_forwarding_rule",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "region": "us-central1",
+        "forwarding_rule_id": "3780781798730870822"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:44.670640Z",
+    "severity": "NOTICE",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "c21ae1af-f617-44cf-95e4-2c2da6de1253"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operation-1748001824620-635cc63d2c07c-3b45eb86-6779d47f",
+      "producer": "compute.googleapis.com",
+      "first": true
+    },
+    "receiveTimestamp": "2025-05-23T12:03:45.393584389Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "status": {
+        "message": "Ready condition status changed to True for Revision bahtsulmasail-tech-backend-00007-sds."
+      },
+      "serviceName": "run.googleapis.com",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/bahtsul-masail-457713/revisions/bahtsulmasail-tech-backend-00007-sds",
+      "response": {
+        "metadata": {
+          "name": "bahtsulmasail-tech-backend-00007-sds",
+          "namespace": "768277453755",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/768277453755/revisions/bahtsulmasail-tech-backend-00007-sds",
+          "uid": "148c8762-894e-41fa-9654-e2d2eb00caec",
+          "resourceVersion": "AAY1zGPm4oY",
+          "generation": 1,
+          "creationTimestamp": "2025-05-23T12:03:33.553531Z",
+          "labels": {
+            "client.knative.dev/nonce": "evcjgtwebg",
+            "serving.knative.dev/configuration": "bahtsulmasail-tech-backend",
+            "serving.knative.dev/configurationGeneration": "7",
+            "serving.knative.dev/service": "bahtsulmasail-tech-backend",
+            "serving.knative.dev/serviceUid": "a3211a5e-f1ad-4d2d-9436-c5242df11978",
+            "cloud.googleapis.com/location": "us-central1",
+            "run.googleapis.com/startupProbeType": "Default"
+          },
+          "annotations": {
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/startup-cpu-boost": "true",
+            "serving.knative.dev/creator": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+            "run.googleapis.com/client-version": "523.0.0",
+            "run.googleapis.com/vpc-access-egress": "private-ranges-only",
+            "run.googleapis.com/cloudsql-instances": "bahtsul-masail-457713:us-central1:lbmdb",
+            "run.googleapis.com/operation-id": "3ddd3cc3-f0ca-4411-b4b6-497e3a2b69fe",
+            "autoscaling.knative.dev/maxScale": "3",
+            "run.googleapis.com/vpc-access-connector": "projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc"
+          },
+          "ownerReferences": [
+            {
+              "kind": "Configuration",
+              "name": "bahtsulmasail-tech-backend",
+              "uid": "0432921a-c4cc-4a39-97d9-860fe07ad6be",
+              "apiVersion": "serving.knative.dev/v1",
+              "controller": true,
+              "blockOwnerDeletion": true
+            }
+          ]
+        },
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Revision",
+        "spec": {
+          "containerConcurrency": 80,
+          "timeoutSeconds": 300,
+          "serviceAccountName": "768277453755-compute@developer.gserviceaccount.com",
+          "containers": [
+            {
+              "name": "bahtsulmasail-tech-backend-1",
+              "image": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-backend@sha256:f5ade066ddbbd3b613238ba00402c2ea53433875cb641b047152f1abc16dc7fc",
+              "ports": [
+                {
+                  "name": "http1",
+                  "containerPort": 8080
+                }
+              ],
+              "env": [
+                {
+                  "name": "DJANGO_SETTINGS_MODULE",
+                  "value": "core.settings"
+                },
+                {
+                  "name": "DJANGO_DEBUG",
+                  "value": "False"
+                },
+                {
+                  "name": "PYTHONUNBUFFERED",
+                  "value": "1"
+                },
+                {
+                  "name": "DB_NAME",
+                  "value": "postgres"
+                },
+                {
+                  "name": "DB_USER",
+                  "value": "postgres"
+                },
+                {
+                  "name": "CLOUD_SQL_CONNECTION_NAME",
+                  "value": "bahtsul-masail-457713:us-central1:lbmdb"
+                },
+                {
+                  "name": "REDIS_HOST",
+                  "value": "10.107.218.243"
+                },
+                {
+                  "name": "REDIS_PORT",
+                  "value": "6379"
+                },
+                {
+                  "name": "GS_BUCKET_NAME",
+                  "value": "lbmbucket"
+                },
+                {
+                  "name": "DB_PASSWORD",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "lbmdbpass"
+                    }
+                  }
+                },
+                {
+                  "name": "DJANGO_SECRET_KEY",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "djangosecret"
+                    }
+                  }
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "1000m",
+                  "memory": "512Mi"
+                }
+              },
+              "startupProbe": {
+                "timeoutSeconds": 240,
+                "periodSeconds": 240,
+                "failureThreshold": 1,
+                "tcpSocket": {
+                  "port": 8080
+                }
+              }
+            }
+          ]
+        },
+        "status": {
+          "observedGeneration": 1,
+          "conditions": [
+            {
+              "type": "Ready",
+              "status": "True",
+              "lastTransitionTime": "2025-05-23T12:03:45.940102Z"
+            },
+            {
+              "type": "ContainerReady",
+              "status": "True",
+              "message": "Container image import completed in 11.59s.",
+              "lastTransitionTime": "2025-05-23T12:03:45.885096Z"
+            }
+          ],
+          "logUrl": "https://console.cloud.google.com/logs/viewer?project=bahtsul-masail-457713&resource=cloud_run_revision/service_name/bahtsulmasail-tech-backend/revision_name/bahtsulmasail-tech-backend-00007-sds&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22bahtsulmasail-tech-backend%22%0Aresource.labels.revision_name%3D%22bahtsulmasail-tech-backend-00007-sds%22",
+          "imageDigest": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-backend@sha256:f5ade066ddbbd3b613238ba00402c2ea53433875cb641b047152f1abc16dc7fc",
+          "containerStatuses": [
+            {
+              "name": "bahtsulmasail-tech-backend-1",
+              "imageDigest": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-backend@sha256:f5ade066ddbbd3b613238ba00402c2ea53433875cb641b047152f1abc16dc7fc"
+            }
+          ]
+        },
+        "@type": "type.googleapis.com/google.cloud.run.v1.Revision"
+      }
+    },
+    "insertId": "3w8s3vdoj9g",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "service_name": "",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:45.953784Z",
+    "severity": "INFO",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "receiveTimestamp": "2025-05-23T12:03:47.020377784Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:03:50 +0000] [2] [INFO] Starting gunicorn 20.1.0",
+    "insertId": "6830642600098d6420a4b054",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "location": "us-central1",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "service_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:50.626020Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:03:50.633529285Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:03:50 +0000] [2] [INFO] Listening at: http://0.0.0.0:8080 (2)",
+    "insertId": "6830642600099240a2d51890",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "location": "us-central1",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "service_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:50.627264Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:03:50.964656585Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:03:50 +0000] [2] [INFO] Using worker: sync",
+    "insertId": "683064260009928bdfcb9a55",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:50.627339Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:03:50.964656585Z"
+  },
+  {
+    "textPayload": "Default STARTUP TCP probe succeeded after 1 attempt for container \"bahtsulmasail-tech-backend-1\" on port 8080.",
+    "insertId": "683064260009a1fb3ef4d889",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:50.631291Z",
+    "severity": "INFO",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+    "receiveTimestamp": "2025-05-23T12:03:50.635162973Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:03:50 +0000] [3] [INFO] Booting worker with pid: 3",
+    "insertId": "68306426000a3c4ffee746d1",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "location": "us-central1",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "project_id": "bahtsul-masail-457713",
+        "service_name": "bahtsulmasail-tech-backend",
+        "configuration_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:50.670799Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:03:50.964656585Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "status": {
+        "message": "Ready condition status changed to True for Revision bahtsulmasail-tech-backend-00007-sds with message: Deploying revision succeeded in 17.15s."
+      },
+      "serviceName": "run.googleapis.com",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/bahtsul-masail-457713/revisions/bahtsulmasail-tech-backend-00007-sds",
+      "response": {
+        "metadata": {
+          "name": "bahtsulmasail-tech-backend-00007-sds",
+          "namespace": "768277453755",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/768277453755/revisions/bahtsulmasail-tech-backend-00007-sds",
+          "uid": "148c8762-894e-41fa-9654-e2d2eb00caec",
+          "resourceVersion": "AAY1zGQvkKc",
+          "generation": 1,
+          "creationTimestamp": "2025-05-23T12:03:33.553531Z",
+          "labels": {
+            "client.knative.dev/nonce": "evcjgtwebg",
+            "serving.knative.dev/configuration": "bahtsulmasail-tech-backend",
+            "serving.knative.dev/configurationGeneration": "7",
+            "serving.knative.dev/service": "bahtsulmasail-tech-backend",
+            "serving.knative.dev/serviceUid": "a3211a5e-f1ad-4d2d-9436-c5242df11978",
+            "serving.knative.dev/route": "bahtsulmasail-tech-backend",
+            "cloud.googleapis.com/location": "us-central1",
+            "run.googleapis.com/startupProbeType": "Default"
+          },
+          "annotations": {
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/startup-cpu-boost": "true",
+            "serving.knative.dev/creator": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+            "run.googleapis.com/client-version": "523.0.0",
+            "run.googleapis.com/vpc-access-egress": "private-ranges-only",
+            "run.googleapis.com/cloudsql-instances": "bahtsul-masail-457713:us-central1:lbmdb",
+            "run.googleapis.com/operation-id": "3ddd3cc3-f0ca-4411-b4b6-497e3a2b69fe",
+            "autoscaling.knative.dev/maxScale": "3",
+            "run.googleapis.com/vpc-access-connector": "projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc"
+          },
+          "ownerReferences": [
+            {
+              "kind": "Configuration",
+              "name": "bahtsulmasail-tech-backend",
+              "uid": "0432921a-c4cc-4a39-97d9-860fe07ad6be",
+              "apiVersion": "serving.knative.dev/v1",
+              "controller": true,
+              "blockOwnerDeletion": true
+            }
+          ]
+        },
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Revision",
+        "spec": {
+          "containerConcurrency": 80,
+          "timeoutSeconds": 300,
+          "serviceAccountName": "768277453755-compute@developer.gserviceaccount.com",
+          "containers": [
+            {
+              "name": "bahtsulmasail-tech-backend-1",
+              "image": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-backend@sha256:f5ade066ddbbd3b613238ba00402c2ea53433875cb641b047152f1abc16dc7fc",
+              "ports": [
+                {
+                  "name": "http1",
+                  "containerPort": 8080
+                }
+              ],
+              "env": [
+                {
+                  "name": "DJANGO_SETTINGS_MODULE",
+                  "value": "core.settings"
+                },
+                {
+                  "name": "DJANGO_DEBUG",
+                  "value": "False"
+                },
+                {
+                  "name": "PYTHONUNBUFFERED",
+                  "value": "1"
+                },
+                {
+                  "name": "DB_NAME",
+                  "value": "postgres"
+                },
+                {
+                  "name": "DB_USER",
+                  "value": "postgres"
+                },
+                {
+                  "name": "CLOUD_SQL_CONNECTION_NAME",
+                  "value": "bahtsul-masail-457713:us-central1:lbmdb"
+                },
+                {
+                  "name": "REDIS_HOST",
+                  "value": "10.107.218.243"
+                },
+                {
+                  "name": "REDIS_PORT",
+                  "value": "6379"
+                },
+                {
+                  "name": "GS_BUCKET_NAME",
+                  "value": "lbmbucket"
+                },
+                {
+                  "name": "DB_PASSWORD",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "lbmdbpass"
+                    }
+                  }
+                },
+                {
+                  "name": "DJANGO_SECRET_KEY",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "djangosecret"
+                    }
+                  }
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "1000m",
+                  "memory": "512Mi"
+                }
+              },
+              "startupProbe": {
+                "timeoutSeconds": 240,
+                "periodSeconds": 240,
+                "failureThreshold": 1,
+                "tcpSocket": {
+                  "port": 8080
+                }
+              }
+            }
+          ]
+        },
+        "status": {
+          "observedGeneration": 1,
+          "conditions": [
+            {
+              "type": "Ready",
+              "status": "True",
+              "message": "Deploying revision succeeded in 17.15s.",
+              "lastTransitionTime": "2025-05-23T12:03:50.703271Z"
+            },
+            {
+              "type": "ContainerHealthy",
+              "status": "True",
+              "message": "Containers became healthy in 1.16s.",
+              "lastTransitionTime": "2025-05-23T12:03:50.641805Z"
+            },
+            {
+              "type": "ContainerReady",
+              "status": "True",
+              "message": "Container image import completed in 11.59s.",
+              "lastTransitionTime": "2025-05-23T12:03:45.885096Z"
+            },
+            {
+              "type": "ResourcesAvailable",
+              "status": "True",
+              "message": "Provisioning imported containers completed in 3.16s. Checking container health. This will wait for up to 4m for the configured startup probe, including an initial delay of 0s.",
+              "lastTransitionTime": "2025-05-23T12:03:49.051517Z"
+            }
+          ],
+          "logUrl": "https://console.cloud.google.com/logs/viewer?project=bahtsul-masail-457713&resource=cloud_run_revision/service_name/bahtsulmasail-tech-backend/revision_name/bahtsulmasail-tech-backend-00007-sds&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22bahtsulmasail-tech-backend%22%0Aresource.labels.revision_name%3D%22bahtsulmasail-tech-backend-00007-sds%22",
+          "imageDigest": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-backend@sha256:f5ade066ddbbd3b613238ba00402c2ea53433875cb641b047152f1abc16dc7fc",
+          "containerStatuses": [
+            {
+              "name": "bahtsulmasail-tech-backend-1",
+              "imageDigest": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-backend@sha256:f5ade066ddbbd3b613238ba00402c2ea53433875cb641b047152f1abc16dc7fc"
+            }
+          ]
+        },
+        "@type": "type.googleapis.com/google.cloud.run.v1.Revision"
+      }
+    },
+    "insertId": "ygpayse15erq",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "service_name": "bahtsulmasail-tech-backend",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:50.716115Z",
+    "severity": "INFO",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "receiveTimestamp": "2025-05-23T12:03:51.712187236Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "status": {
+        "message": "Ready condition status changed to True for Service bahtsulmasail-tech-backend."
+      },
+      "serviceName": "run.googleapis.com",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/bahtsul-masail-457713/services/bahtsulmasail-tech-backend",
+      "response": {
+        "metadata": {
+          "name": "bahtsulmasail-tech-backend",
+          "namespace": "768277453755",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/768277453755/services/bahtsulmasail-tech-backend",
+          "uid": "a3211a5e-f1ad-4d2d-9436-c5242df11978",
+          "resourceVersion": "AAY1zGREY+E",
+          "generation": 7,
+          "creationTimestamp": "2025-05-23T10:23:13.746126Z",
+          "labels": {
+            "cloud.googleapis.com/location": "us-central1"
+          },
+          "annotations": {
+            "serving.knative.dev/creator": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+            "serving.knative.dev/lastModifier": "bahtsulmasail-cloudrun-sa@bahtsul-masail-457713.iam.gserviceaccount.com",
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/client-version": "523.0.0",
+            "run.googleapis.com/operation-id": "3ddd3cc3-f0ca-4411-b4b6-497e3a2b69fe",
+            "run.googleapis.com/ingress": "all",
+            "run.googleapis.com/ingress-status": "all",
+            "run.googleapis.com/urls": "[\"https://bahtsulmasail-tech-backend-768277453755.us-central1.run.app\",\"https://bahtsulmasail-tech-backend-m26aep4haa-uc.a.run.app\"]"
+          }
+        },
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Service",
+        "spec": {
+          "template": {
+            "metadata": {
+              "labels": {
+                "client.knative.dev/nonce": "evcjgtwebg",
+                "run.googleapis.com/startupProbeType": "Default"
+              },
+              "annotations": {
+                "autoscaling.knative.dev/maxScale": "3",
+                "run.googleapis.com/client-name": "gcloud",
+                "run.googleapis.com/client-version": "523.0.0",
+                "run.googleapis.com/cloudsql-instances": "bahtsul-masail-457713:us-central1:lbmdb",
+                "run.googleapis.com/vpc-access-connector": "projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc",
+                "run.googleapis.com/vpc-access-egress": "private-ranges-only",
+                "run.googleapis.com/startup-cpu-boost": "true"
+              }
+            },
+            "spec": {
+              "containerConcurrency": 80,
+              "timeoutSeconds": 300,
+              "serviceAccountName": "768277453755-compute@developer.gserviceaccount.com",
+              "containers": [
+                {
+                  "image": "gcr.io/bahtsul-masail-457713/bahtsulmasail-tech-backend:4adf3a4ec93904787c7984ed363da116f73b3c2a",
+                  "ports": [
+                    {
+                      "name": "http1",
+                      "containerPort": 8080
+                    }
+                  ],
+                  "env": [
+                    {
+                      "name": "DJANGO_SETTINGS_MODULE",
+                      "value": "core.settings"
+                    },
+                    {
+                      "name": "DJANGO_DEBUG",
+                      "value": "False"
+                    },
+                    {
+                      "name": "PYTHONUNBUFFERED",
+                      "value": "1"
+                    },
+                    {
+                      "name": "DB_NAME",
+                      "value": "postgres"
+                    },
+                    {
+                      "name": "DB_USER",
+                      "value": "postgres"
+                    },
+                    {
+                      "name": "CLOUD_SQL_CONNECTION_NAME",
+                      "value": "bahtsul-masail-457713:us-central1:lbmdb"
+                    },
+                    {
+                      "name": "REDIS_HOST",
+                      "value": "10.107.218.243"
+                    },
+                    {
+                      "name": "REDIS_PORT",
+                      "value": "6379"
+                    },
+                    {
+                      "name": "GS_BUCKET_NAME",
+                      "value": "lbmbucket"
+                    },
+                    {
+                      "name": "DB_PASSWORD",
+                      "valueFrom": {
+                        "secretKeyRef": {
+                          "key": "latest",
+                          "name": "lbmdbpass"
+                        }
+                      }
+                    },
+                    {
+                      "name": "DJANGO_SECRET_KEY",
+                      "valueFrom": {
+                        "secretKeyRef": {
+                          "key": "latest",
+                          "name": "djangosecret"
+                        }
+                      }
+                    }
+                  ],
+                  "resources": {
+                    "limits": {
+                      "cpu": "1000m",
+                      "memory": "512Mi"
+                    }
+                  },
+                  "startupProbe": {
+                    "timeoutSeconds": 240,
+                    "periodSeconds": 240,
+                    "failureThreshold": 1,
+                    "tcpSocket": {
+                      "port": 8080
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "traffic": [
+            {
+              "percent": 100,
+              "latestRevision": true
+            }
+          ]
+        },
+        "status": {
+          "observedGeneration": 7,
+          "conditions": [
+            {
+              "type": "Ready",
+              "status": "True",
+              "lastTransitionTime": "2025-05-23T12:03:52.068065Z"
+            },
+            {
+              "type": "ConfigurationsReady",
+              "status": "True",
+              "lastTransitionTime": "2025-05-23T12:03:50.752977Z"
+            },
+            {
+              "type": "RoutesReady",
+              "status": "True",
+              "lastTransitionTime": "2025-05-23T12:03:52.029970Z"
+            }
+          ],
+          "latestReadyRevisionName": "bahtsulmasail-tech-backend-00007-sds",
+          "latestCreatedRevisionName": "bahtsulmasail-tech-backend-00007-sds",
+          "traffic": [
+            {
+              "revisionName": "bahtsulmasail-tech-backend-00007-sds",
+              "percent": 100,
+              "latestRevision": true
+            }
+          ],
+          "url": "https://bahtsulmasail-tech-backend-m26aep4haa-uc.a.run.app",
+          "address": {
+            "url": "https://bahtsulmasail-tech-backend-m26aep4haa-uc.a.run.app"
+          }
+        },
+        "@type": "type.googleapis.com/google.cloud.run.v1.Service"
+      }
+    },
+    "insertId": "ktiijfe17bs2",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "service_name": "bahtsulmasail-tech-backend",
+        "configuration_name": "",
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1",
+        "revision_name": ""
+      }
+    },
+    "timestamp": "2025-05-23T12:03:52.083719Z",
+    "severity": "INFO",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "receiveTimestamp": "2025-05-23T12:03:52.863951891Z"
+  },
+  {
+    "textPayload": "Step #7 - \"Deploy Backend\": Creating Revision.................................................................................................................................................................................................done",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-694",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:52.479892526Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #7 - \"Deploy Backend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:53.320749334Z"
+  },
+  {
+    "textPayload": "Step #7 - \"Deploy Backend\": Routing traffic.....done",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-695",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:52.479905329Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #7 - \"Deploy Backend\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:53.320749334Z"
+  },
+  {
+    "textPayload": "Step #7 - \"Deploy Backend\": Done.",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-696",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:52.734232849Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #7 - \"Deploy Backend\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:53.320749334Z"
+  },
+  {
+    "textPayload": "Step #7 - \"Deploy Backend\": Service [bahtsulmasail-tech-backend] revision [bahtsulmasail-tech-backend-00007-sds] has been deployed and is serving 100 percent of traffic.",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-697",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:52.773242534Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #7 - \"Deploy Backend\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:53.320749334Z"
+  },
+  {
+    "textPayload": "Step #7 - \"Deploy Backend\": Service URL: https://bahtsulmasail-tech-backend-768277453755.us-central1.run.app",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-698",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:52.773255832Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #7 - \"Deploy Backend\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:53.320749334Z"
+  },
+  {
+    "textPayload": "Finished Step #7 - \"Deploy Backend\"",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-699",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:53.222803432Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "MAIN"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:53.320749334Z"
+  },
+  {
+    "textPayload": "Starting Step #8 - \"Deploy Celery Worker\"",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-700",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:53.222928773Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "MAIN"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:53.320749334Z"
+  },
+  {
+    "textPayload": "Step #8 - \"Deploy Celery Worker\": Already have image (with digest): gcr.io/google.com/cloudsdktool/cloud-sdk",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-701",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:53.224280577Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #8 - \"Deploy Celery Worker\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:53.320749334Z"
+  },
+  {
+    "textPayload": "Step #8 - \"Deploy Celery Worker\": ERROR: (gcloud.run.deploy) unrecognized arguments:",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-702",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:54.919887129Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #8 - \"Deploy Celery Worker\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:55.319113106Z"
+  },
+  {
+    "textPayload": "Step #8 - \"Deploy Celery Worker\":   --startup-probe-type=exec (did you mean '--startup-probe'?)",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-703",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:54.919900359Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #8 - \"Deploy Celery Worker\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:55.319113106Z"
+  },
+  {
+    "textPayload": "Step #8 - \"Deploy Celery Worker\":   --startup-probe-exec-command=true (did you mean '--startup-probe'?)",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-704",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:54.919901941Z",
+    "severity": "INFO",
+    "labels": {
+      "build_step": "Step #8 - \"Deploy Celery Worker\"",
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:55.319113106Z"
+  },
+  {
+    "textPayload": "Step #8 - \"Deploy Celery Worker\":   --startup-probe-period-seconds=10 (did you mean '--startup-probe'?)",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-705",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "project_id": "bahtsul-masail-457713",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:54.919902857Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #8 - \"Deploy Celery Worker\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:55.319113106Z"
+  },
+  {
+    "textPayload": "Step #8 - \"Deploy Celery Worker\":   --startup-probe-timeout-seconds=5 (did you mean '--startup-probe'?)",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-706",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:54.919903661Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #8 - \"Deploy Celery Worker\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:55.319113106Z"
+  },
+  {
+    "textPayload": "Step #8 - \"Deploy Celery Worker\":   --startup-probe-failure-threshold=3 (did you mean '--startup-probe'?)",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-707",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:54.919904417Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #8 - \"Deploy Celery Worker\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:55.319113106Z"
+  },
+  {
+    "textPayload": "Step #8 - \"Deploy Celery Worker\":   To search the help text of gcloud commands, run:",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-708",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:54.919905244Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #8 - \"Deploy Celery Worker\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:55.319113106Z"
+  },
+  {
+    "textPayload": "Step #8 - \"Deploy Celery Worker\":   gcloud help -- SEARCH_TERMS",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-709",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:54.919906303Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "Step #8 - \"Deploy Celery Worker\""
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:55.319113106Z"
+  },
+  {
+    "textPayload": "Finished Step #8 - \"Deploy Celery Worker\"",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-710",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:55.336211126Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "MAIN"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:55.557476090Z"
+  },
+  {
+    "textPayload": "ERROR",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-711",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:55.336287215Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "MAIN"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:55.557476090Z"
+  },
+  {
+    "textPayload": "ERROR: build step 8 \"gcr.io/google.com/cloudsdktool/cloud-sdk\" failed: step exited with non-zero status: 2",
+    "insertId": "c0eea4eb-8c34-4098-ad7a-8688a607330f-712",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:55.336308016Z",
+    "severity": "INFO",
+    "labels": {
+      "build_tags": "trigger-b36a3095-bdea-4fbf-b295-daa2635ecb77",
+      "build_step": "MAIN"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudbuild",
+    "receiveTimestamp": "2025-05-23T12:03:55.557476090Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "status": {
+        "code": 9
+      },
+      "authenticationInfo": {
+        "principalEmail": "768277453755@cloudbuild.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "requestAttributes": {},
+        "destinationAttributes": {}
+      },
+      "serviceName": "cloudbuild.googleapis.com",
+      "methodName": "google.devtools.cloudbuild.v1.CloudBuild.CreateBuild",
+      "authorizationInfo": [
+        {
+          "resource": "projects/bahtsul-masail-457713",
+          "permission": "cloudbuild.builds.create",
+          "granted": true,
+          "resourceAttributes": {},
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "projects/bahtsul-masail-457713/builds",
+      "resourceLocation": {
+        "currentLocations": [
+          "global"
+        ]
+      }
+    },
+    "insertId": "50gisge1iknu",
+    "resource": {
+      "type": "build",
+      "labels": {
+        "build_id": "c0eea4eb-8c34-4098-ad7a-8688a607330f",
+        "build_trigger_id": "b36a3095-bdea-4fbf-b295-daa2635ecb77",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:55.787994Z",
+    "severity": "ERROR",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operations/build/bahtsul-masail-457713/YzBlZWE0ZWItOGMzNC00MDk4LWFkN2EtODY4OGE2MDczMzBm",
+      "producer": "cloudbuild.googleapis.com",
+      "last": true
+    },
+    "receiveTimestamp": "2025-05-23T12:03:56.211665289Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "private",
+        "callerSuppliedUserAgent": "google-api-go-client/0.5",
+        "requestAttributes": {},
+        "destinationAttributes": {}
+      },
+      "serviceName": "compute.googleapis.com",
+      "methodName": "v1.compute.forwardingRules.delete",
+      "resourceName": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-a33b44bf-a53c-4048-ac4f-210892c16ce5",
+      "request": {
+        "@type": "type.googleapis.com/compute.forwardingRules.delete"
+      }
+    },
+    "insertId": "-26pr1lcl94",
+    "resource": {
+      "type": "gce_forwarding_rule",
+      "labels": {
+        "forwarding_rule_id": "9210854112921235494",
+        "region": "us-central1",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:57.115738Z",
+    "severity": "NOTICE",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "acee1386-b7f3-421d-9026-84d39009015f"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operation-1748001824150-635cc63cb9396-86e5f58d-2407f06e",
+      "producer": "compute.googleapis.com",
+      "last": true
+    },
+    "receiveTimestamp": "2025-05-23T12:03:57.444068197Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "private",
+        "callerSuppliedUserAgent": "google-api-go-client/0.5",
+        "requestAttributes": {},
+        "destinationAttributes": {}
+      },
+      "serviceName": "compute.googleapis.com",
+      "methodName": "v1.compute.forwardingRules.delete",
+      "resourceName": "projects/bahtsul-masail-457713/regions/us-central1/forwardingRules/sca-auto-fr-2afbd696-a77c-4328-90ce-7079e0094a8b",
+      "request": {
+        "@type": "type.googleapis.com/compute.forwardingRules.delete"
+      }
+    },
+    "insertId": "qxrtr0d14m4",
+    "resource": {
+      "type": "gce_forwarding_rule",
+      "labels": {
+        "region": "us-central1",
+        "project_id": "bahtsul-masail-457713",
+        "forwarding_rule_id": "3780781798730870822"
+      }
+    },
+    "timestamp": "2025-05-23T12:03:59.285966Z",
+    "severity": "NOTICE",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "c21ae1af-f617-44cf-95e4-2c2da6de1253"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operation-1748001824620-635cc63d2c07c-3b45eb86-6779d47f",
+      "producer": "compute.googleapis.com",
+      "last": true
+    },
+    "receiveTimestamp": "2025-05-23T12:04:00.089873733Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "private",
+        "callerSuppliedUserAgent": "google-api-go-client/0.5",
+        "requestAttributes": {
+          "time": "2025-05-23T12:04:02.414248Z",
+          "auth": {}
+        },
+        "destinationAttributes": {}
+      },
+      "serviceName": "compute.googleapis.com",
+      "methodName": "v1.compute.addresses.delete",
+      "authorizationInfo": [
+        {
+          "resource": "projects/bahtsul-masail-457713/regions/us-central1/addresses/sca-auto-addr-9fa08a4a-ebde-49fb-bee6-5ff69a8bbb4f",
+          "permission": "compute.addresses.deleteInternal",
+          "granted": true,
+          "resourceAttributes": {
+            "service": "compute",
+            "name": "projects/bahtsul-masail-457713/regions/us-central1/addresses/sca-auto-addr-9fa08a4a-ebde-49fb-bee6-5ff69a8bbb4f",
+            "type": "compute.addresses"
+          },
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "projects/bahtsul-masail-457713/regions/us-central1/addresses/sca-auto-addr-9fa08a4a-ebde-49fb-bee6-5ff69a8bbb4f",
+      "request": {
+        "@type": "type.googleapis.com/compute.addresses.delete",
+        "requestId": "f1217805-9304-4a2b-83bf-01ff58b3d99a"
+      },
+      "response": {
+        "insertTime": "2025-05-23T05:04:02.378-07:00",
+        "targetLink": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/addresses/sca-auto-addr-9fa08a4a-ebde-49fb-bee6-5ff69a8bbb4f",
+        "region": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1",
+        "progress": "0",
+        "user": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com",
+        "status": "RUNNING",
+        "clientOperationId": "f1217805-9304-4a2b-83bf-01ff58b3d99a",
+        "id": "5762769778311551709",
+        "name": "operation-1748001842165-635cc64de7554-7e81d594-bea446a4",
+        "operationType": "delete",
+        "targetId": "8232828869222969387",
+        "selfLinkWithId": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/operations/5762769778311551709",
+        "selfLink": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/operations/operation-1748001842165-635cc64de7554-7e81d594-bea446a4",
+        "@type": "type.googleapis.com/operation",
+        "startTime": "2025-05-23T05:04:02.383-07:00"
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1"
+        ]
+      }
+    },
+    "insertId": "x1mn6cdvsik",
+    "resource": {
+      "type": "gce_reserved_address",
+      "labels": {
+        "location": "us-central1",
+        "reserved_address_id": "8232828869222969387",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:04:02.215292Z",
+    "severity": "NOTICE",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "5c7efc63-e6c7-43ed-b795-542239d44def"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operation-1748001842165-635cc64de7554-7e81d594-bea446a4",
+      "producer": "compute.googleapis.com",
+      "first": true
+    },
+    "receiveTimestamp": "2025-05-23T12:04:02.513978163Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "private",
+        "callerSuppliedUserAgent": "google-api-go-client/0.5",
+        "requestAttributes": {
+          "time": "2025-05-23T12:04:02.776122Z",
+          "auth": {}
+        },
+        "destinationAttributes": {}
+      },
+      "serviceName": "compute.googleapis.com",
+      "methodName": "v1.compute.addresses.delete",
+      "authorizationInfo": [
+        {
+          "resource": "projects/bahtsul-masail-457713/regions/us-central1/addresses/sca-auto-addr-4071b304-516c-40c1-8207-786c2fc549a8",
+          "permission": "compute.addresses.deleteInternal",
+          "granted": true,
+          "resourceAttributes": {
+            "service": "compute",
+            "name": "projects/bahtsul-masail-457713/regions/us-central1/addresses/sca-auto-addr-4071b304-516c-40c1-8207-786c2fc549a8",
+            "type": "compute.addresses"
+          },
+          "permissionType": "ADMIN_WRITE"
+        }
+      ],
+      "resourceName": "projects/bahtsul-masail-457713/regions/us-central1/addresses/sca-auto-addr-4071b304-516c-40c1-8207-786c2fc549a8",
+      "request": {
+        "requestId": "ec876e43-cde6-4dbb-a3c5-15854744fd38",
+        "@type": "type.googleapis.com/compute.addresses.delete"
+      },
+      "response": {
+        "name": "operation-1748001842417-635cc64e25042-f848e013-8728ec98",
+        "@type": "type.googleapis.com/operation",
+        "targetLink": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/addresses/sca-auto-addr-4071b304-516c-40c1-8207-786c2fc549a8",
+        "startTime": "2025-05-23T05:04:02.741-07:00",
+        "id": "4156257280085318365",
+        "targetId": "8357787047164751915",
+        "region": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1",
+        "selfLink": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/operations/operation-1748001842417-635cc64e25042-f848e013-8728ec98",
+        "status": "RUNNING",
+        "progress": "0",
+        "operationType": "delete",
+        "selfLinkWithId": "https://www.googleapis.com/compute/v1/projects/bahtsul-masail-457713/regions/us-central1/operations/4156257280085318365",
+        "insertTime": "2025-05-23T05:04:02.735-07:00",
+        "user": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com",
+        "clientOperationId": "ec876e43-cde6-4dbb-a3c5-15854744fd38"
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1"
+        ]
+      }
+    },
+    "insertId": "-4nxjhce13miu",
+    "resource": {
+      "type": "gce_reserved_address",
+      "labels": {
+        "reserved_address_id": "8357787047164751915",
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:04:02.476057Z",
+    "severity": "NOTICE",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "88e8c3c6-21d5-42a4-924b-ad8c4eb5746f"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operation-1748001842417-635cc64e25042-f848e013-8728ec98",
+      "producer": "compute.googleapis.com",
+      "first": true
+    },
+    "receiveTimestamp": "2025-05-23T12:04:02.809433227Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "private",
+        "callerSuppliedUserAgent": "google-api-go-client/0.5",
+        "requestAttributes": {},
+        "destinationAttributes": {}
+      },
+      "serviceName": "compute.googleapis.com",
+      "methodName": "v1.compute.addresses.delete",
+      "resourceName": "projects/bahtsul-masail-457713/regions/us-central1/addresses/sca-auto-addr-9fa08a4a-ebde-49fb-bee6-5ff69a8bbb4f",
+      "request": {
+        "@type": "type.googleapis.com/compute.addresses.delete"
+      }
+    },
+    "insertId": "1fadyad203a",
+    "resource": {
+      "type": "gce_reserved_address",
+      "labels": {
+        "reserved_address_id": "8232828869222969387",
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:04:02.882178Z",
+    "severity": "NOTICE",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "5c7efc63-e6c7-43ed-b795-542239d44def"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operation-1748001842165-635cc64de7554-7e81d594-bea446a4",
+      "producer": "compute.googleapis.com",
+      "last": true
+    },
+    "receiveTimestamp": "2025-05-23T12:04:03.122019952Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "service-768277453755@gcp-sa-networkconnectivity.iam.gserviceaccount.com"
+      },
+      "requestMetadata": {
+        "callerIp": "private",
+        "callerSuppliedUserAgent": "google-api-go-client/0.5",
+        "requestAttributes": {},
+        "destinationAttributes": {}
+      },
+      "serviceName": "compute.googleapis.com",
+      "methodName": "v1.compute.addresses.delete",
+      "resourceName": "projects/bahtsul-masail-457713/regions/us-central1/addresses/sca-auto-addr-4071b304-516c-40c1-8207-786c2fc549a8",
+      "request": {
+        "@type": "type.googleapis.com/compute.addresses.delete"
+      }
+    },
+    "insertId": "-v1jzbnd1qfe",
+    "resource": {
+      "type": "gce_reserved_address",
+      "labels": {
+        "reserved_address_id": "8357787047164751915",
+        "location": "us-central1",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:04:03.217729Z",
+    "severity": "NOTICE",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "88e8c3c6-21d5-42a4-924b-ad8c4eb5746f"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operation-1748001842417-635cc64e25042-f848e013-8728ec98",
+      "producer": "compute.googleapis.com",
+      "last": true
+    },
+    "receiveTimestamp": "2025-05-23T12:04:03.455845903Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:04:21 +0000] [2] [CRITICAL] WORKER TIMEOUT (pid:3)",
+    "insertId": "683064450001ecdc41512e32",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "service_name": "bahtsulmasail-tech-backend",
+        "location": "us-central1",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds"
+      }
+    },
+    "timestamp": "2025-05-23T12:04:21.126172Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:04:21.130003842Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:04:21 +0000] [3] [INFO] Worker exiting (pid: 3)",
+    "insertId": "683064450004f5a48a307956",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "location": "us-central1",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "project_id": "bahtsul-masail-457713",
+        "service_name": "bahtsulmasail-tech-backend",
+        "configuration_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:04:21.325028Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:04:21.462892873Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:04:22 +0000] [2] [WARNING] Worker with pid 3 was terminated due to signal 9",
+    "insertId": "683064460006c3d98ac59999",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "service_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:04:22.443353Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:04:22.462867028Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:04:22 +0000] [4] [INFO] Booting worker with pid: 4",
+    "insertId": "68306446000754bcd707619d",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:04:22.480444Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:04:22.795775048Z"
+  },
+  {
+    "insertId": "6830645b0004e1f3df644654",
+    "httpRequest": {
+      "requestMethod": "HEAD",
+      "requestUrl": "http://bahtsulmasail.tech/.well-known/acme-challenge/",
+      "requestSize": "338",
+      "status": 302,
+      "userAgent": "python-requests/2.25.1",
+      "remoteIp": "109.222.56.147",
+      "serverIp": "216.239.36.21",
+      "latency": "0s",
+      "protocol": "HTTP/1.1"
+    },
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "service_name": "bahtsulmasail-tech-frontend",
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "configuration_name": "bahtsulmasail-tech-frontend"
+      }
+    },
+    "timestamp": "2025-05-23T12:04:43.313043Z",
+    "severity": "INFO",
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Frequests",
+    "trace": "projects/bahtsul-masail-457713/traces/053aab247981e06331852b438d5d7dd5",
+    "receiveTimestamp": "2025-05-23T12:04:43.323833280Z",
+    "spanId": "e0ab18af59d751e5",
+    "traceSampled": true
+  },
+  {
+    "insertId": "6830645b000aba8d196c138d",
+    "httpRequest": {
+      "requestMethod": "HEAD",
+      "requestUrl": "https://bahtsulmasail.tech/.well-known/acme-challenge/",
+      "requestSize": "269",
+      "status": 308,
+      "responseSize": "157",
+      "userAgent": "python-requests/2.25.1",
+      "remoteIp": "109.222.56.147",
+      "serverIp": "216.239.38.21",
+      "latency": "0.110678791s",
+      "protocol": "HTTP/1.1"
+    },
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-frontend"
+      }
+    },
+    "timestamp": "2025-05-23T12:04:43.590488Z",
+    "severity": "INFO",
+    "labels": {
+      "instanceId": "007f65c6d2f626e0480f904148e6a44215a7f55eeb447015ca14935e0eda902abec4d1e63cb61b69e5d7e79c04bc163247384fc4dfcf55fe68a77cc4f25bcde2d4bb22479d0841e527501bcf24693e"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Frequests",
+    "trace": "projects/bahtsul-masail-457713/traces/6ba01034f90e0e0251ed5fbe71ed6551",
+    "receiveTimestamp": "2025-05-23T12:04:43.992088202Z",
+    "spanId": "302dc0ea0e53570a"
+  },
+  {
+    "insertId": "6830645b000e38bcc566a904",
+    "httpRequest": {
+      "requestMethod": "HEAD",
+      "requestUrl": "https://bahtsulmasail.tech/.well-known/acme-challenge",
+      "requestSize": "266",
+      "status": 404,
+      "responseSize": "525",
+      "userAgent": "python-requests/2.25.1",
+      "remoteIp": "109.222.56.147",
+      "serverIp": "216.239.38.21",
+      "latency": "0.104012472s",
+      "protocol": "HTTP/1.1"
+    },
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "service_name": "bahtsulmasail-tech-frontend",
+        "revision_name": "bahtsulmasail-tech-frontend-00009-ccz",
+        "configuration_name": "bahtsulmasail-tech-frontend",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:04:43.826273Z",
+    "severity": "WARNING",
+    "labels": {
+      "instanceId": "007f65c6d2f626e0480f904148e6a44215a7f55eeb447015ca14935e0eda902abec4d1e63cb61b69e5d7e79c04bc163247384fc4dfcf55fe68a77cc4f25bcde2d4bb22479d0841e527501bcf24693e"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Frequests",
+    "trace": "projects/bahtsul-masail-457713/traces/85df8501a7a62faf51ed5fbe71ed63e6",
+    "receiveTimestamp": "2025-05-23T12:04:43.992088202Z",
+    "spanId": "b256eb925e702772"
+  },
+  {
+    "textPayload": "2025-05-23 12:05:27.448 UTC [10649]: [1-1] db=,user=,host= LOG:  automatic vacuum of table \"cloudsqladmin.public.heartbeat\": index scans: 0\npages: 0 removed, 1 remain, 1 scanned (100.00% of total)\ntuples: 60 removed, 1 remain, 0 are dead but not yet removable\nremovable cutoff: 5465, which was 0 XIDs old when operation ended\nnew relfrozenxid: 5464, which is 61 XIDs ahead of previous value\nfrozen: 0 pages from table (0.00% of total) had 0 tuples frozen\nindex scan not needed: 0 pages from table (0.00% of total) had 0 dead item identifiers removed\navg read rate: 0.000 MB/s, avg write rate: 49.761 MB/s\nbuffer usage: 42 hits, 0 misses, 1 dirtied\nWAL usage: 1 records, 1 full page images, 7457 bytes\nsystem usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s",
+    "insertId": "s=13623482e3e74aaa89e046340f935200;i=1d869;b=4eb96b28f4d840d7b72684c22878dfe7;m=563231eca;t=635cc69f3ca99;x=a1c0e8a08102567f-0@a1",
+    "resource": {
+      "type": "cloudsql_database",
+      "labels": {
+        "region": "us-central",
+        "database_id": "bahtsul-masail-457713:lbmdb",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:05:27.449241Z",
+    "severity": "INFO",
+    "labels": {
+      "PROJECT_NUMBER": "768277453755",
+      "INSTANCE_UID": "1-190fc9f8-53d3-49ad-8936-7dc496a1af22",
+      "LOG_BUCKET_NUM": "50",
+      "SOURCE_ID": "343263363838633432646330343134392d666261"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudsql.googleapis.com%2Fpostgres.log",
+    "receiveTimestamp": "2025-05-23T12:05:28.291284762Z"
+  },
+  {
+    "textPayload": "2025-05-23 12:05:27.452 UTC [10649]: [2-1] db=,user=,host= LOG:  automatic analyze of table \"cloudsqladmin.public.heartbeat\"\navg read rate: 0.000 MB/s, avg write rate: 1.953 MB/s\nbuffer usage: 175 hits, 0 misses, 1 dirtied\nsystem usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s",
+    "insertId": "s=13623482e3e74aaa89e046340f935200;i=1d874;b=4eb96b28f4d840d7b72684c22878dfe7;m=563234863;t=635cc69f3f432;x=ddd5cff293db66f-0@a1",
+    "resource": {
+      "type": "cloudsql_database",
+      "labels": {
+        "region": "us-central",
+        "project_id": "bahtsul-masail-457713",
+        "database_id": "bahtsul-masail-457713:lbmdb"
+      }
+    },
+    "timestamp": "2025-05-23T12:05:27.459890Z",
+    "severity": "INFO",
+    "labels": {
+      "SOURCE_ID": "343263363838633432646330343134392d666261",
+      "INSTANCE_UID": "1-190fc9f8-53d3-49ad-8936-7dc496a1af22",
+      "LOG_BUCKET_NUM": "50",
+      "PROJECT_NUMBER": "768277453755"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudsql.googleapis.com%2Fpostgres.log",
+    "receiveTimestamp": "2025-05-23T12:06:05.117702491Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:05:55 +0000] [2] [CRITICAL] WORKER TIMEOUT (pid:4)",
+    "insertId": "683064a40000623fa31b8ad1",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "service_name": "bahtsulmasail-tech-backend",
+        "location": "us-central1",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds"
+      }
+    },
+    "timestamp": "2025-05-23T12:05:56.025151Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:05:56.031704068Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:05:56 +0000] [4] [INFO] Worker exiting (pid: 4)",
+    "insertId": "683064a40004f4f4f15e12a4",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "service_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:05:56.324852Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:05:56.364255811Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:05:57 +0000] [2] [WARNING] Worker with pid 4 was terminated due to signal 9",
+    "insertId": "683064a5000c9653e9fca2b8",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend",
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:05:57.824915Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:05:58.028162992Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:06:02 +0000] [5] [INFO] Booting worker with pid: 5",
+    "insertId": "683064ab000370ec2e212902",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "service_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:06:03.225516Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:06:03.354952732Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:06:28 +0000] [2] [CRITICAL] WORKER TIMEOUT (pid:5)",
+    "insertId": "683064c400006464ddc7a7c0",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend",
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:06:28.025700Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:06:28.031613112Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:06:28 +0000] [5] [INFO] Worker exiting (pid: 5)",
+    "insertId": "683064c40003743ab87bc527",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "service_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "location": "us-central1",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:06:28.226362Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:06:28.362377506Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:06:29 +0000] [2] [WARNING] Worker with pid 5 was terminated due to signal 9",
+    "insertId": "683064c5000b0f492a6b0235",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "service_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:06:29.724809Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:06:30.029179205Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:06:33 +0000] [6] [INFO] Booting worker with pid: 6",
+    "insertId": "683064c9000c9c5891b0fa2b",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "service_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "location": "us-central1",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:06:33.826456Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:06:34.024319528Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:07:05 +0000] [2] [CRITICAL] WORKER TIMEOUT (pid:6)",
+    "insertId": "683064e9000065a7511955dc",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:07:05.026023Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:07:05.029804922Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:07:05 +0000] [6] [INFO] Worker exiting (pid: 6)",
+    "insertId": "683064e90000683b1899e306",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "configuration_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:07:05.026683Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:07:05.364453153Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:07:05 +0000] [7] [INFO] Booting worker with pid: 7",
+    "insertId": "683064e90001beb13abece76",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "location": "us-central1",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "service_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds"
+      }
+    },
+    "timestamp": "2025-05-23T12:07:05.114353Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:07:05.364453153Z"
+  },
+  {
+    "textPayload": "2025-05-23 12:07:40.777 UTC [20]: [157-1] db=,user=,host= LOG:  checkpoint starting: time",
+    "insertId": "s=13623482e3e74aaa89e046340f935200;i=1da1a;b=4eb96b28f4d840d7b72684c22878dfe7;m=56b158f82;t=635cc71e63b51;x=51f596b38dc10e1c-0@a1",
+    "resource": {
+      "type": "cloudsql_database",
+      "labels": {
+        "database_id": "bahtsul-masail-457713:lbmdb",
+        "project_id": "bahtsul-masail-457713",
+        "region": "us-central"
+      }
+    },
+    "timestamp": "2025-05-23T12:07:40.778321Z",
+    "severity": "INFO",
+    "labels": {
+      "LOG_BUCKET_NUM": "50",
+      "PROJECT_NUMBER": "768277453755",
+      "SOURCE_ID": "343263363838633432646330343134392d666261",
+      "INSTANCE_UID": "1-190fc9f8-53d3-49ad-8936-7dc496a1af22"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudsql.googleapis.com%2Fpostgres.log",
+    "receiveTimestamp": "2025-05-23T12:07:46.801269643Z"
+  },
+  {
+    "textPayload": "2025-05-23 12:07:41.003 UTC [20]: [158-1] db=,user=,host= LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.210 s, sync=0.004 s, total=0.226 s; sync files=3, longest=0.002 s, average=0.002 s; distance=65536 kB, estimate=65536 kB; lsn=1/3C004588, redo lsn=1/3C004530",
+    "insertId": "s=13623482e3e74aaa89e046340f935200;i=1da1b;b=4eb96b28f4d840d7b72684c22878dfe7;m=56b190098;t=635cc71e9ac67;x=a7ed8c2d974d1e3c-0@a1",
+    "resource": {
+      "type": "cloudsql_database",
+      "labels": {
+        "region": "us-central",
+        "project_id": "bahtsul-masail-457713",
+        "database_id": "bahtsul-masail-457713:lbmdb"
+      }
+    },
+    "timestamp": "2025-05-23T12:07:41.003879Z",
+    "severity": "INFO",
+    "labels": {
+      "SOURCE_ID": "343263363838633432646330343134392d666261",
+      "PROJECT_NUMBER": "768277453755",
+      "LOG_BUCKET_NUM": "50",
+      "INSTANCE_UID": "1-190fc9f8-53d3-49ad-8936-7dc496a1af22"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudsql.googleapis.com%2Fpostgres.log",
+    "receiveTimestamp": "2025-05-23T12:08:25.268628052Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:07:48 +0000] [2] [CRITICAL] WORKER TIMEOUT (pid:7)",
+    "insertId": "68306514000c968f0488220f",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "service_name": "bahtsulmasail-tech-backend",
+        "location": "us-central1",
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds"
+      }
+    },
+    "timestamp": "2025-05-23T12:07:48.824975Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:07:48.830322533Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:07:48 +0000] [7] [INFO] Worker exiting (pid: 7)",
+    "insertId": "68306514000c98d6a9ff1909",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "service_name": "bahtsulmasail-tech-backend",
+        "location": "us-central1",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:07:48.825558Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:07:49.162720284Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:07:52 +0000] [2] [WARNING] Worker with pid 7 was terminated due to signal 9",
+    "insertId": "6830651800080592eae381ed",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "service_name": "bahtsulmasail-tech-backend",
+        "location": "us-central1",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds"
+      }
+    },
+    "timestamp": "2025-05-23T12:07:52.525714Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:07:52.826067818Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:07:57 +0000] [8] [INFO] Booting worker with pid: 8",
+    "insertId": "6830651d00067e0d8394648b",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "configuration_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:07:57.425485Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:07:57.487755974Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:08:23 +0000] [2] [CRITICAL] WORKER TIMEOUT (pid:8)",
+    "insertId": "6830653700009988e8dd74b2",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "configuration_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:08:23.039304Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:08:23.044046289Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:08:24 +0000] [2] [WARNING] Worker with pid 8 was terminated due to signal 9",
+    "insertId": "68306539000062e98654a3e0",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "project_id": "bahtsul-masail-457713",
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:08:25.025321Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:08:25.040500508Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:08:32 +0000] [9] [INFO] Booting worker with pid: 9",
+    "insertId": "683065400001eea827406716",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "service_name": "bahtsulmasail-tech-backend",
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:08:32.126632Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:08:32.370959112Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:08:58 +0000] [2] [CRITICAL] WORKER TIMEOUT (pid:9)",
+    "insertId": "6830655a0001e97a1feec267",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:08:58.125306Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:08:58.130316988Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:08:58 +0000] [9] [INFO] Worker exiting (pid: 9)",
+    "insertId": "6830655a00037137526903ef",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "project_id": "bahtsul-masail-457713",
+        "configuration_name": "bahtsulmasail-tech-backend",
+        "service_name": "bahtsulmasail-tech-backend",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2025-05-23T12:08:58.225591Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:08:58.463398889Z"
+  },
+  {
+    "textPayload": "[2025-05-23 12:08:59 +0000] [2] [WARNING] Worker with pid 9 was terminated due to signal 9",
+    "insertId": "6830655b000b118f0d88e70b",
+    "resource": {
+      "type": "cloud_run_revision",
+      "labels": {
+        "location": "us-central1",
+        "service_name": "bahtsulmasail-tech-backend",
+        "project_id": "bahtsul-masail-457713",
+        "revision_name": "bahtsulmasail-tech-backend-00007-sds",
+        "configuration_name": "bahtsulmasail-tech-backend"
+      }
+    },
+    "timestamp": "2025-05-23T12:08:59.725391Z",
+    "labels": {
+      "instanceId": "007f65c6d2de5813ef8a7b0582f6f244dee7f483226f954787f58a793be1d2d6d5d621de13507c55c8699d75d9f1528695497117b9eb2f2d1f9300bac0d237911bad44eb39da9e7c8d634984082715"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-05-23T12:08:59.796767252Z"
+  },
+  {
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "status": {},
+      "authenticationInfo": {
+        "principalEmail": "dihannahdii@gmail.com"
+      },
+      "requestMetadata": {
+        "requestAttributes": {},
+        "destinationAttributes": {}
+      },
+      "serviceName": "memorystore.googleapis.com",
+      "methodName": "google.cloud.memorystore.v1alpha.Memorystore.DeleteInstance",
+      "resourceName": "projects/bahtsul-masail-457713/locations/us-central1/instances/lbmredis",
+      "response": {
+        "@type": "type.googleapis.com/google.protobuf.Empty"
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1"
+        ]
+      }
+    },
+    "insertId": "1pneervar",
+    "resource": {
+      "type": "audited_resource",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "method": "google.cloud.memorystore.v1alpha.Memorystore.DeleteInstance",
+        "service": "memorystore.googleapis.com"
+      }
+    },
+    "timestamp": "2025-05-23T12:09:30.811611646Z",
+    "severity": "NOTICE",
+    "logName": "projects/bahtsul-masail-457713/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "projects/bahtsul-masail-457713/locations/us-central1/operations/operation-1748001820052-635cc638d0a74-b4479ec6-56fca75c",
+      "producer": "memorystore.googleapis.com",
+      "last": true
+    },
+    "receiveTimestamp": "2025-05-23T12:09:31.471405876Z"
+  },
+  {
+    "textPayload": "2025-05-23 12:10:27.510 UTC [10786]: [1-1] db=,user=,host= LOG:  automatic vacuum of table \"cloudsqladmin.public.heartbeat\": index scans: 0\npages: 0 removed, 1 remain, 1 scanned (100.00% of total)\ntuples: 60 removed, 1 remain, 0 are dead but not yet removable\nremovable cutoff: 5526, which was 0 XIDs old when operation ended\nnew relfrozenxid: 5525, which is 61 XIDs ahead of previous value\nfrozen: 0 pages from table (0.00% of total) had 0 tuples frozen\nindex scan not needed: 0 pages from table (0.00% of total) had 0 dead item identifiers removed\navg read rate: 0.000 MB/s, avg write rate: 45.422 MB/s\nbuffer usage: 42 hits, 0 misses, 1 dirtied\nWAL usage: 1 records, 1 full page images, 7457 bytes\nsystem usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s",
+    "insertId": "s=13623482e3e74aaa89e046340f935200;i=1dd02;b=4eb96b28f4d840d7b72684c22878dfe7;m=57505b41a;t=635cc7bd65fe9;x=bf051fc2b34b8608-0@a1",
+    "resource": {
+      "type": "cloudsql_database",
+      "labels": {
+        "project_id": "bahtsul-masail-457713",
+        "database_id": "bahtsul-masail-457713:lbmdb",
+        "region": "us-central"
+      }
+    },
+    "timestamp": "2025-05-23T12:10:27.511273Z",
+    "severity": "INFO",
+    "labels": {
+      "INSTANCE_UID": "1-190fc9f8-53d3-49ad-8936-7dc496a1af22",
+      "PROJECT_NUMBER": "768277453755",
+      "LOG_BUCKET_NUM": "50",
+      "SOURCE_ID": "343263363838633432646330343134392d666261"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudsql.googleapis.com%2Fpostgres.log",
+    "receiveTimestamp": "2025-05-23T12:10:29.282094174Z"
+  },
+  {
+    "textPayload": "2025-05-23 12:10:27.514 UTC [10786]: [2-1] db=,user=,host= LOG:  automatic analyze of table \"cloudsqladmin.public.heartbeat\"\navg read rate: 0.000 MB/s, avg write rate: 1.953 MB/s\nbuffer usage: 175 hits, 0 misses, 1 dirtied\nsystem usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s",
+    "insertId": "s=13623482e3e74aaa89e046340f935200;i=1dd0d;b=4eb96b28f4d840d7b72684c22878dfe7;m=57505c2cc;t=635cc7bd66e9b;x=b42d20ab6f429171-0@a1",
+    "resource": {
+      "type": "cloudsql_database",
+      "labels": {
+        "region": "us-central",
+        "database_id": "bahtsul-masail-457713:lbmdb",
+        "project_id": "bahtsul-masail-457713"
+      }
+    },
+    "timestamp": "2025-05-23T12:10:27.515035Z",
+    "severity": "INFO",
+    "labels": {
+      "SOURCE_ID": "343263363838633432646330343134392d666261",
+      "PROJECT_NUMBER": "768277453755",
+      "LOG_BUCKET_NUM": "50",
+      "INSTANCE_UID": "1-190fc9f8-53d3-49ad-8936-7dc496a1af22"
+    },
+    "logName": "projects/bahtsul-masail-457713/logs/cloudsql.googleapis.com%2Fpostgres.log",
+    "receiveTimestamp": "2025-05-23T12:10:58.778234798Z"
+  }
+]
