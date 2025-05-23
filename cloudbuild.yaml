@@ -92,7 +92,7 @@ steps:
       - '--vpc-connector=projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc'
       - '--no-cpu-throttling'
       - '--min-instances=1'
-      - '--no-startup-probe'
+      - '--clear-startup-probe'
     id: 'Deploy Celery Worker'
 
   # Optional: Run Django database migrations
