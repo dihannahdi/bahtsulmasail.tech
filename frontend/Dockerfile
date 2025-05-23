@@ -21,7 +21,7 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
 ENV NEXT_TELEMETRY_DISABLED 1
-RUN yarn build
+RUN npm run build
 
 # Production image, copy all the files and run next
 FROM node:18-alpine AS runner

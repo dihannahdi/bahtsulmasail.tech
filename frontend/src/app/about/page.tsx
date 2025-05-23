@@ -13,7 +13,7 @@ export default function AboutPage() {
       <section className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg mb-8">
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">Our Vision</h2>
         <p className="text-lg text-gray-700 leading-relaxed mb-4">
-          To be the preeminent digital embodiment of "Bahtsul Masail untuk Islam Digdaya," an Awwwards-recognized platform where the depth, dynamism, and intellectual rigor of Islamic jurisprudence are showcased through exceptional design, intuitive AI-powered tools, and collaborative scholarly engagement.
+          To be the preeminent digital embodiment of &quot;Bahtsul Masail untuk Islam Digdaya,&quot; an Awwwards-recognized platform where the depth, dynamism, and intellectual rigor of Islamic jurisprudence are showcased through exceptional design, intuitive AI-powered tools, and collaborative scholarly engagement.
         </p>
         <p className="text-lg text-gray-700 leading-relaxed">
           BahtsulMasail.tech aims to preserve, analyze, and present these crucial discussions in a way that inspires intellectual confidence, fosters enlightened understanding, and contributes to a vibrant, forward-looking Islamic civilization.
@@ -23,14 +23,14 @@ export default function AboutPage() {
       <section className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg mb-8">
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">The Core Problem We Address</h2>
         <p className="text-lg text-gray-700 leading-relaxed">
-          The invaluable insights from Bahtsul Masail, essential for navigating contemporary challenges and fostering an "Islam Digdaya," often remain confined to specialized circles or presented in formats that lack the visual appeal and accessibility needed to engage a broader, digitally-savvy audience. This limits their potential to inspire and empower.
+          The invaluable insights from Bahtsul Masail, essential for navigating contemporary challenges and fostering an &quot;Islam Digdaya,&quot; often remain confined to specialized circles or presented in formats that lack the visual appeal and accessibility needed to engage a broader, digitally-savvy audience. This limits their potential to inspire and empower.
         </p>
       </section>
 
       <section className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg">
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">Our Solution</h2>
         <p className="text-lg text-gray-700 leading-relaxed">
-          BahtsulMasail.tech will be a landmark web platform, built with Next.js for peak performance and sophisticated UI, supported by a robust Django backend. It will fuse advanced AI-driven search and analysis with world-class UI/UX design embodying the spirit of "Islam Digdaya."
+          BahtsulMasail.tech will be a landmark web platform, built with Next.js for peak performance and sophisticated UI, supported by a robust Django backend. It will fuse advanced AI-driven search and analysis with world-class UI/UX design embodying the spirit of &quot;Islam Digdaya.&quot;
         </p>
       </section>
 
