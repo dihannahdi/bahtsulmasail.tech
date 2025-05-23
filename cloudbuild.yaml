@@ -109,6 +109,9 @@ images:
   - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA'
   - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA'
 
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 # Replace YOUR_GCP_REGION, YOUR_DB_USER_HERE, YOUR_DB_PASSWORD_SECRET_ID, YOUR_DJANGO_SECRET_KEY_SECRET_ID, YOUR_VPC_CONNECTOR_NAME.
 # Ensure the Django SECRET_KEY is also managed via Secret Manager for production.
 # YOUR_VPC_CONNECTOR_NAME is the full name: projects/YOUR_PROJECT_ID/locations/YOUR_REGION/connectors/YOUR_CONNECTOR_NAME
