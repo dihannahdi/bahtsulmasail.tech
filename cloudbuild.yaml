@@ -5,7 +5,9 @@ steps:
       - 'build'
       - '-t'
       - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA'
-      - './frontend'
+      - '-f'
+      - './frontend/Dockerfile'
+      - '.'
     id: 'Build Frontend'
 
   # Build Django backend
