@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+@layer components {
+  .geometric-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .search-container {
+    @apply relative w-full max-w-3xl mx-auto;
+  }
+
+  .search-input {
+    @apply w-full px-6 py-4 text-lg bg-white/80 backdrop-blur-sm border-2 border-primary-200 
+           rounded-2xl shadow-lg focus:outline-none focus:border-primary-400 
+           transition-all duration-300 ease-in-out;
+  }
+
+  .search-icon {
+    @apply absolute right-4 top-1/2 -translate-y-1/2 text-primary-400 
+           transition-all duration-300 ease-in-out;
+  }
+
+  .hero-text {
+    @apply font-display text-4xl md:text-5xl lg:text-6xl text-primary-950 
+           leading-tight tracking-tight;
+  }
+
+  .arabic-text {
+    @apply font-arabic text-2xl md:text-3xl text-primary-800;
+  }
+}
+
+:root {
+  /* Reverted to our original theme, adjusted from Shadcn Neutral */
+  --background: 210 40% 98%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%; /* Shadcn uses this, keep for card component compatibility */
+  --card-foreground: 222.2 84% 4.9%; /* Shadcn uses this */
+  --popover: 0 0% 100%; /* Shadcn uses this */
+  --popover-foreground: 222.2 84% 4.9%; /* Shadcn uses this */
+  
+  --primary: 220 91% 36%;         /* Islamic Blue */
+  --primary-foreground: 210 40% 98%;
+  
+  --secondary: 142 71% 31%;       /* Islamic Green */
+  --secondary-foreground: 210 40% 98%;
+  
+  --accent: 38 92% 50%;           /* Islamic Gold */
+  --accent-foreground: 222 47% 11%;
+  
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;    /* For input components */
+  --ring: 221 91% 36%;           /* Ring color, often primary */
+
+  --radius: 0.75rem; /* Our original radius */
+  --transition-duration: 0.3s; /* Slightly faster transitions */
+
+  /* Font variables */
+  --font-inter: 'Inter', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+  --font-amiri: 'Amiri', serif;
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  
+  /* Additional thematic colors from Vite project */
+  --islamic-blue-hsl: 220 91% 36%;
+  --islamic-green-hsl: 142 71% 31%;
+  --islamic-gold-hsl: 40 88% 50%;
+  --islamic-silver-hsl: 210 14% 78%;
+  --islamic-bronze-hsl: 28 58% 48%;
+  --islamic-earth-hsl: 30 33% 42%;
+  --islamic-dark-hsl: 240 10% 15%;
+  --islamic-purple-hsl: 260 70% 55%; /* Added purple */
+  --islamic-teal-hsl: 170 70% 40%; /* Added teal */
+  --islamic-maroon-hsl: 0 59% 41%; /* New color */
+
+  --chart-1: var(--primary);
+  --chart-2: var(--secondary);
+
+  /* For Gradient Border Glow Effect */
+  --gradient-glow: conic-gradient(
+    from 90deg at 50% 50%,
+    hsl(var(--primary)), /* Use theme's primary color */
+    hsl(var(--secondary)), /* Use theme's secondary color */
+    hsl(var(--accent)), /* Use theme's accent color */
+    hsl(var(--islamic-purple-hsl)),
+    hsl(var(--islamic-teal-hsl)),
+    hsl(var(--islamic-maroon-hsl)),
+    hsl(var(--primary)) /* Loop back to primary */
+  );
+}
+
+.dark {
+  --background: 222 47% 8%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 6.9%; /* Shadcn dark card */
+  --card-foreground: 210 40% 98%; /* Shadcn dark card fg */
+  --popover: 222.2 84% 6.9%; /* Shadcn dark popover */
+  --popover-foreground: 210 40% 98%; /* Shadcn dark popover fg */
+
+  --primary: 217.2 91.2% 59.8%;    /* Lighter Islamic Blue for dark */
+  --primary-foreground: 222.2 47.4% 11.2%;
+  
+  --secondary: 142 61% 51%;      /* Lighter Islamic Green for dark */
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  --accent: 38 92% 60%;           /* Lighter Islamic Gold for dark */
+  --accent-foreground: 210 40% 98%;
+
+  --muted: 217.2 32.6% 15.5%;
+  --muted-foreground: 215 20.2% 70%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217.2 32.6% 15.5%;
+  --input: 217.2 32.6% 15.5%;      /* For input components */
+  --ring: 224.3 76.3% 48%;         /* Ring color for dark */
+  
+  /* Additional thematic colors for dark mode (adjust opacities/lightness as needed) */
+  --islamic-blue-hsl: 217.2 91.2% 59.8%;
+  --islamic-green-hsl: 142 61% 51%;
+  --islamic-gold-hsl: 40 88% 55%;
+  --islamic-silver-hsl: 210 14% 85%;
+  --islamic-bronze-hsl: 28 58% 53%;
+  --islamic-earth-hsl: 30 33% 47%;
+  --islamic-dark-hsl: 240 10% 20%;
+  --islamic-purple-hsl: 260 70% 65%;
+  --islamic-teal-hsl: 170 70% 50%;
+  --islamic-maroon-hsl: 0 59% 46%; /* New color */
+
+  --chart-1: var(--primary);
+  --chart-2: var(--secondary);
+  
+  /* For Gradient Border Glow Effect - Dark Theme (can be same or adjusted) */
+  --gradient-glow: conic-gradient(
+    from 90deg at 50% 50%,
+    hsl(var(--primary)),
+    hsl(var(--secondary)),
+    hsl(var(--accent)),
+    hsl(var(--islamic-purple-hsl)),
+    hsl(var(--islamic-teal-hsl)),
+    hsl(var(--islamic-maroon-hsl)),
+    hsl(var(--primary))
+  );
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-foreground;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  @apply border-border;
+}
+
+@layer utilities {
+  .smooth-transitions {
+    transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease, 
+                border-color var(--transition-duration) ease, box-shadow var(--transition-duration) ease,
+                text-shadow var(--transition-duration) ease, opacity var(--transition-duration) ease,
+                transform var(--transition-duration) ease; /* Added transform */
+  }
+
+  a, button, input, select, textarea {
+    @apply smooth-transitions;
+  }
+
+  .glass-morphism {
+    /* Ensure backdrop-filter works if browser supports it. Might need prefix. */
+    @apply bg-card/60 dark:bg-card/50 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg smooth-transitions rounded-lg;
+  }
+  /* .dark .glass-morphism is handled by dark variants in Tailwind config for bg-card and border-white */
+
+  .pattern-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23194D95' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .dark .pattern-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFFFFF' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .text-balance { text-wrap: balance; }
+  .text-gradient { @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent; }
+  .text-gradient-gold { @apply bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent; }
+  .text-gradient-title {
+    @apply bg-gradient-to-r from-islamic-green via-green-600 to-green-500 bg-clip-text text-transparent;
+  }
+  .dark .text-gradient-title {
+    text-shadow: 0 0 20px hsl(var(--islamic-green-hsl) / 0.4), 0 0 30px hsl(var(--islamic-green-hsl) / 0.2);
+  }
+
+  .search-glow {
+    box-shadow: 0 0 15px hsl(var(--primary-hsl) / 0.2), 0 0 30px hsl(var(--secondary-hsl) / 0.1);
+    @apply smooth-transitions;
+  }
+  .search-glow:hover, .search-glow:focus-within {
+    box-shadow: 0 0 20px hsl(var(--primary-hsl) / 0.3), 0 0 40px hsl(var(--secondary-hsl) / 0.2);
+  }
+  .dark .search-glow {
+    box-shadow: 0 0 15px hsl(var(--primary-hsl) / 0.3), 0 0 30px hsl(var(--secondary-hsl) / 0.2), 0 0 50px hsl(var(--accent-hsl) / 0.1);
+  }
+  .dark .search-glow:hover, .dark .search-glow:focus-within {
+    box-shadow: 0 0 20px hsl(var(--primary-hsl) / 0.4), 0 0 40px hsl(var(--secondary-hsl) / 0.3), 0 0 60px hsl(var(--accent-hsl) / 0.2);
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100;
+  }
+  
+  /* Card styles with Islamic theme */
+  .card-islamic { @apply border-2 rounded-xl shadow-sm overflow-hidden smooth-transitions; }
+  .card-islamic-green { @apply card-islamic border-islamic-green/20 bg-gradient-to-r from-islamic-green/10 to-islamic-gold/10; }
+  .card-islamic-blue { @apply card-islamic border-islamic-blue/20 bg-gradient-to-r from-islamic-blue/10 to-islamic-purple/10; }
+  .card-islamic-gold { @apply card-islamic border-islamic-gold/20 bg-gradient-to-r from-islamic-gold/5 to-islamic-green/5; }
+
+  .dark .card-islamic { @apply shadow-md border-opacity-30; }
+  .dark .card-islamic-green { @apply border-islamic-green/30 bg-gradient-to-r from-islamic-green/20 to-islamic-gold/20; }
+  .dark .card-islamic-blue { @apply border-islamic-blue/30 bg-gradient-to-r from-islamic-blue/20 to-islamic-purple/20; }
+  .dark .card-islamic-gold { @apply border-islamic-gold/30 bg-gradient-to-r from-islamic-gold/15 to-islamic-green/15; }
+
+  /* Button variants with Islamic theme */
+  .btn-islamic-primary { @apply bg-islamic-green hover:bg-islamic-green/90 text-white rounded-full smooth-transitions; }
+  .btn-islamic-secondary { @apply border border-islamic-green/50 text-islamic-green hover:bg-islamic-green/10 rounded-full smooth-transitions; }
+  .dark .btn-islamic-secondary { @apply border-islamic-green/70 text-islamic-green/90 hover:bg-islamic-green/20; }
+
+  /* Header styles */
+  .heading-islamic { @apply text-2xl md:text-3xl font-serif font-semibold smooth-transitions; }
+  .heading-islamic-gradient { @apply heading-islamic bg-clip-text text-transparent bg-gradient-to-r from-islamic-green to-islamic-gold; }
+
+  /* Icon container styles */
+  .icon-container { @apply p-3 rounded-full smooth-transitions; }
+  .icon-container-green { @apply icon-container bg-islamic-green/20 text-islamic-green; }
+  .icon-container-blue { @apply icon-container bg-islamic-blue/20 text-islamic-blue; }
+  .icon-container-gold { @apply icon-container bg-islamic-gold/20 text-islamic-gold; }
+  .icon-container-purple { @apply icon-container bg-islamic-purple/20 text-islamic-purple; }
+
+  .dark .icon-container-green { @apply bg-islamic-green/30 text-islamic-green/90; }
+  .dark .icon-container-blue { @apply bg-islamic-blue/30 text-islamic-blue/90; }
+  .dark .icon-container-gold { @apply bg-islamic-gold/30 text-islamic-gold/90; }
+  .dark .icon-container-purple { @apply bg-islamic-purple/30 text-islamic-purple/90; }
+
+  /* Fancy blur effect for backgrounds */
+  .bg-blur-circle { @apply absolute w-64 h-64 rounded-full blur-3xl pointer-events-none; }
+  .bg-blur-circle-gold { @apply bg-blur-circle bg-islamic-gold/5; }
+  .bg-blur-circle-green { @apply bg-blur-circle bg-islamic-green/5; }
+  .bg-blur-circle-blue { @apply bg-blur-circle bg-islamic-blue/5; }
+
+  .dark .bg-blur-circle-gold { @apply bg-islamic-gold/10; }
+  .dark .bg-blur-circle-green { @apply bg-islamic-green/10; }
+  .dark .bg-blur-circle-blue { @apply bg-islamic-blue/10; }
+
+  /* Islamic Pattern Background */
+  .bg-islamic-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 120c33.137 0 60-26.863 60-60s-26.863-60-60-60-60 26.863-60 60 26.863 60 60 60zm0-10c27.614 0 50-22.386 50-50S87.614 10 60 10 10 32.386 10 60s22.386 50 50 50zm-6.006-67.995c.645-.547.709-1.5.144-2.124-.564-.625-1.539-.687-2.184-.14l-9.392 7.976c-.645.547-.709 1.5-.144 2.124.564.625 1.539.687 2.184.14l9.392-7.976zm12.012 0l9.392 7.976c.645.547 1.62.485 2.184-.14.565-.624.501-1.577-.144-2.124L68.046 39.74c-.645-.547-1.62-.485-2.184.14-.565.624-.501 1.577.144 2.124zm-67.945 20.99C-.994 63.543.069 64.5 1.634 64.5h17.216c1.565 0 2.628-.957 2.372-2.505L18.428 45h-9.856l-2.794 16.995zm111.878 0L107.145 45h-9.856l-2.794 16.995c-.256 1.548.807 2.505 2.372 2.505h17.216c1.565 0 2.628-.957 2.372-2.505zM88 45c-1.104 0-2 .896-2 2v16c0 1.104.896 2 2 2s2-.896 2-2V47c0-1.104-.896-2-2-2zm-56 0c-1.104 0-2 .896-2 2v16c0 1.104.896 2 2 2s2-.896 2-2V47c0-1.104-.896-2-2-2zm35.503-17.5H52.497c-1.378 0-2.497 1.119-2.497 2.5s1.119 2.5 2.497 2.5h15.006c1.378 0 2.497-1.119 2.497-2.5s-1.119-2.5-2.497-2.5zM60 95c-8.284 0-15-6.716-15-15 0-8.284 6.716-15 15-15 8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15z' fill='hsl(var(--islamic-green-hsl))' fill-opacity='0.05' fill-rule='evenodd'/></svg>");
+  }
+
+  .bg-congress-nu {
+    background-image: url('https://i.ibb.co/vjT2Qts/nu-congress-historical.jpg');
+    @apply bg-cover bg-center;
+  }
+
+  /* Gradient Border Glow Card Effect */
+  /* Using .card-glowable to avoid conflicts with existing .card or Shadcn card styles */
+  .card-glowable {
+    --start-angle: 0deg; /* Renamed from --start to avoid potential conflicts and use deg unit */
+    position: relative;
+    /* Add other base card styles if needed, or apply this to an existing card structure */
+    /* e.g., background-color: hsl(var(--card)); border-radius: var(--radius); */
+    /* transition: border-color 0.3s ease-in-out; */ /* From article, but our .smooth-transitions might cover it */
+  }
+
+  .card-glowable::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: inherit; /* Inherit border-radius from the parent card */
+    border: 2px solid transparent; /* Border width */
+    background: var(--gradient-glow);
+    background-attachment: fixed; /* As per article */
+    mask: linear-gradient(#0000, #0000),
+          conic-gradient(from calc(var(--start-angle) - 22deg), #ffffff1f 0deg, white, #ffffff00 100deg); /* Adjusted 20 * 1.1 to 22deg */
+    -webkit-mask-composite: intersect; /* For Safari/Webkit */
+    mask-composite: intersect;
+    /* mask-clip: padding-box, border-box; */
+    -webkit-mask-clip: padding-box, border-box;
+    mask-clip: padding-box, border-box;
+
+    opacity: 0;
+    transition: opacity 0.6s ease-out; /* Smoother transition */
+  }
+
+  .card-glowable:hover::before {
+    opacity: 0.8; /* More pronounced border */
+  }
+
+  .glow-overlay { /* Renamed from .glow to .glow-overlay to be more specific */
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(16px); /* Increased blur for softer, more spread-out glow */
+    border-radius: inherit; /* Make glow overlay follow card's border radius */
+  }
+
+  .glow-overlay::before {
+    content: "";
+    position: absolute;
+    width: 98%; /* Slightly smaller to create the inner glow effect */
+    height: 98%; /* Slightly smaller */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: inherit; /* Inherit from parent, which inherits from card */
+    /* The article uses a large border (15px) for the glow element's ::before. 
+       This seems to be the main part of the "glow" that's blurred.
+       The color of this border should be the gradient.
+    */
+    border: 3px solid transparent; /* Increased border width for thicker glow */
+    background: var(--gradient-glow);
+    background-attachment: fixed;
+    mask: linear-gradient(#0000, #0000),
+          conic-gradient(from calc(var(--start-angle) - 22deg), #000 0deg, #ffffff, #00000000 100deg); /* Mask for the glow */
+    -webkit-mask-composite: intersect;
+    mask-composite: intersect;
+    /* mask-clip: padding-box, border-box; */
+    -webkit-mask-clip: padding-box, border-box;
+    mask-clip: padding-box, border-box;
+    opacity: 0;
+    transition: opacity 0.8s ease-out; /* Smoother transition for glow */
+  }
+
+  .card-glowable:hover > .glow-overlay::before {
+    opacity: 1; /* From article, can be adjusted */
+  }
+}
