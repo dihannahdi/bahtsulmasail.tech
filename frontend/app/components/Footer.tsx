@@ -66,10 +66,13 @@ const footerNavigation = {
 };
 
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
+    y: 0,
     transition: {
+      duration: 0.6,
+      ease: "easeOut",
       staggerChildren: 0.1,
       delayChildren: 0.3,
     },
@@ -84,171 +87,181 @@ const itemVariants = {
     transition: {
       type: "spring",
       stiffness: 100,
+      damping: 15,
     },
   },
 };
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-background to-background/95 border-t border-border" aria-labelledby="footer-heading">
-      <h2 id="footer-heading" className="sr-only">
-        Footer
-      </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
-        <motion.div
-          className="xl:grid xl:grid-cols-3 xl:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {/* Brand section */}
-          <motion.div className="space-y-8" variants={itemVariants}>
-            <div className="flex items-center">
-              <Link href="/" className="text-2xl font-display text-primary hover:text-primary/90 transition-colors">
-                Bahtsul Masail
-              </Link>
-            </div>
-            <motion.p 
-              className="text-sm leading-6 text-muted-foreground max-w-md"
-              variants={itemVariants}
-            >
-              Explore the depths of Islamic legal reasoning with clarity and confidence. Join us in fostering an enlightened understanding for a vibrant future.
-            </motion.p>
-            <motion.div className="flex space-x-6" variants={itemVariants}>
-              {footerNavigation.social.map((item) => (
-                <motion.a
-                  key={item.name}
-                  href={item.href}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span className="sr-only">{item.name}</span>
-                  <item.icon className="h-6 w-6" aria-hidden="true" />
-                </motion.a>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Navigation sections */}
-          <motion.div 
-            className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0"
+    <footer className="relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background/95 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(var(--primary-rgb),0.08),transparent_40%)]" />
+      
+      <div className="relative border-t border-border/40">
+        <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
+          <motion.div
+            className="xl:grid xl:grid-cols-3 xl:gap-8"
             variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
           >
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <motion.div variants={itemVariants}>
-                <h3 className="text-sm font-semibold leading-6 text-foreground">Resources</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {footerNavigation.resources.map((item) => (
-                    <motion.li key={item.name} variants={itemVariants}>
-                      <Link
-                        href={item.href}
-                        className="text-sm leading-6 text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {item.name}
-                      </Link>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-              <motion.div className="mt-10 md:mt-0" variants={itemVariants}>
-                <h3 className="text-sm font-semibold leading-6 text-foreground">Community</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {footerNavigation.community.map((item) => (
-                    <motion.li key={item.name} variants={itemVariants}>
-                      <Link
-                        href={item.href}
-                        className="text-sm leading-6 text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {item.name}
-                      </Link>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Newsletter Section */}
-        <motion.div
-          className="mt-16 border-t border-border/60 pt-8 sm:mt-20 lg:mt-24"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-            <motion.div className="flex-1 max-w-md" variants={itemVariants}>
-              <h3 className="text-sm font-semibold leading-6 text-foreground">
-                Subscribe to our newsletter
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                Stay updated with the latest insights and discussions in Islamic jurisprudence.
-              </p>
-              <div className="mt-4 flex gap-x-4">
-                <motion.input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="min-w-0 flex-auto rounded-md border border-border bg-background/5 px-3.5 py-2 text-foreground shadow-sm ring-1 ring-inset ring-border focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm"
-                  placeholder="Enter your email"
-                  whileFocus={{ scale: 1.02 }}
-                />
-                <motion.button
-                  type="submit"
-                  className="flex-none rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+            {/* Brand section */}
+            <motion.div className="space-y-8" variants={itemVariants}>
+              <div className="flex items-center space-x-3">
+                <Link 
+                  href="/" 
+                  className="group flex items-center text-2xl font-display text-primary hover:text-primary/90 transition-all duration-300"
                 >
-                  Subscribe
-                </motion.button>
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">
+                    Bahtsul Masail
+                  </span>
+                  <span className="ml-1 text-xs text-muted-foreground group-hover:text-primary/70 transition-colors">.tech</span>
+                </Link>
+              </div>
+              <motion.p 
+                className="text-sm leading-6 text-muted-foreground max-w-md"
+                variants={itemVariants}
+              >
+                Explore the depths of Islamic legal reasoning with clarity and confidence. Join us in fostering an enlightened understanding for a vibrant future.
+              </motion.p>
+              <motion.div 
+                className="flex space-x-6" 
+                variants={itemVariants}
+              >
+                {footerNavigation.social.map((item) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    className="text-muted-foreground hover:text-primary transition-all duration-300"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span className="sr-only">{item.name}</span>
+                    <item.icon className="h-6 w-6" aria-hidden="true" />
+                  </motion.a>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            {/* Navigation sections */}
+            <motion.div
+              className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0"
+              variants={containerVariants}
+            >
+              <div className="md:grid md:grid-cols-2 md:gap-8">
+                <motion.div variants={itemVariants}>
+                  <h3 className="text-sm font-semibold leading-6 text-foreground">Resources</h3>
+                  <ul role="list" className="mt-6 space-y-4">
+                    {footerNavigation.resources.map((item) => (
+                      <motion.li 
+                        key={item.name} 
+                        variants={itemVariants}
+                        whileHover={{ x: 4 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      >
+                        <Link
+                          href={item.href}
+                          className="text-sm leading-6 text-muted-foreground hover:text-primary transition-all duration-300"
+                        >
+                          {item.name}
+                        </Link>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+                <motion.div className="mt-10 md:mt-0" variants={itemVariants}>
+                  <h3 className="text-sm font-semibold leading-6 text-foreground">Community</h3>
+                  <ul role="list" className="mt-6 space-y-4">
+                    {footerNavigation.community.map((item) => (
+                      <motion.li 
+                        key={item.name} 
+                        variants={itemVariants}
+                        whileHover={{ x: 4 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      >
+                        <Link
+                          href={item.href}
+                          className="text-sm leading-6 text-muted-foreground hover:text-primary transition-all duration-300"
+                        >
+                          {item.name}
+                        </Link>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
               </div>
             </motion.div>
-
-            <motion.div className="flex items-center gap-4" variants={itemVariants}>
-              <GlobeAltIcon className="h-6 w-6 text-muted-foreground" />
-              <select
-                className="block rounded-md border-border bg-background py-1.5 pl-3 pr-10 text-foreground focus:ring-2 focus:ring-primary sm:text-sm"
-                defaultValue="en"
-              >
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
-                <option value="id">Indonesia</option>
-              </select>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Bottom section */}
-        <motion.div 
-          className="mt-8 border-t border-border/60 pt-8 md:flex md:items-center md:justify-between"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.div className="flex space-x-6 md:order-2" variants={itemVariants}>
-            {footerNavigation.main.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-sm leading-6 text-muted-foreground hover:text-primary transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
           </motion.div>
-          <motion.p 
-            className="mt-8 text-sm leading-6 text-muted-foreground md:order-1 md:mt-0"
-            variants={itemVariants}
+
+          {/* Language Selector and Bottom Links */}
+          <motion.div 
+            className="mt-16 pt-8 border-t border-border/40"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
           >
-            &copy; {new Date().getFullYear()} Bahtsul Masail. All rights reserved.
-          </motion.p>
-        </motion.div>
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+              <motion.div 
+                className="flex items-center gap-4" 
+                variants={itemVariants}
+              >
+                <GlobeAltIcon className="h-5 w-5 text-muted-foreground" />
+                <select
+                  className="block rounded-md border-border bg-background/50 py-1.5 pl-3 pr-10 text-sm text-foreground focus:ring-2 focus:ring-primary transition-all duration-300 hover:bg-background"
+                  defaultValue="en"
+                >
+                  <option value="en">English</option>
+                  <option value="ar">العربية</option>
+                  <option value="id">Indonesia</option>
+                </select>
+              </motion.div>
+
+              <motion.div 
+                className="flex flex-wrap gap-6" 
+                variants={itemVariants}
+              >
+                {footerNavigation.main.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="text-sm text-muted-foreground hover:text-primary transition-all duration-300"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </motion.div>
+            </div>
+
+            <motion.div 
+              className="mt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+              variants={containerVariants}
+            >
+              <motion.p 
+                className="text-sm text-muted-foreground order-2 md:order-1"
+                variants={itemVariants}
+              >
+                &copy; {new Date().getFullYear()} Bahtsul Masail. All rights reserved.
+              </motion.p>
+              
+              <motion.div 
+                className="flex items-center gap-2 order-1 md:order-2"
+                variants={itemVariants}
+              >
+                <EnvelopeIcon className="h-5 w-5 text-muted-foreground" />
+                <a 
+                  href="mailto:contact@bahtsulmasail.tech" 
+                  className="text-sm text-muted-foreground hover:text-primary transition-all duration-300"
+                >
+                  contact@bahtsulmasail.tech
+                </a>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </footer>
   );

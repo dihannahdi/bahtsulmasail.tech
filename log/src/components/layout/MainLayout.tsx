@@ -2,7 +2,7 @@
 
 import React, { ReactNode, useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Footer from '../../../frontend/app/components/Footer';
 import { motion } from "framer-motion";
 import { PageLoader } from "../ui/page-loader";
 
