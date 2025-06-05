@@ -31,32 +31,18 @@ interface RootLayoutClientProps {
 
 const RootLayoutClient: React.FC<RootLayoutClientProps> = ({ children }) => {
   return (
-    <html 
-      lang="id" 
-      className={`${inter.variable} ${playfairDisplay.variable} ${amiri.variable}`}
-      suppressHydrationWarning
+    <ThemeProvider 
+      attribute="class" 
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
     >
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
-      <body 
-        className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50 antialiased"
-        suppressHydrationWarning
-      >
-        <ThemeProvider 
-          attribute="class" 
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NextAuthProvider>
-            <MainLayout>
-              {children}
-            </MainLayout>
-          </NextAuthProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+      <NextAuthProvider>
+        <MainLayout>
+          {children}
+        </MainLayout>
+      </NextAuthProvider>
+    </ThemeProvider>
   );
 };
 

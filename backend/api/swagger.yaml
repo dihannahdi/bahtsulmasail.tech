@@ -1,0 +1,986 @@
+openapi: 3.0.3
+info:
+  title: BahtsulMasail.tech AI Analysis Pipeline API
+  description: |
+    The AI Analysis Pipeline is the intellectual engine of BahtsulMasail.tech, designed to unlock deep insights from our vast corpus of Islamic scholarly texts.
+    This API provides endpoints for semantic analysis, argument mapping, principle extraction, summarization, knowledge graph management, and school comparison.
+  version: 1.0.0
+  contact:
+    name: BahtsulMasail.tech Team
+    email: support@bahtsulmasail.tech
+
+servers:
+  - url: /api/v1
+    description: API v1 base URL
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: object
+          description: Additional error details
+
+    AnalysisTask:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique task identifier
+        document_id:
+          type: string
+          format: uuid
+          description: ID of the document being analyzed
+        task_type:
+          type: string
+          enum: [semantic, arguments, principles, summary, knowledge_graph, school_comparison]
+          description: Type of analysis task
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+          description: Current task status
+        created_at:
+          type: string
+          format: date-time
+          description: Task creation timestamp
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp
+        error_message:
+          type: string
+          nullable: true
+          description: Error message if task failed
+
+    SemanticAnalysisRequest:
+      type: object
+      required:
+        - document_id
+      properties:
+        document_id:
+          type: string
+          format: uuid
+          description: ID of the document to analyze
+        analysis_parameters:
+          type: object
+          properties:
+            include_sentiment:
+              type: boolean
+              default: false
+              description: Whether to include sentiment analysis
+            min_confidence:
+              type: number
+              format: float
+              minimum: 0
+              maximum: 1
+              default: 0.7
+              description: Minimum confidence threshold for results
+            language:
+              type: string
+              enum: [ar, en]
+              default: ar
+              description: Language of the analysis
+
+    SemanticAnalysisResponse:
+      type: object
+      properties:
+        task:
+          $ref: '#/components/schemas/AnalysisTask'
+        results:
+          type: object
+          properties:
+            topics:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  confidence:
+                    type: number
+                    format: float
+                  keywords:
+                    type: array
+                    items:
+                      type: string
+            themes:
+              type: array
+              items:
+                type: object
+                properties:
+                  theme:
+                    type: string
+                  description:
+                    type: string
+                  relevance:
+                    type: number
+                    format: float
+            sentiment:
+              type: object
+              nullable: true
+              properties:
+                overall:
+                  type: string
+                  enum: [positive, neutral, negative]
+                confidence:
+                  type: number
+                  format: float
+                aspects:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      aspect:
+                        type: string
+                      sentiment:
+                        type: string
+                        enum: [positive, neutral, negative]
+                      confidence:
+                        type: number
+                        format: float
+
+    ArgumentAnalysisRequest:
+      type: object
+      required:
+        - document_id
+      properties:
+        document_id:
+          type: string
+          format: uuid
+          description: ID of the document to analyze
+        analysis_parameters:
+          type: object
+          properties:
+            include_evidence:
+              type: boolean
+              default: true
+              description: Whether to include supporting evidence
+            min_confidence:
+              type: number
+              format: float
+              minimum: 0
+              maximum: 1
+              default: 0.7
+              description: Minimum confidence threshold for results
+            language:
+              type: string
+              enum: [ar, en]
+              default: ar
+              description: Language of the analysis
+
+    ArgumentAnalysisResponse:
+      type: object
+      properties:
+        task:
+          $ref: '#/components/schemas/AnalysisTask'
+        results:
+          type: object
+          properties:
+            arguments:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  claim:
+                    type: string
+                  type:
+                    type: string
+                    enum: [main, supporting, counter]
+                  confidence:
+                    type: number
+                    format: float
+                  evidence:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        text:
+                          type: string
+                        source:
+                          type: string
+                        relevance:
+                          type: number
+                          format: float
+            relationships:
+              type: array
+              items:
+                type: object
+                properties:
+                  source:
+                    type: string
+                  target:
+                    type: string
+                  type:
+                    type: string
+                    enum: [supports, refutes, elaborates]
+                  confidence:
+                    type: number
+                    format: float
+
+    PrincipleAnalysisRequest:
+      type: object
+      required:
+        - document_id
+      properties:
+        document_id:
+          type: string
+          format: uuid
+          description: ID of the document to analyze
+        analysis_parameters:
+          type: object
+          properties:
+            include_references:
+              type: boolean
+              default: true
+              description: Whether to include text references
+            min_confidence:
+              type: number
+              format: float
+              minimum: 0
+              maximum: 1
+              default: 0.7
+              description: Minimum confidence threshold for results
+            language:
+              type: string
+              enum: [ar, en]
+              default: ar
+              description: Language of the analysis
+
+    PrincipleAnalysisResponse:
+      type: object
+      properties:
+        task:
+          $ref: '#/components/schemas/AnalysisTask'
+        results:
+          type: object
+          properties:
+            principles:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  category:
+                    type: string
+                    enum: [qawaid_fiqhiyyah, usul, methodology]
+                  confidence:
+                    type: number
+                    format: float
+                  references:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        text:
+                          type: string
+                        location:
+                          type: string
+                        relevance:
+                          type: number
+                          format: float
+            rulings:
+              type: array
+              items:
+                type: object
+                properties:
+                  ruling:
+                    type: string
+                  category:
+                    type: string
+                  confidence:
+                    type: number
+                    format: float
+                  basis:
+                    type: array
+                    items:
+                      type: string
+
+    SummaryRequest:
+      type: object
+      required:
+        - document_id
+      properties:
+        document_id:
+          type: string
+          format: uuid
+          description: ID of the document to summarize
+        summary_parameters:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [abstractive, extractive]
+              default: abstractive
+              description: Type of summary to generate
+            length:
+              type: string
+              enum: [short, medium, long]
+              default: medium
+              description: Desired summary length
+            language:
+              type: string
+              enum: [ar, en]
+              default: ar
+              description: Language of the summary
+
+    SummaryResponse:
+      type: object
+      properties:
+        task:
+          $ref: '#/components/schemas/AnalysisTask'
+        results:
+          type: object
+          properties:
+            summary:
+              type: string
+            type:
+              type: string
+              enum: [abstractive, extractive]
+            length:
+              type: string
+              enum: [short, medium, long]
+            key_points:
+              type: array
+              items:
+                type: string
+            metadata:
+              type: object
+              properties:
+                compression_ratio:
+                  type: number
+                  format: float
+                confidence:
+                  type: number
+                  format: float
+
+    KnowledgeGraphRequest:
+      type: object
+      required:
+        - document_id
+      properties:
+        document_id:
+          type: string
+          format: uuid
+          description: ID of the document to analyze
+        update_parameters:
+          type: object
+          properties:
+            include_historical:
+              type: boolean
+              default: true
+              description: Whether to include historical context
+            min_confidence:
+              type: number
+              format: float
+              minimum: 0
+              maximum: 1
+              default: 0.7
+              description: Minimum confidence threshold for results
+            language:
+              type: string
+              enum: [ar, en]
+              default: ar
+              description: Language of the analysis
+
+    KnowledgeGraphResponse:
+      type: object
+      properties:
+        task:
+          $ref: '#/components/schemas/AnalysisTask'
+        results:
+          type: object
+          properties:
+            entities:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  type:
+                    type: string
+                    enum: [scholar, concept, ruling, school, text]
+                  name:
+                    type: string
+                  attributes:
+                    type: object
+                  confidence:
+                    type: number
+                    format: float
+            relationships:
+              type: array
+              items:
+                type: object
+                properties:
+                  source:
+                    type: string
+                  target:
+                    type: string
+                  type:
+                    type: string
+                  attributes:
+                    type: object
+                  confidence:
+                    type: number
+                    format: float
+
+    SchoolComparisonRequest:
+      type: object
+      required:
+        - document_ids
+      properties:
+        document_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          minItems: 2
+          description: IDs of documents to compare
+        comparison_parameters:
+          type: object
+          properties:
+            comparison_type:
+              type: string
+              enum: [documents, topics]
+              default: documents
+              description: Type of comparison to perform
+            include_historical:
+              type: boolean
+              default: true
+              description: Whether to include historical context
+            min_confidence:
+              type: number
+              format: float
+              minimum: 0
+              maximum: 1
+              default: 0.7
+              description: Minimum confidence threshold for results
+            language:
+              type: string
+              enum: [ar, en]
+              default: ar
+              description: Language of the comparison
+
+    SchoolComparisonResponse:
+      type: object
+      properties:
+        task:
+          $ref: '#/components/schemas/AnalysisTask'
+        results:
+          type: object
+          properties:
+            schools:
+              type: array
+              items:
+                type: string
+            similarities:
+              type: array
+              items:
+                type: object
+                properties:
+                  aspect:
+                    type: string
+                  description:
+                    type: string
+                  confidence:
+                    type: number
+                    format: float
+                  evidence:
+                    type: array
+                    items:
+                      type: string
+            differences:
+              type: array
+              items:
+                type: object
+                properties:
+                  aspect:
+                    type: string
+                  description:
+                    type: string
+                  confidence:
+                    type: number
+                    format: float
+                  evidence:
+                    type: array
+                    items:
+                      type: string
+            analysis:
+              type: object
+              properties:
+                methodology_comparison:
+                  type: object
+                historical_context:
+                  type: object
+                impact_assessment:
+                  type: object
+
+paths:
+  /analysis/semantic:
+    post:
+      summary: Initiate semantic analysis
+      description: Start a semantic analysis task for a document
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SemanticAnalysisRequest'
+      responses:
+        '202':
+          description: Analysis task accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisTask'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      summary: Get semantic analysis results
+      description: Retrieve results of a semantic analysis task
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: task_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the analysis task
+      responses:
+        '200':
+          description: Analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SemanticAnalysisResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Task not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /analysis/arguments:
+    post:
+      summary: Initiate argument analysis
+      description: Start an argument analysis task for a document
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArgumentAnalysisRequest'
+      responses:
+        '202':
+          description: Analysis task accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisTask'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      summary: Get argument analysis results
+      description: Retrieve results of an argument analysis task
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: task_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the analysis task
+      responses:
+        '200':
+          description: Analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArgumentAnalysisResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Task not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /analysis/principles:
+    post:
+      summary: Initiate principle analysis
+      description: Start a principle analysis task for a document
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrincipleAnalysisRequest'
+      responses:
+        '202':
+          description: Analysis task accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisTask'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      summary: Get principle analysis results
+      description: Retrieve results of a principle analysis task
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: task_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the analysis task
+      responses:
+        '200':
+          description: Analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrincipleAnalysisResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Task not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /analysis/summaries:
+    post:
+      summary: Generate document summary
+      description: Start a document summarization task
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummaryRequest'
+      responses:
+        '202':
+          description: Summary task accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisTask'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      summary: Get document summary
+      description: Retrieve results of a document summarization task
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: task_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the summary task
+      responses:
+        '200':
+          description: Summary results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummaryResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Task not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /analysis/knowledge-graph:
+    post:
+      summary: Update knowledge graph
+      description: Start a knowledge graph update task for a document
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeGraphRequest'
+      responses:
+        '202':
+          description: Update task accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisTask'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      summary: Query knowledge graph
+      description: Query the knowledge graph for entities and relationships
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Graph query in supported format
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 100
+          description: Maximum number of results to return
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeGraphResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /analysis/school-comparison:
+    post:
+      summary: Initiate school comparison
+      description: Start a school comparison analysis task
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchoolComparisonRequest'
+      responses:
+        '202':
+          description: Comparison task accepted
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AnalysisTask'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      summary: Get school comparison results
+      description: Retrieve results of a school comparison task
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: task_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the comparison task
+      responses:
+        '200':
+          description: Comparison results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchoolComparisonResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Task not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error' 

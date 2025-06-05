@@ -6,8 +6,340 @@
 
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 142 61% 51%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 142 61% 51%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 142 61% 51%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142 61% 51%;
     --radius: 0.5rem;
+
+    /* Islamic theme colors */
+    --islamic-blue-hsl: 217.2 91.2% 59.8%;
+    --islamic-green-hsl: 142 61% 51%;
+    --islamic-gold-hsl: 40 88% 55%;
+    --islamic-purple-hsl: 260 70% 65%;
+    --islamic-teal-hsl: 170 70% 50%;
+    --islamic-earth-hsl: 30 33% 47%;
+    --islamic-dark-hsl: 240 10% 20%;
+    --islamic-maroon-hsl: 0 59% 46%;
   }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 142 61% 51%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 142 61% 51%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 142 61% 51%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 142 61% 51%;
+
+    /* Islamic theme colors - darker variants */
+    --islamic-blue-hsl: 217.2 91.2% 59.8%;
+    --islamic-green-hsl: 142 61% 51%;
+    --islamic-gold-hsl: 40 88% 55%;
+    --islamic-purple-hsl: 260 70% 65%;
+    --islamic-teal-hsl: 170 70% 50%;
+    --islamic-earth-hsl: 30 33% 47%;
+    --islamic-dark-hsl: 240 10% 20%;
+    --islamic-maroon-hsl: 0 59% 46%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Enhanced animations for BahtsulMasail.tech */
+@keyframes emerald-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(16, 185, 129, 0.3);
+  }
+}
+
+.animate-emerald-pulse {
+  animation: emerald-pulse 3s ease-in-out infinite;
+}
+
+@keyframes knowledge-flow {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+.animate-knowledge-flow {
+  animation: knowledge-flow 10s linear infinite;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+@keyframes calligraphy-write {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  90%, 100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-calligraphy-write {
+  animation: calligraphy-write 5s ease-in-out forwards;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+@keyframes particle-burst {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-particle-burst {
+  animation: particle-burst 2s ease-out forwards;
+}
+
+/* Timeline animation */
+@keyframes timeline-progress {
+  0% {
+    width: 0%;
+    opacity: 0.3;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.animate-timeline-progress {
+  animation: timeline-progress 5s linear forwards;
+}
+
+/* Hide scrollbar utility */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Font utility for Arabic text */
+.font-arabic {
+  font-family: 'Amiri', serif;
+}
+
+/* Theme transitions */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/70;
+}
+
+/* Focus styles */
+:focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+/* Selection styles */
+::selection {
+  @apply bg-primary/20 text-foreground;
+}
+
+/* Custom utilities */
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* Glass effect */
+.glass {
+  @apply bg-background/80 backdrop-blur-sm border border-border/50;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/80;
+}
+
+/* Card hover effect */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:border-primary/20;
+}
+
+/* Button hover effect */
+.button-hover {
+  @apply transition-all duration-300 hover:shadow-md hover:scale-[1.02];
+}
+
+/* Input focus effect */
+.input-focus {
+  @apply transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary/50;
+}
+
+/* Link hover effect */
+.link-hover {
+  @apply transition-colors duration-300 hover:text-primary;
+}
+
+/* Icon hover effect */
+.icon-hover {
+  @apply transition-all duration-300 hover:scale-110 hover:text-primary;
+}
+
+/* Section background patterns */
+.bg-pattern {
+  @apply relative overflow-hidden;
+}
+
+.bg-pattern::before {
+  content: '';
+  @apply absolute inset-0 opacity-5;
+  background-image: radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Dark mode specific styles */
+.dark .bg-pattern::before {
+  @apply opacity-10;
+}
+
+/* Custom shadows */
+.shadow-soft {
+  @apply shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)];
+}
+
+.dark .shadow-soft {
+  @apply shadow-[0_2px_15px_-3px_rgba(0,0,0,0.2),0_10px_20px_-2px_rgba(0,0,0,0.15)];
+}
+
+/* Emerald theme specific styles */
+.bg-emerald-gradient {
+  @apply bg-gradient-to-r from-primary to-primary/80;
+}
+
+.text-emerald-gradient {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/80;
+}
+
+.border-emerald-gradient {
+  @apply border border-primary/20 hover:border-primary/40 transition-colors;
+}
+
+.shadow-emerald {
+  @apply shadow-[0_0_15px_rgba(16,185,129,0.2)];
+}
+
+.dark .shadow-emerald {
+  @apply shadow-[0_0_15px_rgba(16,185,129,0.3)];
+}
+
+/* Emerald button styles */
+.btn-emerald {
+  @apply bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300;
+}
+
+.btn-emerald-outline {
+  @apply border border-primary text-primary hover:bg-primary/10 transition-all duration-300;
+}
+
+/* Emerald card styles */
+.card-emerald {
+  @apply bg-background border border-primary/20 hover:border-primary/40 transition-all duration-300;
+}
+
+/* Emerald input styles */
+.input-emerald {
+  @apply border-primary/20 focus:border-primary/50 focus:ring-primary/20;
+}
+
+/* Emerald link styles */
+.link-emerald {
+  @apply text-primary hover:text-primary/80 transition-colors;
+}
+
+/* Emerald icon styles */
+.icon-emerald {
+  @apply text-primary hover:text-primary/80 transition-colors;
 }
 
 @layer components {
@@ -40,127 +372,6 @@
   }
 }
 
-:root {
-  /* Reverted to our original theme, adjusted from Shadcn Neutral */
-  --background: 210 40% 98%;
-  --foreground: 222 47% 11%;
-  --card: 0 0% 100%; /* Shadcn uses this, keep for card component compatibility */
-  --card-foreground: 222.2 84% 4.9%; /* Shadcn uses this */
-  --popover: 0 0% 100%; /* Shadcn uses this */
-  --popover-foreground: 222.2 84% 4.9%; /* Shadcn uses this */
-  
-  --primary: 220 91% 36%;         /* Islamic Blue */
-  --primary-foreground: 210 40% 98%;
-  
-  --secondary: 142 71% 31%;       /* Islamic Green */
-  --secondary-foreground: 210 40% 98%;
-  
-  --accent: 38 92% 50%;           /* Islamic Gold */
-  --accent-foreground: 222 47% 11%;
-  
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;    /* For input components */
-  --ring: 221 91% 36%;           /* Ring color, often primary */
-
-  --radius: 0.75rem; /* Our original radius */
-  --transition-duration: 0.3s; /* Slightly faster transitions */
-
-  /* Font variables */
-  --font-inter: 'Inter', sans-serif;
-  --font-playfair: 'Playfair Display', serif;
-  --font-amiri: 'Amiri', serif;
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
-  
-  /* Additional thematic colors from Vite project */
-  --islamic-blue-hsl: 220 91% 36%;
-  --islamic-green-hsl: 142 71% 31%;
-  --islamic-gold-hsl: 40 88% 50%;
-  --islamic-silver-hsl: 210 14% 78%;
-  --islamic-bronze-hsl: 28 58% 48%;
-  --islamic-earth-hsl: 30 33% 42%;
-  --islamic-dark-hsl: 240 10% 15%;
-  --islamic-purple-hsl: 260 70% 55%; /* Added purple */
-  --islamic-teal-hsl: 170 70% 40%; /* Added teal */
-  --islamic-maroon-hsl: 0 59% 41%; /* New color */
-
-  --chart-1: var(--primary);
-  --chart-2: var(--secondary);
-
-  /* For Gradient Border Glow Effect */
-  --gradient-glow: conic-gradient(
-    from 90deg at 50% 50%,
-    hsl(var(--primary)), /* Use theme's primary color */
-    hsl(var(--secondary)), /* Use theme's secondary color */
-    hsl(var(--accent)), /* Use theme's accent color */
-    hsl(var(--islamic-purple-hsl)),
-    hsl(var(--islamic-teal-hsl)),
-    hsl(var(--islamic-maroon-hsl)),
-    hsl(var(--primary)) /* Loop back to primary */
-  );
-}
-
-.dark {
-  --background: 222 47% 8%;
-  --foreground: 210 40% 98%;
-  --card: 222.2 84% 6.9%; /* Shadcn dark card */
-  --card-foreground: 210 40% 98%; /* Shadcn dark card fg */
-  --popover: 222.2 84% 6.9%; /* Shadcn dark popover */
-  --popover-foreground: 210 40% 98%; /* Shadcn dark popover fg */
-
-  --primary: 217.2 91.2% 59.8%;    /* Lighter Islamic Blue for dark */
-  --primary-foreground: 222.2 47.4% 11.2%;
-  
-  --secondary: 142 61% 51%;      /* Lighter Islamic Green for dark */
-  --secondary-foreground: 222.2 47.4% 11.2%;
-
-  --accent: 38 92% 60%;           /* Lighter Islamic Gold for dark */
-  --accent-foreground: 210 40% 98%;
-
-  --muted: 217.2 32.6% 15.5%;
-  --muted-foreground: 215 20.2% 70%;
-  
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
-
-  --border: 217.2 32.6% 15.5%;
-  --input: 217.2 32.6% 15.5%;      /* For input components */
-  --ring: 224.3 76.3% 48%;         /* Ring color for dark */
-  
-  /* Additional thematic colors for dark mode (adjust opacities/lightness as needed) */
-  --islamic-blue-hsl: 217.2 91.2% 59.8%;
-  --islamic-green-hsl: 142 61% 51%;
-  --islamic-gold-hsl: 40 88% 55%;
-  --islamic-silver-hsl: 210 14% 85%;
-  --islamic-bronze-hsl: 28 58% 53%;
-  --islamic-earth-hsl: 30 33% 47%;
-  --islamic-dark-hsl: 240 10% 20%;
-  --islamic-purple-hsl: 260 70% 65%;
-  --islamic-teal-hsl: 170 70% 50%;
-  --islamic-maroon-hsl: 0 59% 46%; /* New color */
-
-  --chart-1: var(--primary);
-  --chart-2: var(--secondary);
-  
-  /* For Gradient Border Glow Effect - Dark Theme (can be same or adjusted) */
-  --gradient-glow: conic-gradient(
-    from 90deg at 50% 50%,
-    hsl(var(--primary)),
-    hsl(var(--secondary)),
-    hsl(var(--accent)),
-    hsl(var(--islamic-purple-hsl)),
-    hsl(var(--islamic-teal-hsl)),
-    hsl(var(--islamic-maroon-hsl)),
-    hsl(var(--primary))
-  );
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -173,16 +384,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  @apply border-border;
-}
-
 @layer utilities {
   .smooth-transitions {
     transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease, 
                 border-color var(--transition-duration) ease, box-shadow var(--transition-duration) ease,
                 text-shadow var(--transition-duration) ease, opacity var(--transition-duration) ease,
-                transform var(--transition-duration) ease; /* Added transform */
+                transform var(--transition-duration) ease;
   }
 
   a, button, input, select, textarea {
@@ -285,39 +492,7 @@ body {
   /* Gradient Border Glow Card Effect */
   /* Using .card-glowable to avoid conflicts with existing .card or Shadcn card styles */
   .card-glowable {
-    --start-angle: 0deg; /* Renamed from --start to avoid potential conflicts and use deg unit */
-    position: relative;
-    /* Add other base card styles if needed, or apply this to an existing card structure */
-    /* e.g., background-color: hsl(var(--card)); border-radius: var(--radius); */
-    /* transition: border-color 0.3s ease-in-out; */ /* From article, but our .smooth-transitions might cover it */
-  }
-
-  .card-glowable::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: inherit; /* Inherit border-radius from the parent card */
-    border: 2px solid transparent; /* Border width */
-    background: var(--gradient-glow);
-    background-attachment: fixed; /* As per article */
-    mask: linear-gradient(#0000, #0000),
-          conic-gradient(from calc(var(--start-angle) - 22deg), #ffffff1f 0deg, white, #ffffff00 100deg); /* Adjusted 20 * 1.1 to 22deg */
-    -webkit-mask-composite: intersect; /* For Safari/Webkit */
-    mask-composite: intersect;
-    /* mask-clip: padding-box, border-box; */
-    -webkit-mask-clip: padding-box, border-box;
-    mask-clip: padding-box, border-box;
-
-    opacity: 0;
-    transition: opacity 0.6s ease-out; /* Smoother transition */
-  }
-
-  .card-glowable:hover::before {
-    opacity: 0.8; /* More pronounced border */
+    @apply glowing-border;
   }
 
   .glow-overlay { /* Renamed from .glow to .glow-overlay to be more specific */
@@ -362,4 +537,76 @@ body {
   .card-glowable:hover > .glow-overlay::before {
     opacity: 1; /* From article, can be adjusted */
   }
+
+  /* Emerald Green Directional Glow Effect */
+  .glowing-border {
+    position: relative;
+    border: 2px solid #fff; /* White outline */
+    border-radius: inherit;
+    transition: box-shadow 0.3s, border-color 0.3s;
+  }
+
+  .glowing-border::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: conic-gradient(
+      from var(--glow-angle, 0deg),
+      #10b981 0deg 40deg,
+      transparent 60deg 360deg
+    );
+    filter: blur(6px);
+  }
+
+  .glowing-border:hover::after {
+    opacity: 1;
+  }
+
+  /* Apply glowing border to specific components */
+  .card-glowable {
+    @apply glowing-border;
+  }
+
+  .search-glow {
+    @apply glowing-border;
+  }
+
+  .button-glow {
+    @apply glowing-border;
+  }
+
+  /* Dark mode adjustments */
+  .dark .glowing-border::before {
+    opacity: 0.2;
+  }
+
+  .dark .glowing-border:hover::before {
+    opacity: 0.8;
+  }
+
+  .dark .glowing-border::after {
+    opacity: 0.1;
+  }
+
+  .dark .glowing-border:hover::after {
+    opacity: 0.4;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
 }

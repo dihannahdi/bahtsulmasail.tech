@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os # Make sure os is imported
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,8 +43,37 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',  # Add Django REST framework
+    'rest_framework_simplejwt',  # Add JWT authentication
     'api',  # Add our new api app
+    'users',  # Add custom user app
+    'documents',  # Add documents app
+    'tashih',  # Add tashih workflow app
+    'vectors',  # Add vectors app for pgvector integration
 ]
+
+# Custom user model
+AUTH_USER_MODEL = 'users.User'
+
+# REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+}
+
+# JWT settings
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,11 +108,15 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# Default to SQLite for local development if cloud settings are not available
+# Use PostgreSQL by default for pgvector support
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("DB_NAME", "bahtsulmasail"),
+        "USER": os.environ.get("DB_USER", "postgres"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "postgres"),
+        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
 
@@ -153,13 +187,34 @@ STATIC_ROOT = BASE_DIR / "staticfiles" # For collecting static files for deploym
 
 # Media files (User uploads) - Google Cloud Storage Configuration
 GS_BUCKET_NAME = os.environ.get("GS_BUCKET_NAME")
+GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
+GS_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+GS_LOCATION = "media"  # Folder in the bucket to store media files
 
 if GS_BUCKET_NAME:
-    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-    STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage" # If you want to serve static files from GCS too
-    GS_DEFAULT_ACL = "publicRead" # Or "private" or other ACLs as needed
-    # MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
-    # MEDIA_ROOT = "media/" # This is relative to the GCS bucket root
+    # Use custom storage classes for media files
+    DEFAULT_FILE_STORAGE = "core.storage.MediaStorage"
+
+    # Optionally use GCS for static files too
+    STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+
+    # Custom storage for document files
+    DOCUMENT_STORAGE = "core.storage.DocumentStorage"
+
+    # Access control settings
+    GS_DEFAULT_ACL = "private"  # Default to private for security
+    GS_QUERYSTRING_AUTH = True  # Use signed URLs for authenticated access
+    GS_QUERYSTRING_EXPIRE = 3600  # Signed URLs expire after 1 hour
+
+    # Cache control settings
+    GS_CACHE_CONTROL = "public, max-age=86400"  # Cache for 24 hours
+
+    # Media URL and root
+    MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/{GS_LOCATION}/"
+    MEDIA_ROOT = GS_LOCATION  # This is relative to the GCS bucket root
+
+    # File overwrite settings
+    GS_FILE_OVERWRITE = False  # Don't overwrite files with the same name
 else:
     # Fallback to local media storage if GS_BUCKET_NAME is not set
     MEDIA_URL = "/media/"

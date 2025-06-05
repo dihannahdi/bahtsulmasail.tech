@@ -18,16 +18,16 @@ BahtsulMasail.tech aims to be the preeminent digital embodiment of "Bahtsul Masa
 
 ## Key Features (Envisioned)
 
-*   **The "Minbar Al-Hikmah" (Pulpit of Wisdom):** Empowering homepage & intuitive navigation.
+*   Homepage & intuitive navigation.
 *   **Smart Document Management:** Secure upload, OCR, metadata tagging, and version control for Bahtsul Masail documents.
 *   **AI-Powered Deep Text Analysis:**
-    *   "Burhan" (Proof/Evidence) Visualizations: Tracing arguments and evidence.
+    *   Visualizations: Tracing arguments and evidence.
     *   Luminous Citation Presentation: Quranic verses and Hadith.
-    *   "Khulasah" (Essence) Cards: AI-generated summaries.
-*   **"Al-Furqan" (The Criterion/Distinguisher):** Advanced semantic search experience.
-*   **"Pathways of Ijtihad" Mode:** Visual mapping of connections between rulings.
-*   **The "Sahifah" (Scroll/Page):** Masterful typography and a focused reading experience.
-*   **"Majlis Al-Musyawarah" (The Council of Consultation):** Structured Tashih (verification) workflow for scholarly review, with dedicated Taqrir Khass pages.
+    *    AI-generated summaries.
+*  Advanced semantic search experience.
+*   Visual mapping of connections between rulings.
+*  Masterful typography and a focused reading experience.
+*    Structured Tashih (verification) workflow for scholarly review, with dedicated Taqrir Khass pages.
 *   **User Authentication & Authorization:** Role-based access for users, Mushohehs (verifiers), and Admins.
 
 ## Prerequisites for Local Development

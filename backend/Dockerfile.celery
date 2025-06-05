@@ -17,6 +17,10 @@ COPY requirements.txt /app/
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
+# Download IndoBERT model and spaCy Indonesian pipeline at build time
+RUN python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('indobenchmark/indobert-base-p1'); AutoModel.from_pretrained('indobenchmark/indobert-base-p1')"
+RUN python -m spacy download xx_ent_wiki_sm || true  # Download multilingual spaCy model as fallback
+
 # Copy project
 COPY . /app/
 

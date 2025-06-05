@@ -8,23 +8,26 @@ import {
 
 const footerNavigation = {
   main: [
-    { name: 'About', href: '/about' },
-    { name: 'Articles', href: '/articles' },
-    { name: 'Discussions', href: '/discussions' },
-    { name: 'Resources', href: '/resources' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about' },
+    { name: 'FAQ', href: '/faq' },
   ],
   resources: [
-    { name: 'Documentation', href: '#' },
-    { name: 'Research Papers', href: '#' },
-    { name: 'Case Studies', href: '#' },
-    { name: 'FAQs', href: '#' },
+    { name: 'Documentation', href: '/documentation' },
+    { name: 'Research Papers', href: '/research' },
+    { name: 'Case Studies', href: '/case-studies' },
+    { name: 'Articles', href: '/articles' },
+    { name: 'Discussions', href: '/discussions' },
   ],
   community: [
-    { name: 'Forums', href: '#' },
-    { name: 'Events', href: '#' },
-    { name: 'Contribute', href: '#' },
-    { name: 'Scholars Network', href: '#' },
+    { name: 'Forums', href: '/forums' },
+    { name: 'Events', href: '/events' },
+    { name: 'Contribute', href: '/contribute' },
+    { name: 'Scholars Network', href: '/scholars' },
+  ],
+  legal: [
+    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Terms of Service', href: '/terms' },
   ],
   social: [
     {
@@ -94,15 +97,15 @@ const itemVariants = {
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden">
-      {/* Decorative Elements */}
+    <footer className="relative overflow-hidden bg-background">
+      {/* Ambient Background Animation */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background/95 backdrop-blur-sm" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(var(--primary-rgb),0.08),transparent_40%)]" />
       
       <div className="relative border-t border-border/40">
-        <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
+        <div className="relative z-10 bg-card/40 backdrop-blur-sm border-t border-primary/10 py-10 mt-20">
           <motion.div
-            className="xl:grid xl:grid-cols-3 xl:gap-8"
+            className="xl:grid xl:grid-cols-4 xl:gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -125,7 +128,7 @@ export default function Footer() {
                 className="text-sm leading-6 text-muted-foreground max-w-md"
                 variants={itemVariants}
               >
-                Explore the depths of Islamic legal reasoning with clarity and confidence. Join us in fostering an enlightened understanding for a vibrant future.
+                Explore the depths of Islamic legal reasoning with clarity and confidence.
               </motion.p>
               <motion.div 
                 className="flex space-x-6" 
@@ -148,10 +151,10 @@ export default function Footer() {
 
             {/* Navigation sections */}
             <motion.div
-              className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0"
+              className="mt-16 grid grid-cols-2 gap-8 xl:col-span-3 xl:mt-0"
               variants={containerVariants}
             >
-              <div className="md:grid md:grid-cols-2 md:gap-8">
+              <div className="md:grid md:grid-cols-3 md:gap-8">
                 <motion.div variants={itemVariants}>
                   <h3 className="text-sm font-semibold leading-6 text-foreground">Resources</h3>
                   <ul role="list" className="mt-6 space-y-4">
@@ -192,13 +195,33 @@ export default function Footer() {
                     ))}
                   </ul>
                 </motion.div>
+                <motion.div className="mt-10 md:mt-0" variants={itemVariants}>
+                  <h3 className="text-sm font-semibold leading-6 text-foreground">Legal</h3>
+                  <ul role="list" className="mt-6 space-y-4">
+                    {footerNavigation.legal.map((item) => (
+                      <motion.li 
+                        key={item.name} 
+                        variants={itemVariants}
+                        whileHover={{ x: 4 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      >
+                        <Link
+                          href={item.href}
+                          className="text-sm leading-6 text-muted-foreground hover:text-primary transition-all duration-300"
+                        >
+                          {item.name}
+                        </Link>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
               </div>
             </motion.div>
           </motion.div>
 
           {/* Language Selector and Bottom Links */}
           <motion.div 
-            className="mt-16 pt-8 border-t border-border/40"
+            className="mt-16 pt-8 border-t border-border/40 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -259,6 +282,19 @@ export default function Footer() {
                   contact@bahtsulmasail.tech
                 </a>
               </motion.div>
+            </motion.div>
+
+            {/* Final Reflection */}
+            <motion.div
+              className="mt-8 text-center"
+              variants={itemVariants}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
+              <p className="text-sm text-muted-foreground italic">
+                "The pursuit of knowledge is a journey without end, its light ever guiding."
+              </p>
             </motion.div>
           </motion.div>
         </div>

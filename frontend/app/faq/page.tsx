@@ -1,106 +1,317 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { containerVariant, fadeUp } from '@/lib/animations';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Mail, HelpCircle, ChevronRight } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Mail, HelpCircle, ChevronRight, Plus, Minus } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-const faqData = [
+// Animation variants
+const containerVariant = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { 
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      type: "spring",
+      damping: 25, 
+      stiffness: 100 
+    }
+  }
+};
+
+const shimmer = {
+  hidden: { 
+    backgroundPosition: "200% 0",
+  },
+  visible: { 
+    backgroundPosition: "0% 0",
+    transition: { 
+      repeat: Infinity,
+      repeatType: "mirror" as const,
+      duration: 3
+    }
+  }
+};
+
+const lightReveal = {
+  hidden: { 
+    opacity: 0,
+    clipPath: "inset(0 100% 0 0)" 
+  },
+  visible: { 
+    opacity: 1,
+    clipPath: "inset(0 0% 0 0)",
+    transition: { 
+      duration: 0.7,
+      ease: "easeOut" 
+    }
+  }
+};
+
+// FAQ data
+const faqItems = [
   {
-    id: "item-1",
-    question: "Apa itu BahtsulMasail.tech?",
-    answer: "BahtsulMasail.tech adalah platform digital yang berisi kumpulan dokumen hukum Islam, fatwa, dan pendapat ulama khususnya dari hasil Bahtsul Masail Pondok Pesantren yang telah diproses secara digital untuk memudahkan pencarian, pembelajaran, dan pemanfaatan bagi masyarakat umum maupun akademisi."
+    id: "q1",
+    question: "Apa itu Bahtsul Masail?",
+    answer: "Bahtsul Masail, secara harfiah 'diskusi masalah,' adalah tradisi keilmuan otentik yang lahir dan berkembang di pesantren Indonesia. Forum ini berfungsi sebagai platform bagi ulama dan santri untuk mendiskusikan dan merumuskan hukum Islam pada isu-isu kontemporer menggunakan metodologi fiqh yang komprehensif."
   },
   {
-    id: "item-2",
-    question: "Bagaimana cara menggunakan fitur pencarian?",
-    answer: "Anda dapat menggunakan fitur pencarian dengan mengetikkan kata kunci, frasa, atau pertanyaan terkait topik yang ingin Anda cari di kolom pencarian. Sistem kami akan menampilkan dokumen-dokumen yang relevan dengan pencarian Anda. Anda juga dapat memfilter hasil berdasarkan kategori, tahun, atau sumber untuk mempersempit pencarian."
+    id: "q2",
+    question: "Mengapa BahtsulMasail.tech dibuat?",
+    answer: "BahtsulMasail.tech didirikan untuk mendigitalisasi hasil Bahtsul Masail, menjadikannya mudah diakses oleh semua orang. Visi kami adalah melestarikan karya-karya asli pesantren, memastikan platform ini berfungsi sebagai pusat Bahtsul Masail yang bermanfaat bagi seluruh umat, menjembatani warisan intelektual pesantren dengan kebutuhan kontemporer."
   },
   {
-    id: "item-3",
-    question: "Dari mana sumber dokumen yang ada di platform ini?",
-    answer: "Dokumen yang tersedia di platform kami berasal dari berbagai sumber terpercaya, termasuk Hasil Bahtsul Masail Pondok Pesantren yang telah diverifikasi dan divalidasi, kitab-kitab klasik, publikasi lembaga fatwa resmi, karya ilmiah dari para ulama terkemuka, serta jurnal dan publikasi akademik di bidang hukum Islam. Setiap dokumen dilengkapi dengan informasi sumber untuk memastikan validitas dan otentisitasnya. Selain itu, khusus untuk Hasil Bahtsul Masail, kami lakukan proses verifikasi dan validasi secara manual untuk memastikan kebenaran dan kesahihannya."
+    id: "q3",
+    question: "Teknologi apa yang mendukung BahtsulMasail.tech, khususnya 'Pencarian Cerdas'?",
+    answer: "Platform kami menggunakan teknologi canggih, termasuk Kecerdasan Buatan (AI) dan Pembelajaran Mesin. Ini secara khusus meningkatkan 'Pencarian Cerdas' kami, yang dirancang untuk memahami konteks dan makna dalam teks Bahtsul Masail, memungkinkan pengguna menemukan jawaban yang tepat untuk pertanyaan spesifik dengan cepat dan akurat tanpa mengurangi nilai substantif atau otoritas."
   },
   {
-    id: "item-4",
-    question: "Apakah saya perlu mendaftar untuk menggunakan platform ini?",
-    answer: "Tidak, Anda dapat menjelajahi dan mencari dokumen tanpa perlu mendaftar. Namun, pendaftaran akun akan memberikan Anda akses ke fitur tambahan seperti menyimpan dokumen favorit, mendapatkan rekomendasi personalisasi, serta mengunggah dan berbagi dokumen (untuk pengguna tertentu)."
+    id: "q4",
+    question: "Bagaimana saya dapat berkontribusi ke BahtsulMasail.tech?",
+    answer: "BahtsulMasail.tech berkembang berkat kolaborasi. Kami mengundang ulama, santri, peneliti, pengembang, dan siapa pun yang berbagi semangat kami untuk berkontribusi. Ini dapat berkisar dari mengirimkan data Bahtsul Masail, mengembangkan fitur, hingga menyebarkan informasi. Setiap kontribusi Anda sangat berharga."
   },
   {
-    id: "item-5",
-    question: "Bisakah saya mengunggah dokumen saya sendiri?",
-    answer: "Ya, pengguna terdaftar dengan izin khusus (seperti mushoheh atau admin) dapat mengunggah dokumen. Setiap dokumen yang diunggah akan melalui proses verifikasi untuk memastikan kualitas dan reliabilitasnya sebelum dipublikasikan di platform."
-  },
-  {
-    id: "item-6",
-    question: "Bagaimana cara menghubungi tim dukungan?",
-    answer: "Anda dapat menghubungi tim dukungan kami melalui halaman Kontak kami, mengirim email ke dihannahdii@gmail.com, atau menghubungi nomor 085643349455. Kami akan merespons pertanyaan Anda secepat mungkin."
-  },
-  {
-    id: "item-7",
-    question: "Apakah platform ini tersedia dalam bahasa lain?",
-    answer: "Saat ini platform kami tersedia dalam Bahasa Indonesia dan sebagian dokumen tersedia dalam Bahasa Arab. Kami berencana untuk menambahkan dukungan bahasa lain di masa mendatang untuk menjangkau lebih banyak pengguna."
+    id: "q5",
+    question: "Apakah konten di BahtsulMasail.tech hanya tersedia dalam Bahasa Indonesia?",
+    answer: "Saat ini, fokus utama kami adalah menyajikan konten dalam Bahasa Indonesia untuk melayani audiens utama kami. Namun, kami memiliki visi untuk menyediakan akses dalam beberapa bahasa di masa depan, termasuk Bahasa Inggris dan Arab, seiring berkembangnya platform. Anda dapat melihat opsi bahasa yang tersedia di footer situs."
   }
 ];
 
 export default function FAQPage() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [openItem, setOpenItem] = useState<string | null>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  // Filter FAQ items based on search term
+  const filteredFaqItems = faqItems.filter(item => 
+    item.question.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    item.answer.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Track mouse position for background effect
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Handle item toggle
+  const toggleItem = (id: string) => {
+    setOpenItem(openItem === id ? null : id);
+  };
+
   return (
     <motion.main
       variants={containerVariant}
       initial="hidden"
       animate="visible"
-      className="min-h-screen bg-gradient-to-br from-background to-secondary/20 text-foreground pt-12 pb-16 sm:pt-16 sm:pb-24 px-4 md:px-8"
+      className="min-h-screen bg-gradient-to-br from-black to-emerald-950/30 text-foreground pt-12 pb-16 sm:pt-16 sm:pb-24 px-4 md:px-8 relative overflow-hidden"
     >
-      <div className="fixed inset-0 pattern-bg opacity-[0.02] pointer-events-none -z-10"></div>
-      <motion.div variants={fadeUp} className="max-w-3xl mx-auto">
-        <header className="text-center mb-10 md:mb-12">
-          <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full mb-4">
-            <HelpCircle className="w-10 h-10 text-primary" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold heading-islamic bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Pertanyaan yang Sering Diajukan
-          </h1>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Temukan jawaban atas pertanyaan umum tentang BahtsulMasail.tech.
-          </p>
+      {/* Dynamic background with emerald light effect */}
+      <div 
+        className="fixed inset-0 bg-network-pattern opacity-[0.15] pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(16, 185, 129, 0.15) 0%, transparent 50%)`,
+          backgroundBlendMode: 'screen'
+        }}
+      ></div>
+      
+      {/* Animated network lines in background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute w-full h-full bg-[url('/images/network-lines.svg')] bg-repeat opacity-[0.07]"></div>
+      </div>
+
+      <motion.div variants={fadeUp} className="max-w-4xl mx-auto relative z-10">
+        {/* Header section */}
+        <header className="text-center mb-12 md:mb-16">
+          <motion.div 
+            variants={fadeUp}
+            className="inline-flex items-center justify-center p-3 bg-emerald-500/10 rounded-full mb-4 border border-emerald-500/20"
+          >
+            <HelpCircle className="w-10 h-10 text-emerald-400" />
+          </motion.div>
+          
+          <motion.h1 
+            variants={shimmer}
+            className="text-4xl md:text-5xl font-bold heading-islamic bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300 bg-clip-text text-transparent bg-[size:200%_100%]"
+          >
+            Pathways of Clarity Unveiled
+          </motion.h1>
+          
+          <motion.p 
+            variants={fadeUp} 
+            className="mt-4 text-lg text-emerald-100/80"
+          >
+            Temukan jawaban atas pertanyaan umum tentang BahtsulMasail.tech
+          </motion.p>
         </header>
 
-        <Accordion type="single" collapsible className="w-full bg-card/70 backdrop-blur-md rounded-2xl shadow-xl p-6 md:p-8 border border-border/30">
-          {faqData.map((faqItem) => (
-            <AccordionItem key={faqItem.id} value={faqItem.id} className="border-b border-border/50 last:border-b-0">
-              <AccordionTrigger className="text-lg font-medium py-4 hover:text-primary transition-colors text-left">
-                {faqItem.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground pb-4 prose prose-sm dark:prose-invert max-w-none">
-                {faqItem.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        {/* Search bar */}
+        <motion.div 
+          variants={fadeUp} 
+          className="relative mb-10 max-w-2xl mx-auto group"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-lg blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+          <div className="relative flex items-center border-b-2 border-emerald-500/50 group-focus-within:border-emerald-400 transition-colors duration-300">
+            <Search className="h-5 w-5 text-emerald-400/70 group-focus-within:text-emerald-400 transition-colors duration-300" />
+            <input
+              ref={searchInputRef}
+              type="text"
+              placeholder="Cari pertanyaan..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full p-3 bg-transparent text-emerald-50 placeholder-emerald-400/50 focus:outline-none focus:placeholder-emerald-400/70"
+            />
+          </div>
+        </motion.div>
 
+        {/* FAQ Accordion */}
         <motion.div 
           variants={fadeUp}
-          className="mt-12 text-center p-6 bg-card/50 backdrop-blur-sm rounded-xl shadow-lg border border-border/20"
+          className="w-full bg-black/40 backdrop-blur-md rounded-2xl shadow-xl p-6 md:p-8 border border-emerald-500/10 overflow-hidden"
         >
-          <Mail className="w-8 h-8 text-primary mx-auto mb-3" />
-          <h3 className="text-xl font-semibold text-foreground mb-2">Masih punya pertanyaan?</h3>
-          <p className="text-muted-foreground mb-4">
-            Jangan ragu untuk menghubungi kami jika Anda tidak menemukan jawaban yang Anda cari.
+          <AnimatePresence>
+            {filteredFaqItems.length > 0 ? (
+              filteredFaqItems.map((item) => (
+                <motion.div
+                  key={item.id}
+                  variants={fadeUp}
+                  initial="hidden"
+                  animate="visible"
+                  exit={{ opacity: 0, height: 0 }}
+                  className={cn(
+                    "mb-4 border-b border-emerald-500/10 last:border-0 last:mb-0 overflow-hidden",
+                    openItem === item.id && "bg-emerald-900/10 rounded-lg"
+                  )}
+                >
+                  <button
+                    onClick={() => toggleItem(item.id)}
+                    className="w-full flex justify-between items-center py-4 px-4 text-left text-lg font-medium text-emerald-100 hover:text-emerald-300 transition-colors duration-200 group"
+                  >
+                    <span 
+                      className={cn(
+                        "group-hover:text-emerald-300 transition-all duration-300",
+                        openItem === item.id && "text-emerald-300"
+                      )}
+                    >
+                      {searchTerm && item.question.toLowerCase().includes(searchTerm.toLowerCase()) ? (
+                        highlightText(item.question, searchTerm)
+                      ) : (
+                        item.question
+                      )}
+                    </span>
+                    {openItem === item.id ? (
+                      <Minus className="h-5 w-5 text-emerald-400 transition-transform duration-300" />
+                    ) : (
+                      <Plus className="h-5 w-5 text-emerald-400 transition-transform duration-300" />
+                    )}
+                  </button>
+                  
+                  <AnimatePresence>
+                    {openItem === item.id && (
+                      <motion.div
+                        key={`answer-${item.id}`}
+                        variants={lightReveal}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        className="relative overflow-hidden"
+                      >
+                        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-emerald-400 to-emerald-600"></div>
+                        <div className="pl-5 pr-4 pb-5 text-emerald-100/90">
+                          {searchTerm && item.answer.toLowerCase().includes(searchTerm.toLowerCase()) ? (
+                            highlightText(item.answer, searchTerm)
+                          ) : (
+                            item.answer
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))
+            ) : (
+              <motion.div variants={fadeUp} className="text-center py-10">
+                <HelpCircle className="w-12 h-12 text-emerald-500/40 mx-auto mb-3" />
+                <p className="text-emerald-100/80">Tidak ada hasil yang ditemukan untuk "{searchTerm}"</p>
+                <button 
+                  onClick={() => setSearchTerm('')}
+                  className="mt-3 text-emerald-400 hover:text-emerald-300 transition-colors"
+                >
+                  Reset pencarian
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Still Have Questions Section */}
+        <motion.div 
+          variants={fadeUp}
+          className="mt-12 text-center p-8 bg-gradient-to-br from-black to-emerald-950/30 backdrop-blur-sm rounded-xl shadow-lg border border-emerald-500/20 relative overflow-hidden"
+        >
+          {/* Light effect in background */}
+          <div className="absolute inset-0 bg-[url('/images/light-rays.svg')] bg-no-repeat bg-center opacity-[0.15] animate-pulse"></div>
+          
+          <Mail className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
+          <h3 className="text-2xl font-semibold text-emerald-100 mb-2">Belum Menemukan Jawaban Anda?</h3>
+          <p className="text-emerald-100/80 mb-6 max-w-2xl mx-auto">
+            Tim kami selalu siap menjawab pertanyaan lebih lanjut atau menerima masukan Anda. Jangan ragu untuk menghubungi kami.
           </p>
           <a 
             href="mailto:dihannahdii@gmail.com" 
-            className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/50 transition-colors group"
+            className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-emerald-950 bg-gradient-to-r from-emerald-400 to-teal-300 rounded-lg hover:from-emerald-300 hover:to-teal-200 focus:ring-4 focus:outline-none focus:ring-emerald-500/50 transition-all duration-300 group shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]"
           >
-            Hubungi Kami <ChevronRight className="w-4 h-4 ml-1.5 group-hover:translate-x-0.5 transition-transform"/>
+            Hubungi Kami <ChevronRight className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform"/>
           </a>
+        </motion.div>
+        
+        {/* Footer quote */}
+        <motion.div 
+          variants={fadeUp}
+          className="mt-16 text-center"
+        >
+          <p className="text-emerald-400/60 italic">
+            "Ilmu yang bermanfaat menerangi jalan menuju kebenaran dan kebijaksanaan."
+          </p>
         </motion.div>
       </motion.div>
     </motion.main>
+  );
+}
+
+// Helper function to highlight search terms
+function highlightText(text: string, searchTerm: string) {
+  if (!searchTerm) return text;
+  
+  const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
+  
+  return (
+    <>
+      {parts.map((part, i) => 
+        part.toLowerCase() === searchTerm.toLowerCase() ? (
+          <span key={i} className="bg-emerald-500/30 text-emerald-50 px-1 rounded">
+            {part}
+          </span>
+        ) : (
+          part
+        )
+      )}
+    </>
   );
 } 

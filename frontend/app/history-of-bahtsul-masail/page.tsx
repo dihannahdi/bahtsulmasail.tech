@@ -36,13 +36,13 @@ const inlineStyles = `
     position: absolute;
     top: calc(var(--y, 0) * 1px - 100px);
     left: calc(var(--x, 0) * 1px - 100px);
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     opacity: 0;
     background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
     transition: opacity 0.2s;
     pointer-events: none;
-    z-index: 10;
+    z-index: 0;
   }
   
   .shine-effect:hover::after {
@@ -1881,60 +1881,6 @@ export default function SejarahBahtsulMasailPage() {
           </motion.div>
         </motion.section>
       </main>
-
-      {/* Interactive Footer */}
-      <motion.footer
-        className="relative z-10 bg-card/40 backdrop-blur-sm border-t border-islamic-green/10 py-10 mt-20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-islamic-green">Tentang Nahdlatul Ulama</h3>
-              <p className="text-muted-foreground">
-                Organisasi Islam terbesar di Indonesia yang mempromosikan nilai-nilai moderat, toleransi, dan kearifan lokal melalui tradisi Bahtsul Masail.
-              </p>
-              <div className="flex items-center text-islamic-green cursor-pointer hover:translate-x-1 transition-transform">
-                <span className="mr-2">Kunjungi Situs Resmi</span>
-                <ChevronRight className="w-4 h-4" />
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-islamic-green">Navigasi Cepat</h3>
-              <ul className="space-y-2">
-                {navigationItems.map((item) => (
-                  <li key={item.id} className="flex items-center">
-                    <ChevronRight className="w-4 h-4 text-islamic-green mr-2" />
-                    <span className="cursor-pointer hover:text-islamic-green transition-colors">{item.label}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-islamic-green">Hubungi Kami</h3>
-              <p className="text-muted-foreground">
-                Punya pertanyaan atau ingin berkontribusi dalam pengembangan platform Bahtsul Masail Tech? Jangan ragu untuk menghubungi kami.
-              </p>
-              <Button variant="outline" className="border-islamic-green/50 hover:bg-islamic-green hover:text-white">
-                Kontak
-              </Button>
-            </div>
-          </div>
-          
-          <motion.div 
-            className="border-t border-islamic-green/10 mt-10 pt-6 text-center text-muted-foreground"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-          >
-            <p>&copy; {new Date().getFullYear()} Bahtsul Masail Tech. Semua hak dilindungi.</p>
-          </motion.div>
-        </div>
-      </motion.footer>
 
       {/* Theme Toggle - Add shine effect */}
       <motion.div
