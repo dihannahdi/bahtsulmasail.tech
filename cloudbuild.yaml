@@ -15,7 +15,7 @@ steps:
       - '-t'
       - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA'
       - '-f'
-      - 'Dockerfile'
+      - './frontend/Dockerfile'
       - './frontend'
     id: 'Build Frontend'
 
