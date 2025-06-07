@@ -5,6 +5,7 @@ from core.storage import generate_gcs_signed_url
 import mimetypes
 import hashlib
 import os
+import re
 
 
 class DocumentSerializer(serializers.ModelSerializer):
@@ -17,11 +18,13 @@ class DocumentSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'title', 'description', 'file_url', 'file_size',
             'mime_type', 'created_by', 'created_at', 'updated_at',
-            'is_public', 'metadata', 'ocr_status', 'ocr_result'
+            'is_public', 'metadata', 'ocr_status', 'ocr_result',
+            'verification_status'
         ]
         read_only_fields = [
             'id', 'file_size', 'mime_type', 'created_by',
-            'created_at', 'updated_at', 'ocr_status', 'ocr_result'
+            'created_at', 'updated_at', 'ocr_status', 'ocr_result',
+            'verification_status'
         ]
 
     def get_file_url(self, obj):
@@ -40,8 +43,76 @@ class DocumentVersionSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'document', 'version_number', 'file_url',
             'created_by', 'created_at', 'change_notes', 'metadata'
-        ]
+                ]
         read_only_fields = ['id', 'created_by', 'created_at']
+
+
+class DocumentSearchSerializer(DocumentSerializer):
+    """Enhanced serializer for search results with snippets and relevance scores."""
+    snippet = serializers.SerializerMethodField()
+    search_rank = serializers.SerializerMethodField()
+    similarity_score = serializers.SerializerMethodField()
+    
+    class Meta(DocumentSerializer.Meta):
+        fields = DocumentSerializer.Meta.fields + ['snippet', 'search_rank', 'similarity_score']
+    
+    def get_snippet(self, obj):
+        """Generate a text snippet around the search terms."""
+        query = self.context.get('search_query', '')
+        text = getattr(obj, 'extracted_text', '') or ''
+        
+        if not query or not text:
+            # Return first 200 characters as fallback
+            return text[:200] + '...' if len(text) > 200 else text
+        
+        # Find the first occurrence of any query term
+        query_terms = re.findall(r'\w+', query.lower())
+        text_lower = text.lower()
+        
+        best_position = len(text)
+        for term in query_terms:
+            position = text_lower.find(term)
+            if position != -1 and position < best_position:
+                best_position = position
+        
+        if best_position == len(text):
+            # No terms found, return beginning
+            return text[:200] + '...' if len(text) > 200 else text
+        
+        # Extract snippet around the found term
+        snippet_length = 300
+        start = max(0, best_position - snippet_length // 2)
+        end = min(len(text), start + snippet_length)
+        
+        # Adjust start to avoid cutting words
+        if start > 0:
+            space_before = text.rfind(' ', 0, start)
+            if space_before != -1 and start - space_before < 20:
+                start = space_before + 1
+        
+        # Adjust end to avoid cutting words
+        if end < len(text):
+            space_after = text.find(' ', end)
+            if space_after != -1 and space_after - end < 20:
+                end = space_after
+        
+        snippet = text[start:end]
+        
+        # Add ellipsis if needed
+        if start > 0:
+            snippet = '...' + snippet
+        if end < len(text):
+            snippet = snippet + '...'
+        
+        return snippet
+    
+    def get_search_rank(self, obj):
+        """Get the search rank if available (for keyword search)."""
+        return getattr(obj, 'rank', None)
+    
+    def get_similarity_score(self, obj):
+        """Get the similarity score if available (for semantic search)."""
+        return getattr(obj, 'similarity', None)
 
     def get_file_url(self, obj):
         """Generate a signed URL for the version file."""
@@ -86,7 +157,11 @@ class DocumentUploadSerializer(serializers.Serializer):
             checksum=checksum,
             created_by=user,
             is_public=is_public,
-            metadata={},
+            metadata={
+                'original_filename': file.name,
+                'file_size': file_size,
+                'content_type': mime_type,
+            },
             ocr_status='pending'
         )
         # Create initial version
@@ -96,7 +171,11 @@ class DocumentUploadSerializer(serializers.Serializer):
             file_path=gcs_path,
             checksum=checksum,
             created_by=user,
-            metadata={}
+            metadata={
+                'original_filename': file.name,
+                'file_size': file_size,
+                'content_type': mime_type,
+            }
         )
         return doc
 

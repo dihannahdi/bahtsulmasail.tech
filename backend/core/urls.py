@@ -23,5 +23,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('documents.urls')),  # Document management API
     path('api/v1/auth/', include('users.urls')),  # Authentication API
+    path('api/v1/tashih/', include('tashih.urls')),  # Tashih workflow API
+    path('api/v1/analysis/', include('api.urls')),  # Analysis API
     # Add other API endpoints here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Add debug toolbar URLs only in development
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

@@ -13,13 +13,21 @@ WORKDIR /app
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Install dependencies
+# Install system dependencies for OCR
+RUN apt-get update && apt-get install -y \
+    tesseract-ocr \
+    tesseract-ocr-ara \
+    tesseract-ocr-eng \
+    poppler-utils \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
 COPY requirements.txt /app/
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
-# Download IndoBERT model and spaCy Indonesian pipeline at build time
-RUN python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('indobenchmark/indobert-base-p1'); AutoModel.from_pretrained('indobenchmark/indobert-base-p1')"
+# Download sentence-transformers model and spaCy pipeline at build time
+RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')"
 RUN python -m spacy download xx_ent_wiki_sm || true  # Download multilingual spaCy model as fallback
 
 # Copy project

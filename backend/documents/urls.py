@@ -16,6 +16,4 @@ documents_router.register(r'cross-references', views.DocumentCrossReferenceViewS
 urlpatterns = [
     path('', include(router.urls)),
     path('', include(documents_router.urls)),
-    # Explicit upload endpoint for documentation
-    path('documents/upload/', views.DocumentViewSet.as_view({'post': 'upload'}), name='document-upload'),
 ]

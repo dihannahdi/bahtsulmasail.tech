@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true next build",
+    "lighthouse": "npx lighthouse http://localhost:3000 --chrome-flags=\"--headless\" --output=html --output-path=./lighthouse-report.html"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -45,8 +47,10 @@
     "autoprefixer": "^10.4.17",
     "eslint": "^8.56.0",
     "eslint-config-next": "14.1.0",
+    "lighthouse": "^11.4.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "webpack-bundle-analyzer": "^4.10.1"
   }
 }

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { ArrowRight, BookOpen } from 'lucide-react';
-import { addGlowEffect, removeGlowEffect } from '@/lib/glowEffect';
+import { applyGlow, revokeGlow } from '@/lib/glowEffect';
 
 // Define the Category type based on observation
 interface Category {
@@ -80,11 +80,11 @@ const CategoryCard = ({ title, description, count, color, slug, index }: Categor
   useEffect(() => {
     const currentCardRef = cardRef.current;
     if (currentCardRef) {
-      addGlowEffect(currentCardRef);
+      applyGlow(currentCardRef);
     }
     return () => {
       if (currentCardRef) {
-        removeGlowEffect(currentCardRef);
+        revokeGlow(currentCardRef);
       }
     };
   }, []);

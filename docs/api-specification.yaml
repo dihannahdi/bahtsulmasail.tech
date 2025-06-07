@@ -1,0 +1,832 @@
+openapi: 3.0.3
+info:
+  title: BahtsulMasail.tech API
+  description: |
+    Comprehensive API for the BahtsulMasail.tech platform - a digital repository and analysis system for Islamic jurisprudence (fiqh) documents and scholarly discussions.
+    
+    ## Authentication
+    This API uses JWT (JSON Web Tokens) for authentication. Include the token in the Authorization header:
+    ```
+    Authorization: Bearer <your-jwt-token>
+    ```
+    
+    ## Rate Limiting
+    API requests are rate-limited to prevent abuse. Standard limits:
+    - 1000 requests per hour for authenticated users
+    - 100 requests per hour for unauthenticated users
+    
+    ## Pagination
+    List endpoints use cursor-based pagination with the following parameters:
+    - `page`: Page number (default: 1)
+    - `page_size`: Items per page (default: 20, max: 100)
+  version: 1.0.0
+  contact:
+    name: BahtsulMasail.tech Team
+    email: support@bahtsulmasail.tech
+    url: https://bahtsulmasail.tech
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.bahtsulmasail.tech/api/v1
+    description: Production server
+  - url: http://localhost:8000/api/v1
+    description: Development server
+
+security:
+  - BearerAuth: []
+
+paths:
+  # Authentication Endpoints
+  /auth/token/:
+    post:
+      tags:
+        - Authentication
+      summary: Obtain JWT Token
+      description: Authenticate user and return JWT access and refresh tokens
+      operationId: auth_token_create
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  description: Username or email address
+                  example: "user@example.com"
+                password:
+                  type: string
+                  description: User password
+                  example: "securepassword123"
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access:
+                    type: string
+                    description: JWT access token
+                  refresh:
+                    type: string
+                    description: JWT refresh token
+                  user:
+                    $ref: '#/components/schemas/User'
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/token/refresh/:
+    post:
+      tags:
+        - Authentication
+      summary: Refresh JWT Token
+      description: Refresh an expired JWT access token using a refresh token
+      operationId: auth_token_refresh
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - refresh
+              properties:
+                refresh:
+                  type: string
+                  description: JWT refresh token
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access:
+                    type: string
+                    description: New JWT access token
+        '401':
+          description: Invalid refresh token
+
+  /auth/register/:
+    post:
+      tags:
+        - Authentication
+      summary: Register New User
+      description: Create a new user account
+      operationId: auth_register
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - email
+                - password
+                - role
+              properties:
+                username:
+                  type: string
+                  minLength: 3
+                  maxLength: 150
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 8
+                first_name:
+                  type: string
+                  maxLength: 150
+                last_name:
+                  type: string
+                  maxLength: 150
+                role:
+                  type: string
+                  enum: [reader, katib, mushoheh, admin]
+                  description: User role in the system
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input data
+
+  # Document Management Endpoints
+  /documents/:
+    get:
+      tags:
+        - Documents
+      summary: List Documents
+      description: Retrieve paginated list of documents accessible to the authenticated user
+      operationId: document_list
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: page_size
+          in: query
+          description: Number of items per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: search
+          in: query
+          description: Search term for title and description
+          schema:
+            type: string
+        - name: ocr_status
+          in: query
+          description: Filter by OCR processing status
+          schema:
+            type: string
+            enum: [pending, processing, completed, failed]
+        - name: is_public
+          in: query
+          description: Filter by public/private status
+          schema:
+            type: boolean
+        - name: language
+          in: query
+          description: Filter by document language
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Documents retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Total number of documents
+                  next:
+                    type: string
+                    nullable: true
+                    description: URL for next page
+                  previous:
+                    type: string
+                    nullable: true
+                    description: URL for previous page
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Document'
+
+    post:
+      tags:
+        - Documents
+      summary: Upload Document
+      description: Upload a new document for processing
+      operationId: document_upload
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+                - title
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Document file (PDF, DOCX, JPG, PNG)
+                title:
+                  type: string
+                  maxLength: 255
+                  description: Document title
+                description:
+                  type: string
+                  description: Optional document description
+                is_public:
+                  type: boolean
+                  default: false
+                  description: Whether document should be publicly accessible
+                language:
+                  type: string
+                  default: "arabic"
+                  description: Primary language of the document
+      responses:
+        '201':
+          description: Document uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Invalid file or missing required fields
+        '413':
+          description: File too large (max 50MB)
+
+  /documents/{id}/:
+    get:
+      tags:
+        - Documents
+      summary: Get Document Details
+      description: Retrieve detailed information about a specific document
+      operationId: document_retrieve
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Document UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Document details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDetail'
+        '404':
+          description: Document not found
+
+    put:
+      tags:
+        - Documents
+      summary: Update Document
+      description: Update document metadata (requires ownership or admin role)
+      operationId: document_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  maxLength: 255
+                description:
+                  type: string
+                is_public:
+                  type: boolean
+                language:
+                  type: string
+      responses:
+        '200':
+          description: Document updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '403':
+          description: Permission denied
+        '404':
+          description: Document not found
+
+    delete:
+      tags:
+        - Documents
+      summary: Delete Document
+      description: Delete a document (requires ownership or admin role)
+      operationId: document_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Document deleted successfully
+        '403':
+          description: Permission denied
+        '404':
+          description: Document not found
+
+  /documents/{id}/download/:
+    get:
+      tags:
+        - Documents
+      summary: Download Document
+      description: Get a signed URL for downloading the document file
+      operationId: document_download
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Download URL generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  download_url:
+                    type: string
+                    description: Signed URL for file download
+                    example: "https://storage.googleapis.com/bucket/file.pdf?signature=..."
+
+  /documents/search/:
+    get:
+      tags:
+        - Documents
+      summary: Search Documents
+      description: Perform keyword or semantic search across documents
+      operationId: document_search
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search query string
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Search type
+          schema:
+            type: string
+            enum: [keyword, semantic]
+            default: keyword
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Search results retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SearchResult'
+                  search_type:
+                    type: string
+                  query:
+                    type: string
+
+  # Tashih Workflow Endpoints
+  /tashih/taqrir-khass/:
+    get:
+      tags:
+        - Tashih Workflow
+      summary: List Taqrir Khass
+      description: Retrieve list of individual reviews (Taqrir Khass)
+      operationId: taqrir_khass_list
+      parameters:
+        - name: document
+          in: query
+          description: Filter by document ID
+          schema:
+            type: string
+            format: uuid
+        - name: status
+          in: query
+          description: Filter by review status
+          schema:
+            type: string
+        - name: reviewer
+          in: query
+          description: Filter by reviewer ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Taqrir Khass list retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaqrirKhass'
+
+    post:
+      tags:
+        - Tashih Workflow
+      summary: Create Taqrir Khass
+      description: Create a new individual review (requires Katib role or higher)
+      operationId: taqrir_khass_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - document
+                - title
+                - content
+              properties:
+                document:
+                  type: string
+                  format: uuid
+                  description: Document being reviewed
+                title:
+                  type: string
+                  maxLength: 255
+                content:
+                  type: string
+                  description: Review content and analysis
+      responses:
+        '201':
+          description: Taqrir Khass created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaqrirKhass'
+
+  /tashih/taqrir-khass/{id}/review/:
+    post:
+      tags:
+        - Tashih Workflow
+      summary: Review Taqrir Khass
+      description: Submit a review for a Taqrir Khass (requires Mushoheh role)
+      operationId: taqrir_khass_review
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  format: uuid
+                  description: New verification status ID
+                review_notes:
+                  type: string
+                  description: Review comments and feedback
+      responses:
+        '200':
+          description: Review submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaqrirKhass'
+
+  # Analysis Endpoints
+  /analysis/semantic-analysis/:
+    post:
+      tags:
+        - AI Analysis
+      summary: Start Semantic Analysis
+      description: Initiate semantic analysis for a document
+      operationId: semantic_analysis_create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - document_id
+              properties:
+                document_id:
+                  type: string
+                  format: uuid
+      responses:
+        '202':
+          description: Analysis task created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisTask'
+
+  /analysis/tasks/{id}/status/:
+    get:
+      tags:
+        - AI Analysis
+      summary: Get Analysis Task Status
+      description: Check the status of an analysis task
+      operationId: analysis_task_status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Task status retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [pending, processing, completed, failed]
+                  error_message:
+                    type: string
+                    nullable: true
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        role:
+          type: string
+          enum: [reader, katib, mushoheh, admin]
+        bio:
+          type: string
+        institution:
+          type: string
+        expertise:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        file_url:
+          type: string
+          nullable: true
+        file_size:
+          type: integer
+        mime_type:
+          type: string
+        language:
+          type: string
+        created_by:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        is_public:
+          type: boolean
+        ocr_status:
+          type: string
+          enum: [pending, processing, completed, failed]
+        verification_status:
+          type: string
+          enum: [awaiting_verification, verified, rejected]
+        metadata:
+          type: object
+
+    DocumentDetail:
+      allOf:
+        - $ref: '#/components/schemas/Document'
+        - type: object
+          properties:
+            extracted_text:
+              type: string
+              nullable: true
+            ocr_result:
+              type: object
+              nullable: true
+            annotations:
+              type: array
+              items:
+                $ref: '#/components/schemas/DocumentAnnotation'
+
+    DocumentAnnotation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        content:
+          type: string
+        target_type:
+          type: string
+          enum: [text, image, page]
+        target_data:
+          type: object
+        user:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        is_public:
+          type: boolean
+
+    SearchResult:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        relevance_score:
+          type: number
+          format: float
+        highlighted_text:
+          type: string
+          nullable: true
+
+    TaqrirKhass:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        document:
+          type: string
+          format: uuid
+        title:
+          type: string
+        content:
+          type: string
+        created_by:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        status:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+            description:
+              type: string
+        reviewer:
+          type: string
+          nullable: true
+        review_notes:
+          type: string
+        review_date:
+          type: string
+          format: date-time
+          nullable: true
+
+    AnalysisTask:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        document:
+          type: string
+          format: uuid
+        task_type:
+          type: string
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+        created_at:
+          type: string
+          format: date-time
+        error_message:
+          type: string
+          nullable: true
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: object
+          description: Additional error details
+          nullable: true
+
+tags:
+  - name: Authentication
+    description: User authentication and authorization
+  - name: Documents
+    description: Document management and file operations
+  - name: Tashih Workflow
+    description: Islamic scholarly review and verification process
+  - name: AI Analysis
+    description: Artificial intelligence powered document analysis 

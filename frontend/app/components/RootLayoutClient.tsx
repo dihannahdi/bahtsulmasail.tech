@@ -4,6 +4,7 @@ import React from 'react';
 import { ThemeProvider } from "next-themes";
 import { Inter, Playfair_Display, Amiri } from "next/font/google";
 import NextAuthProvider from "@/components/auth/NextAuthProvider";
+import QueryProvider from "@/components/providers/QueryProvider";
 import MainLayout from "@/components/layout/MainLayout";
 
 const inter = Inter({
@@ -38,9 +39,11 @@ const RootLayoutClient: React.FC<RootLayoutClientProps> = ({ children }) => {
       disableTransitionOnChange
     >
       <NextAuthProvider>
-        <MainLayout>
-          {children}
-        </MainLayout>
+        <QueryProvider>
+          <MainLayout>
+            {children}
+          </MainLayout>
+        </QueryProvider>
       </NextAuthProvider>
     </ThemeProvider>
   );

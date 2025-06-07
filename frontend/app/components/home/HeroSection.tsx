@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { addGlowEffect, removeGlowEffect } from '@/lib/glowEffect';
+import { applyGlow, revokeGlow } from '@/lib/glowEffect';
 
 const HeroSection = () => {
   const glowRef = useRef<HTMLDivElement>(null);
@@ -13,8 +13,8 @@ const HeroSection = () => {
   useEffect(() => {
     const currentRef = glowRef.current;
     if (currentRef) {
-      addGlowEffect(currentRef);
-      return () => removeGlowEffect(currentRef);
+      applyGlow(currentRef);
+      return () => revokeGlow(currentRef);
     }
   }, []);
 

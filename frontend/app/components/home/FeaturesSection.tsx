@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Search, BookOpen, FilePlus, BookText, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
-import { addGlowEffect, removeGlowEffect } from '@/lib/glowEffect';
+import { applyGlow, revokeGlow } from '@/lib/glowEffect';
 
 // Moved features and variants to a higher scope
 const features = [
@@ -59,11 +59,11 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
   useEffect(() => {
     const currentCardRef = cardRef.current;
     if (currentCardRef) {
-      addGlowEffect(currentCardRef);
+      applyGlow(currentCardRef);
     }
     return () => {
       if (currentCardRef) {
-        removeGlowEffect(currentCardRef);
+        revokeGlow(currentCardRef);
       }
     };
   }, []);

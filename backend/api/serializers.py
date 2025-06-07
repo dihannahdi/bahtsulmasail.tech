@@ -4,11 +4,12 @@ from .models import (
     PrincipleAnalysis, DocumentSummary, KnowledgeGraphUpdate,
     SchoolComparison
 )
+from .models import SemanticTopic, ArgumentComponent, Citation, KnowledgeGraphNode, KnowledgeGraphEdge
 
 class AnalysisTaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = AnalysisTask
-        fields = ['id', 'document', 'task_type', 'status', 'created_at', 
+        fields = ['id', 'document', 'task_type', 'status', 'created_at',
                  'updated_at', 'error_message']
         read_only_fields = ['id', 'status', 'created_at', 'updated_at', 'error_message']
 
@@ -59,4 +60,29 @@ class SchoolComparisonSerializer(serializers.ModelSerializer):
         model = SchoolComparison
         fields = ['task', 'comparison_type', 'schools', 'similarities', 
                  'differences', 'analysis']
-        read_only_fields = ['task'] 
+        read_only_fields = ['task']
+
+class SemanticTopicSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SemanticTopic
+        fields = '__all__'
+
+class ArgumentComponentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ArgumentComponent
+        fields = '__all__'
+
+class CitationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Citation
+        fields = '__all__'
+
+class KnowledgeGraphNodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KnowledgeGraphNode
+        fields = '__all__'
+
+class KnowledgeGraphEdgeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KnowledgeGraphEdge
+        fields = '__all__'

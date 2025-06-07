@@ -42,14 +42,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',  # Add CORS headers support
     'rest_framework',  # Add Django REST framework
     'rest_framework_simplejwt',  # Add JWT authentication
+    'django_filters',  # Add filtering support
     'api',  # Add our new api app
     'users',  # Add custom user app
     'documents',  # Add documents app
     'tashih',  # Add tashih workflow app
     'vectors',  # Add vectors app for pgvector integration
 ]
+
+# Add debug toolbar only in development
+if DEBUG:
+    INSTALLED_APPS += ['debug_toolbar']
 
 # Custom user model
 AUTH_USER_MODEL = 'users.User'
@@ -76,6 +82,7 @@ SIMPLE_JWT = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # Add CORS middleware at the top
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -83,6 +90,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# Add debug toolbar middleware only in development
+if DEBUG:
+    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+    
+# Internal IPs for debug toolbar
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -235,3 +252,27 @@ CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = "Asia/Jakarta" # Example, adjust to your timezone
+
+# CORS Configuration
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Next.js development server
+    "http://127.0.0.1:3000",
+    "https://bahtsulmasail.tech",  # Production domain
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_ALL_ORIGINS = DEBUG  # Allow all origins in development
+
+# Allow specific headers for file uploads
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]

@@ -1,3 +1,14 @@
+# Production deployment only on main branch
+substitutions:
+  _DEPLOY_TO_PRODUCTION: 'false'
+
+# Set deployment flag for main branch
+options:
+  substitution_option: 'ALLOW_LOOSE'
+  
+# Conditional deployment based on branch
+dynamic_substitutions: true
+
 steps:
   # Build Next.js frontend
   - name: 'gcr.io/cloud-builders/docker'
@@ -45,55 +56,88 @@ steps:
     args: ['push', 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA']
     id: 'Push Celery Image'
 
-  # Deploy frontend to Cloud Run
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
+  # Manual approval step for production deployment
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
     args:
-      - 'run'
-      - 'deploy'
-      - 'bahtsulmasail-tech-frontend'
-      - '--image=gcr.io/$PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA'
-      - '--region=us-central1'
-      - '--platform=managed'
-      - '--allow-unauthenticated'
-      - '--port=3000'
+      - '-c'
+      - |
+        if [ "$BRANCH_NAME" = "main" ]; then
+          echo "Production deployment requires manual approval"
+          echo "Deployment will proceed after approval in Cloud Console"
+          # This step will pause for manual approval in Cloud Build triggers
+        else
+          echo "Non-production branch - skipping manual approval"
+        fi
+    id: 'Manual Approval Gate'
+
+  # Deploy frontend to Cloud Run (conditional on branch)
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        if [ "$BRANCH_NAME" = "main" ] || [ "$_DEPLOY_TO_PRODUCTION" = "true" ]; then
+          gcloud run deploy bahtsulmasail-tech-frontend \
+            --image=gcr.io/$PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA \
+            --region=us-central1 \
+            --platform=managed \
+            --allow-unauthenticated \
+            --port=3000 \
+            --tag=latest \
+            --revision-suffix=$SHORT_SHA
+        else
+          echo "Skipping production deployment for branch: $BRANCH_NAME"
+        fi
     id: 'Deploy Frontend'
 
-  # Deploy backend to Cloud Run
+  # Deploy backend to Cloud Run (conditional on branch)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
+    entrypoint: 'bash'
     args:
-      - 'run'
-      - 'deploy'
-      - 'bahtsulmasail-tech-backend'
-      - '--image=gcr.io/$PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA'
-      - '--region=us-central1'
-      - '--platform=managed'
-      - '--allow-unauthenticated'
-      - '--port=8080'
-      - '--set-env-vars=^##^DJANGO_SETTINGS_MODULE=core.settings##DJANGO_DEBUG=False##PYTHONUNBUFFERED=1##DB_NAME=postgres##DB_USER=postgres##CLOUD_SQL_CONNECTION_NAME=bahtsul-masail-457713:us-central1:lbmdb##REDIS_HOST=10.107.218.243##REDIS_PORT=6379##GS_BUCKET_NAME=lbmbucket'
-      - '--set-secrets=DB_PASSWORD=lbmdbpass:latest,DJANGO_SECRET_KEY=djangosecret:latest'
-      - '--set-cloudsql-instances=bahtsul-masail-457713:us-central1:lbmdb'
-      - '--vpc-connector=projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc'
+      - '-c'
+      - |
+        if [ "$BRANCH_NAME" = "main" ] || [ "$_DEPLOY_TO_PRODUCTION" = "true" ]; then
+          gcloud run deploy bahtsulmasail-tech-backend \
+            --image=gcr.io/$PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA \
+            --region=us-central1 \
+            --platform=managed \
+            --allow-unauthenticated \
+            --port=8080 \
+            --set-env-vars=^##^DJANGO_SETTINGS_MODULE=core.settings##DJANGO_DEBUG=False##PYTHONUNBUFFERED=1##DB_NAME=postgres##DB_USER=postgres##CLOUD_SQL_CONNECTION_NAME=bahtsul-masail-457713:us-central1:lbmdb##REDIS_HOST=10.107.218.243##REDIS_PORT=6379##GS_BUCKET_NAME=lbmbucket \
+            --set-secrets=DB_PASSWORD=lbmdbpass:latest,DJANGO_SECRET_KEY=djangosecret:latest \
+            --set-cloudsql-instances=bahtsul-masail-457713:us-central1:lbmdb \
+            --vpc-connector=projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc \
+            --tag=latest \
+            --revision-suffix=$SHORT_SHA
+        else
+          echo "Skipping production deployment for branch: $BRANCH_NAME"
+        fi
     id: 'Deploy Backend'
 
-  # Deploy Celery worker to Cloud Run
+  # Deploy Celery worker to Cloud Run (conditional on branch)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
+    entrypoint: 'bash'
     args:
-      - 'run'
-      - 'deploy'
-      - 'bahtsulmasail-tech-celery'
-      - '--image=gcr.io/$PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA'
-      - '--region=us-central1'
-      - '--platform=managed'
-      - '--no-allow-unauthenticated'
-      - '--set-env-vars=^##^DJANGO_SETTINGS_MODULE=core.settings##DJANGO_DEBUG=False##PYTHONUNBUFFERED=1##DB_NAME=postgres##DB_USER=postgres##CLOUD_SQL_CONNECTION_NAME=bahtsul-masail-457713:us-central1:lbmdb##REDIS_HOST=10.107.218.243##REDIS_PORT=6379##GS_BUCKET_NAME=lbmbucket'
-      - '--set-secrets=DB_PASSWORD=lbmdbpass:latest,DJANGO_SECRET_KEY=djangosecret:latest'
-      - '--set-cloudsql-instances=bahtsul-masail-457713:us-central1:lbmdb'
-      - '--vpc-connector=projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc'
-      - '--no-cpu-throttling'
-      - '--min-instances=1'
+      - '-c'
+      - |
+        if [ "$BRANCH_NAME" = "main" ] || [ "$_DEPLOY_TO_PRODUCTION" = "true" ]; then
+          gcloud run deploy bahtsulmasail-tech-celery \
+            --image=gcr.io/$PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA \
+            --region=us-central1 \
+            --platform=managed \
+            --no-allow-unauthenticated \
+            --set-env-vars=^##^DJANGO_SETTINGS_MODULE=core.settings##DJANGO_DEBUG=False##PYTHONUNBUFFERED=1##DB_NAME=postgres##DB_USER=postgres##CLOUD_SQL_CONNECTION_NAME=bahtsul-masail-457713:us-central1:lbmdb##REDIS_HOST=10.107.218.243##REDIS_PORT=6379##GS_BUCKET_NAME=lbmbucket \
+            --set-secrets=DB_PASSWORD=lbmdbpass:latest,DJANGO_SECRET_KEY=djangosecret:latest \
+            --set-cloudsql-instances=bahtsul-masail-457713:us-central1:lbmdb \
+            --vpc-connector=projects/bahtsul-masail-457713/locations/us-central1/connectors/lbmvpc \
+            --no-cpu-throttling \
+            --min-instances=1 \
+            --tag=latest \
+            --revision-suffix=$SHORT_SHA
+        else
+          echo "Skipping production deployment for branch: $BRANCH_NAME"
+        fi
     id: 'Deploy Celery Worker'
 
   # Optional: Run Django database migrations

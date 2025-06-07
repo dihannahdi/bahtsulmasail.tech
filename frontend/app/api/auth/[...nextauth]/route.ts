@@ -16,41 +16,53 @@ const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Add logic here to look up the user from the credentials supplied
-        // This is where you would call your Django backend API to verify credentials
-        console.log("NextAuth authorize: ", credentials);
+        try {
+          console.log("NextAuth authorize: ", credentials);
 
-        // **IMPORTANT: Replace this with actual backend validation**
-        // const res = await fetch("YOUR_DJANGO_LOGIN_API_ENDPOINT", {
-        //   method: 'POST',
-        //   body: JSON.stringify(credentials),
-        //   headers: { "Content-Type": "application/json" }
-        // });
-        // const user = await res.json();
+          if (!credentials?.email || !credentials?.password) {
+            console.log("Authorization failed: Missing credentials.");
+            return null;
+          }
 
-        // For demonstration, let's assume a mock user if credentials are provided
-        // In a real application, `user` would come from your backend if authentication is successful.
-        // It must include at least an `id` and `name` or `email`.
-        if (credentials?.email && credentials?.password) {
-          // Replace with actual user object from your backend
-          // The user object MUST have an `id`. It can be a string or number.
-          // It should also typically include `name` and/or `email`.
-          const user = {
-            id: "1", // Ensure this ID is unique and from your backend
-            name: "Test User",
-            email: credentials.email,
-            // You can add other properties like roles, accessToken, etc.
-            // accessToken: backendApiResponse.token, 
-          };
-          console.log("Mock user authorized: ", user);
-          return user;
-        } else {
-          // If you return null then an error will be displayed to the user
-          console.log("Authorization failed: No credentials or invalid.");
+          // Call Django backend to authenticate user
+          const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
+          const res = await fetch(`${API_BASE_URL}/api/v1/auth/token/`, {
+            method: 'POST',
+            body: JSON.stringify({
+              username: credentials.email,
+              password: credentials.password
+            }),
+            headers: { 
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            }
+          });
+
+          if (!res.ok) {
+            console.log("Authentication failed:", res.status, res.statusText);
+            return null;
+          }
+
+          const data = await res.json();
+          
+          if (data.access && data.refresh) {
+            // Create user object with tokens
+            const user = {
+              id: credentials.email, // Use email as ID for now
+              name: credentials.email.split('@')[0], // Extract name from email
+              email: credentials.email,
+              accessToken: data.access,
+              refreshToken: data.refresh,
+            };
+            console.log("User authenticated successfully:", user.email);
+            return user;
+          } else {
+            console.log("Authorization failed: Invalid response from backend.");
+            return null;
+          }
+        } catch (error) {
+          console.error("Authorization error:", error);
           return null;
-
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
-          // throw new Error("Invalid credentials");
         }
       },
     }),
@@ -61,13 +73,14 @@ const authOptions: AuthOptions = {
   },
   callbacks: {
     async jwt({ token, user, account }) {
-      // Persist the OAuth access_token and user id to the token right after signin
-      if (account && user) {
-        token.accessToken = account.access_token;
+      // Persist the access_token and user info right after signin
+      if (user) {
+        const customUser = user as any; // Cast to any to access custom properties
+        token.accessToken = customUser.accessToken;
+        token.refreshToken = customUser.refreshToken;
         token.id = user.id;
-        // You might want to add custom properties from your user object here
-        // For example, if your Django backend returns a role:
-        // token.role = user.role;
+        token.email = user.email;
+        token.name = user.name;
       }
       return token;
     },

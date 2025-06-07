@@ -42,7 +42,23 @@ export default function DashboardPage() {
           <p className="text-sm text-gray-600">
             Email: {user.email}
           </p>
+          <p className="text-sm text-gray-600">
+            Role: {user.role}
+          </p>
         </div>
+        
+        {/* Role-specific navigation */}
+        {(user.role === 'mushoheh' || user.role === 'admin') && (
+          <div className="mb-6">
+            <button
+              onClick={() => router.push('/dashboard/tashih')}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 mb-3"
+            >
+              Tashih Dashboard
+            </button>
+          </div>
+        )}
+        
         <p className="text-gray-600 mb-6 text-center">
           This is a placeholder for your dashboard content.
         </p>

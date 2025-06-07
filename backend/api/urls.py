@@ -20,6 +20,14 @@ router.register(r'school-comparison', SchoolComparisonViewSet)
 router.register(r'analysis', AnalysisViewSet, basename='analysis')
 router.register(r'enhanced-analysis', EnhancedAnalysisViewSet, basename='enhanced-analysis')
 
+# Define a new router for the document-specific analysis actions
+analysis_router = DefaultRouter()
+analysis_router.register(r'analysis', AnalysisViewSet, basename='document-analysis')
+
 urlpatterns = [
     path('', include(router.urls)),
-] 
+    # Path for triggering and retrieving analysis for a specific document
+    path('documents/<uuid:document_id>/', include(analysis_router.urls)),
+    # Path for semantic search
+    path('search/semantic/', AnalysisViewSet.as_view({'get': 'semantic_search'}), name='semantic-search'),
+]

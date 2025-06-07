@@ -1,63 +1,105 @@
 'use client';
 
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
+import { Linkedin, Github } from 'lucide-react';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0, scale: 0.95 },
+  visible: { y: 0, opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 100 } },
+};
+
+const teamMembers = [
+  {
+    name: "Farid Dihan Nahdi",
+    role: "Architect & Technical Lead",
+    image: "/images/team/Dihan Nahdi.jpg",
+    social: {
+      linkedin: "https://www.linkedin.com/in/farid-dihan-nahdi/",
+      github: "https://github.com/dihan-nahdi",
+    },
+  },
+  {
+    name: "M. Ibrar Rasyid",
+    role: "Islamic Scholarship Lead",
+    image: "/images/team/Ibrar Rasyid.jpeg",
+    social: {
+      linkedin: "https://www.linkedin.com/in/m-ibrar-rasyid/",
+      github: "https://github.com/ibrarrasyid",
+    },
+  },
+  {
+    name: "M. Fachry Alfareeza",
+    role: "AI Research Lead",
+    image: "/images/team/M. Fachry Alfareeza.png",
+    social: {
+      linkedin: "https://www.linkedin.com/in/fachry-alfareeza/",
+      github: "https://github.com/fachry-alfareeza",
+    },
+  },
+];
 
 export default function Section10Team() {
   const [ref, inView] = useInView({
-    threshold: 0.3,
+    threshold: 0.2,
     triggerOnce: false,
   });
 
   return (
     <motion.div
       ref={ref}
-      className="w-full max-w-6xl mx-auto px-6"
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.8 }}
+      variants={containerVariants}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
+      className="w-full max-w-7xl mx-auto px-6"
     >
-      <div className="text-center">
-        <motion.h2
-          initial={{ y: 20, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-3xl md:text-4xl font-bold text-white mb-6"
-        >
-          Our Team
-        </motion.h2>
-        
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="bg-black/40 backdrop-blur-md p-8 rounded-xl border border-emerald-500/30 max-w-4xl mx-auto mb-12"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-4 bg-black/30 rounded-lg">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                <span className="text-emerald-400 text-xl font-bold">FN</span>
-              </div>
-              <h3 className="text-emerald-400 font-bold mb-1">Farid Dihan Nahdi</h3>
-              <p className="text-gray-300 text-sm">Architect & Technical Lead</p>
+      {/* Section Header */}
+      <motion.div variants={itemVariants} className="text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-white">The Team Behind The Vision</h2>
+        <div className="w-24 h-1 bg-emerald-500 rounded-full mx-auto mt-4"></div>
+        <p className="text-lg md:text-xl text-gray-300 mt-6 max-w-3xl mx-auto">
+          A fusion of deep technical expertise, Islamic scholarship, and AI innovation.
+        </p>
+      </motion.div>
+
+      {/* Team Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {teamMembers.map((member, index) => (
+          <motion.div
+            key={index}
+            variants={itemVariants}
+            className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-emerald-900/50 text-center group"
+          >
+            <div className="relative w-32 h-32 mx-auto mb-6">
+              <Image
+                src={member.image}
+                alt={member.name}
+                width={128}
+                height={128}
+                className="rounded-full object-cover border-4 border-emerald-700/50 group-hover:border-emerald-500 transition-all duration-300"
+              />
             </div>
-            <div className="p-4 bg-black/30 rounded-lg">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                <span className="text-emerald-400 text-xl font-bold">MIR</span>
-              </div>
-              <h3 className="text-emerald-400 font-bold mb-1">M. Ibrar Rasyid</h3>
-              <p className="text-gray-300 text-sm">Islamic Scholarship Lead</p>
+            <h3 className="text-xl font-bold text-emerald-400 mb-1">{member.name}</h3>
+            <p className="text-gray-300 mb-4">{member.role}</p>
+            <div className="flex justify-center gap-4">
+              <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-emerald-400 transition-colors">
+                <Linkedin size={24} />
+              </a>
+              <a href={member.social.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-emerald-400 transition-colors">
+                <Github size={24} />
+              </a>
             </div>
-            <div className="p-4 bg-black/30 rounded-lg">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                <span className="text-emerald-400 text-xl font-bold">MFA</span>
-              </div>
-              <h3 className="text-emerald-400 font-bold mb-1">M. Fachry Alfareeza</h3>
-              <p className="text-gray-300 text-sm">AI Research Lead</p>
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        ))}
       </div>
     </motion.div>
   );

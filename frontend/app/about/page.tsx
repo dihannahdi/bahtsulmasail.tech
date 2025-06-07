@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -222,10 +223,13 @@ export default function AboutPage() {
             <motion.div variants={itemVariants}>
               <Card className="p-6 hover:shadow-lg transition-shadow">
                 <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
-                  <img 
+                  <Image 
                     src="/images/team/Ibrar Rasyid.jpeg" 
                     alt="M. Ibrar Rasyid"
+                    width={96}
+                    height={96}
                     className="w-full h-full object-cover"
+                    priority={false}
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">M. Ibrar Rasyid</h3>
@@ -241,10 +245,13 @@ export default function AboutPage() {
             <motion.div variants={itemVariants}>
               <Card className="p-6 hover:shadow-lg transition-shadow">
                 <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
-                  <img 
+                  <Image 
                     src="/images/team/M. Fachry Alfareeza.png" 
                     alt="M. Fachry Alfareeza"
+                    width={96}
+                    height={96}
                     className="w-full h-full object-cover"
+                    priority={false}
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">M. Fachry Alfareeza</h3>

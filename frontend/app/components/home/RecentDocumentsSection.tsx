@@ -8,7 +8,7 @@ import { BookText, Tag, CalendarDays, TrendingUp, Users, FileText } from 'lucide
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { containerVariant, fadeUp, itemVariant } from '@/lib/animations';
-import { addGlowEffect, removeGlowEffect } from '@/lib/glowEffect';
+import { applyGlow, revokeGlow } from '@/lib/glowEffect';
 
 // Mock data (replace with API data later)
 const mockDocuments: Document[] = [
@@ -104,11 +104,11 @@ const DocumentCard: React.FC<{ document: Document }> = ({ document }) => {
   useEffect(() => {
     const currentCardRef = cardRef.current;
     if (currentCardRef) {
-      addGlowEffect(currentCardRef);
+      applyGlow(currentCardRef);
     }
     return () => {
       if (currentCardRef) {
-        removeGlowEffect(currentCardRef);
+        revokeGlow(currentCardRef);
       }
     };
   }, []);

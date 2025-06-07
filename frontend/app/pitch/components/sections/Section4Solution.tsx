@@ -1,228 +1,133 @@
 'use client';
 
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Database, Share2, Users, BarChart2 } from 'lucide-react';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } },
+};
+
+const solutionFeatures = [
+  {
+    title: "AI-Powered Text Digitization",
+    description: "Specialized OCR converts centuries-old manuscripts into searchable digital text with 95% accuracy.",
+    icon: <Database className="h-8 w-8 text-emerald-300" />,
+  },
+  {
+    title: "Semantic Network Analysis",
+    description: "AI creates connections between concepts, arguments, and rulings across different texts and traditions.",
+    icon: <Share2 className="h-8 w-8 text-emerald-300" />,
+  },
+  {
+    title: "Collaborative Digital Majlis",
+    description: "A structured environment for scholars worldwide to collaborate, annotate, and extend traditional discourse.",
+    icon: <Users className="h-8 w-8 text-emerald-300" />,
+  },
+  {
+    title: "Interactive Visualization Tools",
+    description: "Visual argument maps and knowledge graphs make complex jurisprudence accessible to all.",
+    icon: <BarChart2 className="h-8 w-8 text-emerald-300" />,
+  },
+];
 
 export default function Section4Solution() {
   const [ref, inView] = useInView({
-    threshold: 0.3,
+    threshold: 0.2,
     triggerOnce: false,
   });
-
-  // Solution components
-  const solutionFeatures = [
-    {
-      title: "AI-Powered Text Digitization",
-      description: "Our OCR AI system specializes in Arabic and Arabic-influenced scripts, converting centuries-old manuscripts into searchable digital text.",
-      before: "Manual scanning and transcription requiring years of effort",
-      after: "95% accuracy in automated text extraction within minutes",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-        </svg>
-      )
-    },
-    {
-      title: "Semantic Network Analysis",
-      description: "Our AI creates connections between related concepts, arguments, and rulings across different texts and pesantren traditions.",
-      before: "Scholars independently rediscover connections, often missing crucial insights",
-      after: "Instant visualization of intellectual lineages and related scholarly opinions",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-        </svg>
-      )
-    },
-    {
-      title: "Collaborative Digital Majlis",
-      description: "A structured environment for scholars worldwide to collaborate, annotate, and extend traditional discourse into contemporary issues.",
-      before: "Isolated research communities with limited cross-pollination of ideas",
-      after: "Global network of scholars building upon each other's insights",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-      )
-    },
-    {
-      title: "Interactive Visualization Tools",
-      description: "Visual argument maps and knowledge graphs making complex jurisprudence accessible to scholars and students alike.",
-      before: "Dense text requiring extensive background to parse effectively",
-      after: "Intuitive visual exploration enabling rapid comprehension",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-        </svg>
-      )
-    }
-  ];
 
   return (
     <motion.div
       ref={ref}
-      className="w-full max-w-6xl mx-auto px-6"
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.8 }}
+      variants={containerVariants}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
+      className="w-full max-w-7xl mx-auto px-6"
     >
       {/* Section Header */}
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={inView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-center mb-16"
-      >
-        <h2 className="text-3xl md:text-4xl font-bold text-white">Our Solution</h2>
+      <motion.div variants={itemVariants} className="text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-white">Our Solution: A Living Network of Knowledge</h2>
         <div className="w-24 h-1 bg-emerald-500 rounded-full mx-auto mt-4"></div>
         <p className="text-lg md:text-xl text-gray-300 mt-6 max-w-3xl mx-auto">
-          BahtsulMasail.tech brings centuries of Islamic scholarly discourse into the digital age, creating a living network of knowledge.
+          BahtsulMasail.tech transforms static texts into a dynamic, interconnected, and globally accessible intellectual ecosystem.
         </p>
       </motion.div>
-      
-      {/* Connected Network Visual */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 1, delay: 0.4 }}
-        className="relative h-64 md:h-80 w-full mb-16 overflow-hidden rounded-lg bg-black/40"
-      >
-        {/* Connected Nodes */}
-        {Array.from({ length: 12 }).map((_, i) => (
+
+      {/* Solution Features Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        {solutionFeatures.map((feature, index) => (
           <motion.div
-            key={i}
-            className="absolute w-12 h-12 rounded-full bg-emerald-900/40 border border-emerald-500/50 flex items-center justify-center text-emerald-400"
-            initial={{ 
-              x: `${10 + Math.random() * 80}%`, 
-              y: `${10 + Math.random() * 80}%`,
-              opacity: 0.6
-            }}
-            animate={inView ? { 
-              opacity: [0.6, 0.9, 0.6],
-              scale: [1, 1.05, 1]
-            } : {}}
-            transition={{ 
-              repeat: Infinity,
-              duration: 3 + Math.random() * 2,
-              repeatType: "reverse"
-            }}
+            key={index}
+            variants={itemVariants}
+            className="bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-sm p-6 rounded-xl border border-emerald-900/50 hover:border-emerald-600 transition-all duration-300 flex flex-col items-center text-center h-full"
           >
-            <span className="text-xs">Node {i+1}</span>
+            <div className="mb-4 bg-emerald-800/40 p-4 rounded-full">{feature.icon}</div>
+            <h3 className="text-xl text-emerald-400 font-semibold mb-2">{feature.title}</h3>
+            <p className="text-gray-300 flex-grow">{feature.description}</p>
           </motion.div>
         ))}
-        
-        {/* Connections that pulse with energy */}
-        {Array.from({ length: 20 }).map((_, i) => {
-          const start = {
-            x: 10 + Math.random() * 80,
-            y: 10 + Math.random() * 80
-          };
-          const end = {
-            x: 10 + Math.random() * 80,
-            y: 10 + Math.random() * 80
-          };
-          const length = Math.sqrt(Math.pow(end.x - start.x, 2) + Math.pow(end.y - start.y, 2));
-          const angle = Math.atan2(end.y - start.y, end.x - start.x) * 180 / Math.PI;
-          
-          return (
-            <motion.div
-              key={i}
-              className="absolute h-px bg-gradient-to-r from-emerald-600 to-emerald-300"
-              style={{
-                width: `${length}%`,
-                left: `${start.x}%`,
-                top: `${start.y}%`,
-                transformOrigin: 'left center',
-                transform: `rotate(${angle}deg)`
-              }}
-              initial={{ opacity: 0.3 }}
-              animate={inView ? { 
-                opacity: [0.3, 0.7, 0.3],
-              } : { opacity: 0.3 }}
-              transition={{ 
-                duration: 1 + Math.random() * 3,
-                delay: Math.random() * 2,
-                repeat: Infinity,
-              }}
-            >
-              {/* Traveling Pulse */}
-              <motion.div 
-                className="absolute h-2 w-2 rounded-full bg-emerald-400 top-1/2 -mt-1"
-                initial={{ left: '0%' }}
-                animate={{ left: '100%' }}
+      </div>
+
+      {/* Central Visualization */}
+      <motion.div variants={itemVariants} className="relative h-80 w-full mb-16 rounded-lg bg-black/40 border border-emerald-800/50 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-900/30 to-transparent"></div>
+        {/* Animated connections */}
+        <svg width="100%" height="100%" className="absolute inset-0">
+          <defs>
+            <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#10B981" stopOpacity="0" />
+              <stop offset="50%" stopColor="#10B981" stopOpacity="1" />
+              <stop offset="100%" stopColor="#10B981" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {Array.from({ length: 20 }).map((_, i) => {
+            const d = `M${Math.random() * 100}%,${Math.random() * 100}% C${Math.random() * 100}%,${Math.random() * 100}% ${Math.random() * 100}%,${Math.random() * 100}% ${Math.random() * 100}%,${Math.random() * 100}%`;
+            return (
+              <motion.path
+                key={i}
+                d={d}
+                stroke="url(#line-gradient)"
+                strokeWidth="1"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={inView ? { pathLength: 1, opacity: 0.6 } : {}}
                 transition={{
-                  duration: 2 + Math.random() * 2,
+                  duration: 3 + Math.random() * 4,
                   repeat: Infinity,
-                  ease: "linear",
-                  delay: Math.random() * 2
+                  repeatType: 'reverse',
+                  ease: 'easeInOut',
+                  delay: i * 0.2,
                 }}
               />
-            </motion.div>
-          );
-        })}
-        
-        <div className="absolute inset-0 flex items-center justify-center text-xl text-emerald-300 font-medium">
-          Intelligent Knowledge Network
+            );
+          })}
+        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center p-4 bg-black/50 rounded-lg">
+            <h3 className="text-2xl md:text-3xl font-bold text-emerald-300">The Intelligent Knowledge Network</h3>
+            <p className="text-gray-300 mt-2">Connecting scholars, texts, and ideas across time.</p>
+          </div>
         </div>
       </motion.div>
 
-      {/* Side-by-Side Benefits */}
-      <div className="mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mb-8"
-        >
-          <h3 className="text-2xl text-emerald-400 font-semibold">Before & After Comparison</h3>
-        </motion.div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {solutionFeatures.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 1 + (index * 0.2) }}
-              className="bg-black/30 backdrop-blur-sm rounded-lg border border-emerald-900/50 overflow-hidden"
-            >
-              <div className="p-6 border-b border-emerald-900/30">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="mt-1">
-                    {feature.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl text-emerald-400 font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-gray-300">{feature.description}</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="p-4 border-r border-emerald-900/30 bg-red-950/10">
-                  <div className="text-sm text-red-300 mb-1 uppercase font-medium">Before</div>
-                  <p className="text-gray-300 text-sm">{feature.before}</p>
-                </div>
-                <div className="p-4 bg-emerald-950/10">
-                  <div className="text-sm text-emerald-300 mb-1 uppercase font-medium">With BahtsulMasail.tech</div>
-                  <p className="text-gray-300 text-sm">{feature.after}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-      
       {/* Final Impact Statement */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-        transition={{ duration: 0.8, delay: 1.8 }}
-        className="text-center mt-12 p-6 bg-emerald-900/20 border border-emerald-800/30 rounded-lg"
+        variants={itemVariants}
+        className="text-center mt-12 p-8 bg-gradient-to-t from-emerald-950 to-emerald-900/80 border border-emerald-700/50 rounded-lg"
       >
-        <h3 className="text-xl font-medium text-emerald-300 mb-3">Impact:</h3>
-        <p className="text-lg text-white">
-          Scholars achieve <span className="font-bold">95% faster research</span>, students gain <span className="font-bold">unprecedented access</span>, and the rich tradition of Islamic jurisprudence becomes <span className="font-bold">globally accessible</span> while preserving its depth and authenticity.
+        <h3 className="text-2xl font-bold text-emerald-300 mb-3">The Transformative Impact</h3>
+        <p className="text-lg md:text-xl text-white max-w-4xl mx-auto">
+          We empower scholars with <strong className="text-emerald-200">95% faster research capabilities</strong>, provide students with <strong className="text-emerald-200">unprecedented access to knowledge</strong>, and ensure the rich tradition of Islamic jurisprudence not only survives but <strong className="text-emerald-200">thrives in the digital age.</strong>
         </p>
       </motion.div>
     </motion.div>

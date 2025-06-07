@@ -1,4 +1,4 @@
-export function handleGlowMouseMove(event: MouseEvent) {
+export function onGlowMouseMove(event: MouseEvent) {
   const card = event.currentTarget as HTMLElement;
   if (!card) return;
 
@@ -13,15 +13,15 @@ export function handleGlowMouseMove(event: MouseEvent) {
   card.style.setProperty("--start-angle", `${angle + 60}deg`);
 }
 
-export function addGlowEffect(cardElement: HTMLElement | null) {
+export function applyGlow(cardElement: HTMLElement | null) {
   if (cardElement) {
-    cardElement.addEventListener("mousemove", handleGlowMouseMove as EventListener);
+    cardElement.addEventListener("mousemove", onGlowMouseMove as EventListener);
   }
 }
 
-export function removeGlowEffect(cardElement: HTMLElement | null) {
+export function revokeGlow(cardElement: HTMLElement | null) {
   if (cardElement) {
-    cardElement.removeEventListener("mousemove", handleGlowMouseMove as EventListener);
+    cardElement.removeEventListener("mousemove", onGlowMouseMove as EventListener);
     cardElement.style.removeProperty("--start-angle"); // Reset the angle
   }
-} 
+}

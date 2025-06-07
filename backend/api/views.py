@@ -11,16 +11,21 @@ from .models import (
     PrincipleAnalysis, DocumentSummary, KnowledgeGraphUpdate,
     SchoolComparison
 )
+from .models import SemanticTopic, ArgumentComponent, Citation, KnowledgeGraphNode, KnowledgeGraphEdge
 from .serializers import (
     AnalysisTaskSerializer, SemanticAnalysisSerializer,
     ArgumentAnalysisSerializer, PrincipleAnalysisSerializer,
     DocumentSummarySerializer, KnowledgeGraphUpdateSerializer,
-    SchoolComparisonSerializer
+    SchoolComparisonSerializer, SemanticTopicSerializer,
+    ArgumentComponentSerializer, CitationSerializer,
+    KnowledgeGraphNodeSerializer, KnowledgeGraphEdgeSerializer
 )
 from .tasks import (
     process_semantic_analysis, process_argument_analysis,
     process_principle_analysis, process_document_summary,
-    process_knowledge_graph_update, process_school_comparison
+    process_knowledge_graph_update, process_school_comparison,
+    perform_semantic_analysis, extract_arguments, detect_citations,
+    update_knowledge_graph
 )
 
 # Create your views here.
@@ -147,3 +152,45 @@ class SchoolComparisonViewSet(viewsets.ModelViewSet):
             AnalysisTaskSerializer(task).data,
             status=status.HTTP_202_ACCEPTED
         )
+
+class SemanticTopicViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = SemanticTopic.objects.all()
+    serializer_class = SemanticTopicSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return SemanticTopic.objects.filter(document_id=self.kwargs['document_id']).select_related('document')
+
+class ArgumentComponentViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = ArgumentComponent.objects.all()
+    serializer_class = ArgumentComponentSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return ArgumentComponent.objects.filter(document_id=self.kwargs['document_id']).select_related('document')
+
+class CitationViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Citation.objects.all()
+    serializer_class = CitationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Citation.objects.filter(document_id=self.kwargs['document_id']).select_related('document')
+
+class KnowledgeGraphNodeViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = KnowledgeGraphNode.objects.all()
+    serializer_class = KnowledgeGraphNodeSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # This could be expanded to filter by document or other criteria
+        return KnowledgeGraphNode.objects.all()
+
+class KnowledgeGraphEdgeViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = KnowledgeGraphEdge.objects.all()
+    serializer_class = KnowledgeGraphEdgeSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # This could be expanded to filter by document or other criteria
+        return KnowledgeGraphEdge.objects.all()
