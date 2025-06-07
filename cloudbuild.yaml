@@ -5,9 +5,7 @@ substitutions:
 # Set deployment flag for main branch
 options:
   substitution_option: 'ALLOW_LOOSE'
-  
-# Conditional deployment based on branch
-dynamic_substitutions: true
+  logging: CLOUD_LOGGING_ONLY
 
 steps:
   # Build Next.js frontend
@@ -156,9 +154,6 @@ images:
   - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA'
   - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA'
   - 'gcr.io/$PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA'
-
-options:
-  logging: CLOUD_LOGGING_ONLY
 
 # Replace YOUR_GCP_REGION, YOUR_DB_USER_HERE, YOUR_DB_PASSWORD_SECRET_ID, YOUR_DJANGO_SECRET_KEY_SECRET_ID, YOUR_VPC_CONNECTOR_NAME.
 # Ensure the Django SECRET_KEY is also managed via Secret Manager for production.
