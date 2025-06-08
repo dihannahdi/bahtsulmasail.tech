@@ -11,6 +11,7 @@
  */
 
 import { useQuery, useMutation, useQueryClient, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import { useState, useEffect, useRef } from 'react';
 import { 
   getDocuments, 
   getDocument, 
@@ -201,5 +202,75 @@ export const useInvalidateDocuments = () => {
 
   return () => {
     queryClient.invalidateQueries({ queryKey: documentKeys.all });
+  };
+};
+
+/**
+ * Hook for animated counter effect
+ */
+export const useAnimatedCounter = (
+  targetValue: number,
+  duration: number = 2000
+) => {
+  const [currentValue, setCurrentValue] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const startAnimation = () => {
+    if (isAnimating) return;
+    
+    setIsAnimating(true);
+    setCurrentValue(0);
+    
+    const startTime = Date.now();
+    const startValue = 0;
+    const difference = targetValue - startValue;
+
+    const updateCounter = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration * 1000, 1); // Convert duration to milliseconds
+      
+      // Easing function (ease-out)
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const newValue = Math.round(startValue + (difference * easedProgress));
+      
+      setCurrentValue(newValue);
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        setIsAnimating(false);
+      }
+    };
+
+    requestAnimationFrame(updateCounter);
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isAnimating) {
+            startAnimation();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [targetValue, isAnimating]);
+
+  return {
+    ref,
+    count: currentValue,
   };
 };

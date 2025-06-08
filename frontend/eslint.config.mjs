@@ -7,6 +7,7 @@ const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
+  resolvePluginsRelativeTo: __dirname,
 });
 
 const eslintConfig = [
@@ -14,6 +15,13 @@ const eslintConfig = [
     ignores: ["**/node_modules/**", ".next/**", "out/**"],
   },
   ...compat.extends("next/core-web-vitals"),
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+    },
+  },
 ];
 
 export default eslintConfig;
