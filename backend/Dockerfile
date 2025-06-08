@@ -33,7 +33,8 @@ RUN python -m spacy download xx_ent_wiki_sm || true  # Download multilingual spa
 # Copy project
 COPY . /app/
 
-# Collect static files
+# Collect static files with dummy SECRET_KEY for build time
+ENV DJANGO_SECRET_KEY=dummy-secret-key-for-build-only
 RUN python manage.py collectstatic --noinput
 
 # Expose port (though Gunicorn below binds to $PORT)
