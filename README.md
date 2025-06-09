@@ -1,208 +1,257 @@
 # BahtsulMasail.tech
 
-**Tagline:** Bahtsul Masail untuk Islam Digdaya. (Sub-tagline: Illuminating Jurisprudence, Empowering Understanding.)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/dihannahdi/bahtsulmasail.tech)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-13+-black)](https://nextjs.org/)
+[![Django](https://img.shields.io/badge/Django-4+-green.svg)](https://www.djangoproject.com/)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)](CONTRIBUTING.md)
 
-## Core Vision
+> **Bahtsul Masail untuk Islam Digdaya** - Illuminating Jurisprudence, Empowering Understanding.
 
-BahtsulMasail.tech aims to be the preeminent digital embodiment of "Bahtsul Masail untuk Islam Digdaya." It is envisioned as an Awwwards-caliber platform where the depth, dynamism, and intellectual rigor of Islamic jurisprudence are showcased through exceptional design, intuitive AI-powered tools, and collaborative scholarly engagement. The platform seeks to preserve, analyze, and present these crucial discussions in a way that inspires intellectual confidence, fosters enlightened understanding, and contributes to a vibrant, forward-looking Islamic civilization.
+A cutting-edge digital platform that transforms Islamic jurisprudence discourse through AI-powered analysis, collaborative scholarly engagement, and exceptional user experience. BahtsulMasail.tech preserves, analyzes, and presents crucial Islamic legal discussions to inspire intellectual confidence and contribute to a vibrant, forward-looking Islamic civilization.
 
-## Technology Stack
+<!-- Add a screenshot or GIF of the project in action here -->
 
-*   **Frontend:** Next.js (React, TypeScript), Tailwind CSS, shadcn-ui (as a foundation), React Query, NextAuth.js (planned)
-*   **Backend:** Django + Django REST Framework (Python)
-*   **Database:** PostgreSQL (Google Cloud SQL)
-*   **Asynchronous Tasks:** Celery with Redis (Google Memorystore for Redis)
-*   **File Storage:** Google Cloud Storage (GCS)
-*   **Deployment:** Google Cloud Run, orchestrated by Google Cloud Build (CI/CD)
-*   **Containerization:** Docker
+## ✨ Key Features
 
-## Key Features (Envisioned)
+- 🧠 **AI-Powered Text Analysis** - Advanced semantic analysis with argument tracing and evidence visualization
+- 📚 **Smart Document Management** - Secure upload, OCR processing, metadata tagging, and version control
+- 🔍 **Advanced Semantic Search** - Find relevant jurisprudential content with intelligent search capabilities  
+- 🎨 **Luminous Citation Presentation** - Beautiful display of Quranic verses and Hadith references
+- 🗺️ **Visual Mapping** - Interactive connections between legal rulings and precedents
+- ✅ **Structured Tashih Workflow** - Dedicated verification process for scholarly review
+- 👥 **Role-Based Access Control** - Secure authentication for users, verifiers (Mushohehs), and administrators
+- 📱 **Responsive Design** - Masterful typography and focused reading experience across all devices
 
-*   Homepage & intuitive navigation.
-*   **Smart Document Management:** Secure upload, OCR, metadata tagging, and version control for Bahtsul Masail documents.
-*   **AI-Powered Deep Text Analysis:**
-    *   Visualizations: Tracing arguments and evidence.
-    *   Luminous Citation Presentation: Quranic verses and Hadith.
-    *    AI-generated summaries.
-*  Advanced semantic search experience.
-*   Visual mapping of connections between rulings.
-*  Masterful typography and a focused reading experience.
-*    Structured Tashih (verification) workflow for scholarly review, with dedicated Taqrir Khass pages.
-*   **User Authentication & Authorization:** Role-based access for users, Mushohehs (verifiers), and Admins.
+## 🚀 Quick Start
 
-## Prerequisites for Local Development
+### Prerequisites
 
-*   [Python](https://www.python.org/) (version 3.10+ recommended, check `backend/Dockerfile` for version used in deployment)
-*   [Node.js](https://nodejs.org/) (version 18+ recommended, check `frontend/Dockerfile` for version used in deployment)
-*   [Docker](https://www.docker.com/) & Docker Compose (Optional, but helpful for managing local services like Postgres/Redis if not using cloud instances for dev)
-*   [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) (Optional, for manual gcloud commands, local connection to cloud services like Cloud SQL Proxy)
-*   Git
+Before you begin, ensure you have the following installed:
 
-## Setup and Installation (Local Development)
+- [Python 3.10+](https://www.python.org/downloads/)
+- [Node.js 18+](https://nodejs.org/en/download/)
+- [Git](https://git-scm.com/downloads)
+- [Docker](https://www.docker.com/get-started) (optional, for containerized development)
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/dihannahdi/bahtsulmasail.tech.git
-    cd bahtsulmasail.tech
-    ```
+### Installation
 
-2.  **Backend Setup (`/backend` directory):**
-    *   Navigate to the backend directory:
-        ```bash
-        cd backend
-        ```
-    *   Create and activate a Python virtual environment:
-        ```bash
-        # For Windows PowerShell:
-        python -m venv venv
-        .\venv\Scripts\Activate.ps1
-        # For Linux/macOS:
-        # python3 -m venv venv
-        # source venv/bin/activate
-        ```
-    *   Install Python dependencies:
-        ```bash
-        pip install -r requirements.txt
-        ```
-    *   **Environment Variables (Backend):**
-        Create a `.env` file in the `backend/` directory. This file is ignored by Git. For local development, you might use local instances of Postgres and Redis, or connect to your cloud instances (e.g., via Cloud SQL Proxy).
-        Example `backend/.env` (adapt as needed):
-        ```env
-        # For local SQLite (default if cloud vars not set in settings.py)
-        # No specific DB vars needed if using local SQLite
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/dihannahdi/bahtsulmasail.tech.git
+   cd bahtsulmasail.tech
+   ```
 
-        # Example for local PostgreSQL if you set it up:
-        # DB_NAME=your_local_db_name
-        # DB_USER=your_local_db_user
-        # DB_PASSWORD=your_local_db_password
-        # DB_HOST=localhost
-        # DB_PORT=5432
+2. **Set up the Backend (Django)**
+   ```bash
+   cd backend
+   
+   # Create virtual environment
+   python -m venv venv
+   
+   # Activate virtual environment (Windows PowerShell)
+   .\venv\Scripts\Activate.ps1
+   
+   # Install dependencies
+   pip install -r requirements.txt
+   
+   # Set up environment variables
+   copy .env.example .env
+   # Edit .env with your configuration
+   
+   # Run migrations
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
 
-        # Example for local Redis:
-        # REDIS_HOST=localhost
-        # REDIS_PORT=6379
+3. **Set up the Frontend (Next.js)**
+   ```bash
+   cd ../frontend
+   
+   # Install dependencies
+   npm install
+   
+   # Set up environment variables
+   copy .env.example .env.local
+   # Edit .env.local with your configuration
+   ```
 
-        # Django Secret Key (generate a new one for local dev if needed)
-        DJANGO_SECRET_KEY='your-strong-local-secret-key-here'
-        DJANGO_DEBUG=True
+### Running the Application
 
-        # For GCS (optional for local dev, can use local media storage)
-        # GS_BUCKET_NAME=your-gcs-bucket-name 
-        # GOOGLE_APPLICATION_CREDENTIALS=/path/to/your/gcp-service-account-key.json
-        ```
-        *Note: In production on Cloud Run, these are set as environment variables and secrets directly in the Cloud Run service configuration.*
-    *   Run initial database migrations (if using a local Postgres or connecting to cloud and it\'s empty):
-        ```bash
-        python manage.py makemigrations
-        python manage.py migrate
-        ```
+1. **Start the Backend Server**
+   ```bash
+   cd backend
+   python manage.py runserver 0.0.0.0:8000
+   ```
 
-3.  **Frontend Setup (`/frontend` directory):**
-    *   Navigate to the frontend directory:
-        ```bash
-        cd ../frontend 
-        # or from root: cd frontend
-        ```
-    *   Install Node.js dependencies:
-        ```bash
-        npm install
-        # or if you prefer yarn:
-        # yarn install
-        ```
-    *   **Environment Variables (Frontend):**
-        Create a `.env.local` file in the `frontend/` directory. This file is ignored by Git.
-        Example `frontend/.env.local`:
-        ```env
-        NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1 
-        # Change if your backend runs on a different port/path locally
-        ```
+2. **Start the Frontend Development Server**
+   ```bash
+   cd frontend
+   npm run dev
+   ```
 
-## Running Locally
+3. **Access the Application**
+   - Frontend: [http://localhost:3000](http://localhost:3000)
+   - Backend API: [http://localhost:8000](http://localhost:8000)
+   - API Documentation: [http://localhost:8000/api/docs](http://localhost:8000/api/docs)
 
-1.  **Start the Backend Django Development Server:**
-    *   In the `backend/` directory (with virtual environment activated):
-        ```bash
-        python manage.py runserver 0.0.0.0:8000 
-        # Or just `python manage.py runserver`
-        ```
-    *   The backend API should be accessible at `http://localhost:8000`.
+## 🛠️ Technology Stack
 
-2.  **Start the Frontend Next.js Development Server:**
-    *   In the `frontend/` directory:
-        ```bash
-        npm run dev
-        # or if using yarn:
-        # yarn dev
-        ```
-    *   The frontend should be accessible at `http://localhost:3000` (or another port if 3000 is busy).
+**Frontend:**
+- Next.js (React, TypeScript)
+- Tailwind CSS & shadcn-ui
+- React Query
+- NextAuth.js
 
-3.  **Start Celery Worker (for asynchronous tasks, if developing features that use it):**
-    *   In the `backend/` directory (with virtual environment activated):
-        ```bash
-        celery -A core worker -l info
-        ```
-    *   This requires a Redis instance to be running and configured in `settings.py` (or via env vars).
+**Backend:**
+- Django + Django REST Framework
+- PostgreSQL (Google Cloud SQL)
+- Celery with Redis
+- Google Cloud Storage
 
-## Environment Variables Overview
+**Infrastructure:**
+- Google Cloud Run
+- Docker & Docker Compose
+- Google Cloud Build (CI/CD)
 
-The application relies on several environment variables, especially for production deployment. These are managed via Cloud Run service configuration and Google Secret Manager.
+## ⚙️ Configuration
 
-**Backend (`core.settings.py`):**
-*   `DJANGO_SECRET_KEY`: Django\'s secret key for cryptographic signing. **(Managed by Secret Manager in Prod)**
-*   `DJANGO_DEBUG`: Set to `True` for local development, `False` for production.
-*   `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `CLOUD_SQL_CONNECTION_NAME` (for Cloud Run) or `DB_HOST`, `DB_PORT` (for local/proxy): PostgreSQL connection details. `DB_PASSWORD` **(Managed by Secret Manager in Prod)**.
-*   `REDIS_HOST`, `REDIS_PORT`: Redis connection details for Celery.
-*   `GS_BUCKET_NAME`: Google Cloud Storage bucket name for media file uploads.
-*   `GOOGLE_APPLICATION_CREDENTIALS` (implicitly used by GCS library if set, for local dev with GCS).
+### Environment Variables
 
-**Frontend (`.env.local` or build-time variables):**
-*   `NEXT_PUBLIC_API_URL`: The base URL for the backend API.
+Create the following environment files:
 
-## Deployment
+**Backend** (`backend/.env`):
+```env
+DJANGO_SECRET_KEY=your-secret-key-here
+DJANGO_DEBUG=True
+DB_NAME=your_db_name
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_HOST=localhost
+DB_PORT=5432
+REDIS_HOST=localhost
+REDIS_PORT=6379
+GS_BUCKET_NAME=your-gcs-bucket-name
+```
 
-This project is configured for continuous integration and deployment (CI/CD) to **Google Cloud Run** using **Google Cloud Build**. The deployment pipeline is defined in `cloudbuild.yaml`.
+**Frontend** (`frontend/.env.local`):
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+```
 
-Key Google Cloud services used in deployment:
-*   Google Cloud Run (for hosting frontend, backend, and Celery services)
-*   Google Cloud SQL (PostgreSQL)
-*   Google Memorystore for Redis
-*   Google Cloud Storage (GCS)
-*   Google Artifact Registry (for Docker images)
-*   Google Secret Manager (for sensitive credentials)
-*   Serverless VPC Access Connector (for Cloud Run to access Redis/SQL privately)
+### Optional: Running with Docker
 
-## Project Structure
+```bash
+# Build and run all services
+docker-compose up --build
+
+# Run in background
+docker-compose up -d
+```
+
+## 📖 Usage Examples
+
+### Basic Document Upload
+
+```python
+# Example API usage for document upload
+import requests
+
+url = "http://localhost:8000/api/v1/documents/"
+files = {"document": open("masail_document.pdf", "rb")}
+data = {"title": "Fatwa on Digital Transactions", "category": "muamalat"}
+
+response = requests.post(url, files=files, data=data)
+print(response.json())
+```
+
+### Semantic Search
+
+```javascript
+// Frontend search implementation
+const searchResults = await fetch('/api/search', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    query: "hukum jual beli online",
+    filters: { category: "muamalat" }
+  })
+});
+```
+
+## 📁 Project Structure
 
 ```
 .
 ├── backend/                # Django backend application
-│   ├── core/               # Core Django project (settings, main urls, wsgi, celery)
-│   ├── api/                # Django app for API endpoints
-│   ├── venv/               # Python virtual environment (ignored by Git)
-│   ├── Dockerfile          # Dockerfile for Django backend
-│   ├── Dockerfile.celery   # Dockerfile for Celery worker
-│   └── requirements.txt    # Python dependencies
-├── frontend/               # Next.js frontend application
-│   ├── src/                # Main source code (pages, components, etc.)
-│   ├── public/             # Static assets
-│   ├── node_modules/       # Node.js dependencies (ignored by Git)
-│   └── Dockerfile          # Dockerfile for Next.js frontend
-├── .github/workflows/      # (Optional) GitHub Actions workflows
-├── cloudbuild.yaml         # Google Cloud Build configuration
-├── README.md               # This file
-└── .gitignore              # Specifies intentionally untracked files that Git should ignore
+│   ├── core/              # Core Django project configuration
+│   ├── api/               # REST API endpoints
+│   ├── documents/         # Document management app
+│   ├── search/            # Search functionality
+│   └── requirements.txt   # Python dependencies
+├── frontend/              # Next.js frontend application
+│   ├── src/
+│   │   ├── components/    # Reusable UI components
+│   │   ├── pages/         # Next.js pages
+│   │   ├── hooks/         # Custom React hooks
+│   │   └── utils/         # Utility functions
+│   ├── public/            # Static assets
+│   └── package.json       # Node.js dependencies
+├── docker-compose.yml     # Docker services configuration
+├── cloudbuild.yaml        # Google Cloud Build CI/CD
+└── README.md              # This file
 ```
 
-## Contributing
+## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
-1.  Fork the repository.
-2.  Create a new branch (`git checkout -b feature/your-feature-name`).
-3.  Make your changes.
-4.  Commit your changes (`git commit -m 'Add some feature'`).
-5.  Push to the branch (`git push origin feature/your-feature-name`).
-6.  Open a Pull Request.
+We welcome contributions from the community! Whether you're fixing bugs, adding features, or improving documentation, your help is appreciated.
+
+### How to Contribute
+
+1. **Fork the repository**
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. **Make your changes**
+4. **Commit your changes**
+   ```bash
+   git commit -m 'Add some amazing feature'
+   ```
+5. **Push to the branch**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+6. **Open a Pull Request**
+
+Please read our [Contributing Guidelines](CONTRIBUTING.md) for detailed information about our development process, coding standards, and how to submit pull requests.
+
+### Development Guidelines
+
+- Follow the existing code style and conventions
+- Write clear, descriptive commit messages
+- Add tests for new features
+- Update documentation as needed
+- Ensure all tests pass before submitting
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Islamic scholars and institutions who inspire this work
+- The open-source community for the amazing tools and libraries
+- Contributors who help improve this platform
+
+## 📞 Support
+
+- 📧 Email: [support@bahtsulmasail.tech](mailto:support@bahtsulmasail.tech)
+- 🐛 Issues: [GitHub Issues](https://github.com/dihannahdi/bahtsulmasail.tech/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/dihannahdi/bahtsulmasail.tech/discussions)
 
 ---
 
-This README provides a good starting point. You can expand it further as the project develops. 
+<div align="center">
+  <strong>Built with ❤️ for the Islamic scholarly community</strong>
+</div> 

@@ -134,6 +134,10 @@ DATABASES = {
         "PASSWORD": os.environ.get("DB_PASSWORD", "postgres"),
         "HOST": os.environ.get("DB_HOST", "localhost"),
         "PORT": os.environ.get("DB_PORT", "5432"),
+        "OPTIONS": {
+            "connect_timeout": 10,
+            "options": "-c statement_timeout=30000"
+        },
     }
 }
 
@@ -146,13 +150,17 @@ DB_HOST = os.environ.get("DB_HOST") # For Cloud SQL Proxy or direct IP: '127.0.0
 DB_PORT = os.environ.get("DB_PORT", "5432") # Default PostgreSQL port
 CLOUD_SQL_CONNECTION_NAME = os.environ.get("CLOUD_SQL_CONNECTION_NAME") # e.g., your-project:region:instance
 
-if CLOUD_SQL_CONNECTION_NAME and os.environ.get("GAE_APPLICATION"): # Detects Cloud Run or App Engine
+if CLOUD_SQL_CONNECTION_NAME and (os.environ.get("GAE_APPLICATION") or os.environ.get("K_SERVICE")): # Detects Cloud Run or App Engine
     DATABASES["default"] = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": DB_NAME,
         "USER": DB_USER,
         "PASSWORD": DB_PASSWORD,
         "HOST": f"/cloudsql/{CLOUD_SQL_CONNECTION_NAME}",
+        "OPTIONS": {
+            "connect_timeout": 10,
+            "options": "-c statement_timeout=30000"
+        },
     }
 elif DB_HOST and DB_NAME: # For local development using Cloud SQL Proxy or direct IP
     DATABASES["default"] = {
@@ -162,6 +170,10 @@ elif DB_HOST and DB_NAME: # For local development using Cloud SQL Proxy or direc
         "PASSWORD": DB_PASSWORD,
         "HOST": DB_HOST,
         "PORT": DB_PORT,
+        "OPTIONS": {
+            "connect_timeout": 10,
+            "options": "-c statement_timeout=30000"
+        },
     }
 
 
