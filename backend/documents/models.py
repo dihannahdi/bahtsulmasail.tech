@@ -1,7 +1,12 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import FileExtensionValidator
-from pgvector.django import VectorField
+try:
+    from pgvector.django import VectorField
+    PGVECTOR_AVAILABLE = True
+except ImportError:
+    VectorField = None
+    PGVECTOR_AVAILABLE = False
 import uuid
 
 User = get_user_model()
@@ -32,10 +37,10 @@ class Document(models.Model):
     )
     ocr_result = models.JSONField(null=True, blank=True)
     extracted_text = models.TextField(blank=True, help_text='Full text extracted from the document')
-    embedding = VectorField(dimensions=768, null=True, blank=True, help_text='Vector embedding of the document')
+    embedding = VectorField(dimensions=768, null=True, blank=True, help_text='Vector embedding of the document') if PGVECTOR_AVAILABLE else models.JSONField(null=True, blank=True, help_text='Vector embedding of the document (stored as JSON for non-PostgreSQL databases)')
     language = models.CharField(max_length=10, default='id', help_text='ISO 639-1 language code')
     verification_status = models.CharField(
-        max_length=20,
+        max_length=25,
         choices=[
             ('awaiting_verification', 'Awaiting Verification'),
             ('verified', 'Verified'),
@@ -120,130 +125,33 @@ class DocumentCrossReference(models.Model):
             models.Index(fields=['reference_type']),
         ]
 
-# New models for AI analysis
+# Note: AI analysis models are now in the api app to avoid duplication
 
-class SemanticTopic(models.Model):
-    """Model for storing semantic topics extracted from documents."""
+class TextChunk(models.Model):
+    """Model for storing text chunks for semantic search."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='semantic_topics')
-    topic_keywords = models.JSONField(help_text='List of keywords or terms that define the topic')
-    relevance_score = models.FloatField(help_text='Score indicating relevance of topic to document')
-    metadata = models.JSONField(default=dict, help_text='Additional metadata about the topic')
+    source_document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='text_chunks')
+    kitab_name = models.CharField(max_length=255, help_text='Name of the Islamic book')
+    author = models.CharField(max_length=255, help_text='Author of the book')
+    content_arabic = models.TextField(help_text='Raw Arabic text chunk')
+    embedding = VectorField(dimensions=768, null=True, blank=True, help_text='Vector embedding of the text chunk') if PGVECTOR_AVAILABLE else models.JSONField(null=True, blank=True, help_text='Vector embedding of the text chunk (stored as JSON for non-PostgreSQL databases)')
+    metadata = models.JSONField(default=dict, help_text='Extra info like page number or chapter')
+    chunk_index = models.IntegerField(help_text='Index of this chunk within the document')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         indexes = [
-            models.Index(fields=['document']),
-            models.Index(fields=['relevance_score']),
+            models.Index(fields=['source_document']),
+            models.Index(fields=['kitab_name']),
+            models.Index(fields=['author']),
+            models.Index(fields=['chunk_index']),
         ]
+        unique_together = ['source_document', 'chunk_index']
 
-class ArgumentComponent(models.Model):
-    """Model for storing argument components (claims, premises) extracted from documents."""
-    COMPONENT_TYPES = [
-        ('claim', 'Claim'),
-        ('premise', 'Premise'),
-    ]
-    
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='argument_components')
-    component_type = models.CharField(max_length=20, choices=COMPONENT_TYPES)
-    text_span = models.TextField(help_text='The text of the argument component')
-    start_char = models.IntegerField(help_text='Starting character position in the document')
-    end_char = models.IntegerField(help_text='Ending character position in the document')
-    confidence_score = models.FloatField(help_text='Confidence score of extraction')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    class Meta:
-        indexes = [
-            models.Index(fields=['document']),
-            models.Index(fields=['component_type']),
-        ]
+    def __str__(self):
+        return f"{self.kitab_name} - Chunk {self.chunk_index}"
 
-class ArgumentRelation(models.Model):
-    """Model for storing relationships between argument components."""
-    RELATION_TYPES = [
-        ('support', 'Support'),
-        ('attack', 'Attack'),
-        ('neutral', 'Neutral'),
-    ]
-    
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    source_component = models.ForeignKey(ArgumentComponent, on_delete=models.CASCADE, related_name='outgoing_relations')
-    target_component = models.ForeignKey(ArgumentComponent, on_delete=models.CASCADE, related_name='incoming_relations')
-    relation_type = models.CharField(max_length=20, choices=RELATION_TYPES)
-    confidence_score = models.FloatField(help_text='Confidence score of relation extraction')
-    created_at = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        indexes = [
-            models.Index(fields=['source_component']),
-            models.Index(fields=['target_component']),
-            models.Index(fields=['relation_type']),
-        ]
-
-class Citation(models.Model):
-    """Model for storing citations detected in documents."""
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='citations')
-    cited_source_identifier = models.TextField(help_text='Identifier of the cited source')
-    text_span = models.TextField(help_text='The text of the citation')
-    start_char = models.IntegerField(help_text='Starting character position in the document')
-    end_char = models.IntegerField(help_text='Ending character position in the document')
-    normalized_citation = models.TextField(help_text='Normalized/standardized form of the citation')
-    context = models.TextField(help_text='Surrounding context of the citation')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    class Meta:
-        indexes = [
-            models.Index(fields=['document']),
-        ]
-
-class KnowledgeGraphNode(models.Model):
-    """Model for storing knowledge graph nodes (entities)."""
-    NODE_TYPES = [
-        ('person', 'Person'),
-        ('organization', 'Organization'),
-        ('location', 'Location'),
-        ('concept', 'Concept'),
-        ('event', 'Event'),
-        ('other', 'Other'),
-    ]
-    
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    node_id = models.CharField(max_length=255, unique=True, help_text='Unique identifier for the node')
-    label = models.CharField(max_length=255, help_text='Display label for the entity')
-    node_type = models.CharField(max_length=50, choices=NODE_TYPES, help_text='Type of entity')
-    properties = models.JSONField(default=dict, help_text='Additional properties of the entity')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    class Meta:
-        indexes = [
-            models.Index(fields=['node_type']),
-            models.Index(fields=['label']),
-        ]
-
-class KnowledgeGraphEdge(models.Model):
-    """Model for storing knowledge graph edges (relationships)."""
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    source_node = models.ForeignKey(KnowledgeGraphNode, on_delete=models.CASCADE, related_name='outgoing_edges')
-    target_node = models.ForeignKey(KnowledgeGraphNode, on_delete=models.CASCADE, related_name='incoming_edges')
-    label = models.CharField(max_length=255, help_text='Relationship label')
-    properties = models.JSONField(default=dict, help_text='Additional properties of the relationship')
-    document = models.ForeignKey(Document, on_delete=models.SET_NULL, null=True, related_name='knowledge_graph_edges')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    class Meta:
-        indexes = [
-            models.Index(fields=['source_node']),
-            models.Index(fields=['target_node']),
-            models.Index(fields=['label']),
-            models.Index(fields=['document']),
-        ]
 
 class DocumentAnalysisStatus(models.Model):
     """Model for tracking various analysis operations on documents."""

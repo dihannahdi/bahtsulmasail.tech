@@ -1,7 +1,25 @@
 #!/bin/bash
 set -e
 
-echo "Starting Celery worker container..."
+# Set start time for health checks
+export START_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+echo "Starting Celery worker container at $START_TIME..."
+
+# Cleanup function for graceful shutdown
+cleanup() {
+    echo "Received shutdown signal, cleaning up..."
+    if [ ! -z "$HEALTH_PID" ] && kill -0 $HEALTH_PID 2>/dev/null; then
+        echo "Stopping health check server (PID: $HEALTH_PID)..."
+        kill $HEALTH_PID 2>/dev/null || true
+        wait $HEALTH_PID 2>/dev/null || true
+    fi
+    echo "Cleanup completed"
+    exit 0
+}
+
+# Set up signal handlers
+trap cleanup SIGTERM SIGINT
 
 # Validate required environment variables
 required_vars="REDIS_HOST REDIS_PORT DJANGO_SETTINGS_MODULE"
@@ -42,12 +60,32 @@ echo "Starting health check server on port $PORT..."
 python /app/health_server.py &
 HEALTH_PID=$!
 
-# Wait a moment for health server to start
-sleep 2
+# Wait a moment for health server to start and test it
+sleep 3
 
 # Check if health server started successfully
 if ! kill -0 $HEALTH_PID 2>/dev/null; then
     echo "ERROR: Health check server failed to start"
+    exit 1
+fi
+
+# Test health check server
+max_health_retries=10
+retry_count=0
+while [ $retry_count -lt $max_health_retries ]; do
+    if curl -f http://localhost:$PORT/healthz 2>/dev/null; then
+        echo "Health check server is responding successfully"
+        break
+    else
+        echo "Waiting for health server to respond... (attempt $((retry_count + 1))/$max_health_retries)"
+        sleep 1
+        retry_count=$((retry_count + 1))
+    fi
+done
+
+if [ $retry_count -eq $max_health_retries ]; then
+    echo "ERROR: Health check server is not responding after $max_health_retries attempts"
+    kill $HEALTH_PID 2>/dev/null || true
     exit 1
 fi
 
@@ -63,4 +101,16 @@ fi
 
 # Start the Celery worker in the foreground
 echo "Starting Celery worker..."
-exec celery -A core worker -l INFO --concurrency=2 --without-gossip --without-mingle --without-heartbeat 
+echo "Celery worker configuration:"
+echo "  - Concurrency: 2"
+echo "  - Log Level: INFO" 
+echo "  - Redis: ${REDIS_HOST}:${REDIS_PORT}"
+
+# Start Celery worker with improved configuration for Cloud Run
+celery -A core worker \
+    --loglevel=INFO \
+    --concurrency=2 \
+    --without-gossip \
+    --without-mingle \
+    --without-heartbeat \
+    --pool=solo 

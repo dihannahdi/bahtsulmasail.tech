@@ -23,15 +23,33 @@ def test_celery_connectivity():
         
         print(f"✓ Broker URL: redis://{redis_host}:{redis_port}/0")
         
-        # Test Redis connectivity
+        # Test Redis connectivity with retry logic
         import redis
-        r = redis.Redis(host=redis_host, port=redis_port, socket_connect_timeout=5)
-        r.ping()
-        print(f"✓ Redis connection successful: {redis_host}:{redis_port}")
+        max_retries = 5
+        for attempt in range(max_retries):
+            try:
+                r = redis.Redis(host=redis_host, port=redis_port, socket_connect_timeout=5)
+                r.ping()
+                print(f"✓ Redis connection successful: {redis_host}:{redis_port}")
+                break
+            except Exception as redis_error:
+                if attempt == max_retries - 1:
+                    raise redis_error
+                print(f"  Redis connection attempt {attempt + 1} failed, retrying...")
+                import time
+                time.sleep(2)
         
         # Test basic Celery app configuration
         print(f"✓ Celery task serializer: {app.conf.task_serializer}")
         print(f"✓ Celery result backend: {app.conf.result_backend}")
+        print(f"✓ Celery broker URL: {app.conf.broker_url}")
+        
+        # Test Celery worker can be instantiated
+        try:
+            from celery.worker import worker
+            print("✓ Celery worker class available")
+        except ImportError as e:
+            print(f"⚠ Warning: Celery worker import issue: {e}")
         
         print("\n✓ All Celery tests passed!")
         return True

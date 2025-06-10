@@ -1,8 +1,7 @@
 from django.contrib import admin
 from .models import (
     Document, DocumentVersion, DocumentAnnotation, DocumentCrossReference,
-    SemanticTopic, ArgumentComponent, ArgumentRelation, Citation,
-    KnowledgeGraphNode, KnowledgeGraphEdge, DocumentAnalysisStatus
+    DocumentAnalysisStatus, TextChunk
 )
 
 
@@ -20,17 +19,14 @@ class DocumentAnalysisStatusAdmin(admin.ModelAdmin):
     list_filter = ['analysis_type', 'status']
 
 
-@admin.register(SemanticTopic)
-class SemanticTopicAdmin(admin.ModelAdmin):
-    list_display = ['document', 'relevance_score', 'created_at']
-    list_filter = ['relevance_score', 'created_at']
+@admin.register(TextChunk)
+class TextChunkAdmin(admin.ModelAdmin):
+    list_display = ['source_document', 'kitab_name', 'author', 'chunk_index', 'created_at']
+    list_filter = ['kitab_name', 'author', 'created_at']
+    search_fields = ['content_arabic', 'kitab_name', 'author']
+    readonly_fields = ['id', 'created_at', 'updated_at']
 
 
 admin.site.register(DocumentVersion)
 admin.site.register(DocumentAnnotation)
-admin.site.register(DocumentCrossReference)
-admin.site.register(ArgumentComponent)
-admin.site.register(ArgumentRelation)
-admin.site.register(Citation)
-admin.site.register(KnowledgeGraphNode)
-admin.site.register(KnowledgeGraphEdge) 
+admin.site.register(DocumentCrossReference) 

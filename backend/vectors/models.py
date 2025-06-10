@@ -1,7 +1,12 @@
 from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from pgvector.django import VectorField
+try:
+    from pgvector.django import VectorField
+    PGVECTOR_AVAILABLE = True
+except ImportError:
+    VectorField = None
+    PGVECTOR_AVAILABLE = False
 import uuid
 
 
@@ -18,7 +23,7 @@ class Embedding(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
     
     # Vector embedding
-    embedding = VectorField(dimensions=768)  # BERT base embedding size
+    embedding = VectorField(dimensions=768) if PGVECTOR_AVAILABLE else models.JSONField(help_text='Vector embedding (stored as JSON for non-PostgreSQL databases)')  # BERT base embedding size
     embedding_type = models.CharField(max_length=100)  # e.g., 'bert', 'openai', etc.
     
     # Metadata

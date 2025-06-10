@@ -22,9 +22,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('documents.urls')),  # Document management API
-    path('api/v1/auth/', include('users.urls')),  # Authentication API
-    path('api/v1/tashih/', include('tashih.urls')),  # Tashih workflow API
-    path('api/v1/analysis/', include('api.urls')),  # Analysis API
+    # path('api/v1/auth/', include('users.urls')),  # Authentication API - temporarily disabled
+    # path('api/v1/tashih/', include('tashih.urls')),  # Tashih workflow API - temporarily disabled
+    # path('api/v1/analysis/', include('api.urls')),  # Analysis API - temporarily disabled
     # Add other API endpoints here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

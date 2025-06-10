@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y \
     tesseract-ocr-eng \
     poppler-utils \
     curl \
+    netcat-traditional \
     && rm -rf /var/lib/apt/lists/*
 
 # Download the multilingual sentence transformer model at build time
@@ -46,9 +47,9 @@ RUN if ! getent group nogroup > /dev/null; then groupadd -r nogroup; fi && \
 # Expose the port for health checks
 EXPOSE 8080
 
-# Add healthcheck
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD curl -f http://localhost:8080/healthz || exit 1
+# Add healthcheck with longer startup period
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=3 \
+    CMD curl -f http://localhost:${PORT:-8080}/healthz || exit 1
 
 # Command to run Celery worker and health check server
 CMD ["/app/run.sh"] 

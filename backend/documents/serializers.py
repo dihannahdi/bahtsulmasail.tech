@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Document, DocumentVersion, DocumentAnnotation, DocumentCrossReference
+from .models import Document, DocumentVersion, DocumentAnnotation, DocumentCrossReference, TextChunk
 from django.conf import settings
 from core.storage import generate_gcs_signed_url
 import mimetypes
@@ -45,6 +45,20 @@ class DocumentVersionSerializer(serializers.ModelSerializer):
             'created_by', 'created_at', 'change_notes', 'metadata'
                 ]
         read_only_fields = ['id', 'created_by', 'created_at']
+
+
+class TextChunkSerializer(serializers.ModelSerializer):
+    """Serializer for TextChunk model."""
+    source_document_title = serializers.ReadOnlyField(source='source_document.title')
+    
+    class Meta:
+        model = TextChunk
+        fields = [
+            'id', 'source_document', 'source_document_title', 'kitab_name', 
+            'author', 'content_arabic', 'metadata', 'chunk_index',
+            'created_at', 'updated_at'
+        ]
+        read_only_fields = ['id', 'created_at', 'updated_at']
 
 
 class DocumentSearchSerializer(DocumentSerializer):

@@ -15,14 +15,17 @@ import hashlib
 import os
 import logging
 import re
-from .models import Document, DocumentVersion, DocumentAnnotation, DocumentCrossReference
+from .models import Document, DocumentVersion, DocumentAnnotation, DocumentCrossReference, TextChunk
 from .serializers import (
     DocumentSerializer, DocumentVersionSerializer,
     DocumentAnnotationSerializer, DocumentCrossReferenceSerializer,
-    DocumentUploadSerializer, DocumentSearchSerializer
+    DocumentUploadSerializer, DocumentSearchSerializer,
+    TextChunkSerializer
 )
 from .tasks import process_document
 from core.storage import generate_gcs_signed_url
+from sentence_transformers import SentenceTransformer
+import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -170,8 +173,6 @@ class DocumentViewSet(viewsets.ModelViewSet):
         Perform semantic search using vector similarity with pgvector.
         """
         try:
-            from sentence_transformers import SentenceTransformer
-            
             # Generate embedding for the query
             model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
             query_embedding = model.encode([query_string])[0].tolist()
@@ -198,6 +199,92 @@ class DocumentViewSet(viewsets.ModelViewSet):
         except Exception as e:
             logger.error(f"Semantic search failed: {str(e)}")
             raise
+
+    @action(detail=False, methods=['get'], url_path='semantic-search')
+    def semantic_search(self, request):
+        """
+        Perform semantic search across Islamic text chunks.
+        
+        Query Parameters:
+        - q: Search query in Indonesian or English
+        - limit: Maximum number of results (default: 10)
+        - threshold: Similarity threshold (default: 0.7)
+        """
+        query = request.query_params.get('q', '')
+        limit = int(request.query_params.get('limit', 10))
+        threshold = float(request.query_params.get('threshold', 0.7))
+        
+        if not query:
+            return Response(
+                {'error': 'Query parameter "q" is required'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        try:
+            # Load the multilingual sentence transformer model
+            model = SentenceTransformer('paraphrase-multilingual-mpnet-base-v2')
+            
+            # Generate embedding for the query
+            query_embedding = model.encode(query)
+            
+            # Get all text chunks with embeddings
+            chunks = TextChunk.objects.filter(embedding__isnull=False)
+            
+            # Calculate similarities and filter by threshold
+            results = []
+            for chunk in chunks:
+                if chunk.embedding:
+                    # Convert stored embedding back to numpy array
+                    chunk_embedding = np.array(chunk.embedding)
+                    
+                    # Calculate cosine similarity
+                    similarity = np.dot(query_embedding, chunk_embedding) / (
+                        np.linalg.norm(query_embedding) * np.linalg.norm(chunk_embedding)
+                    )
+                    
+                    if similarity >= threshold:
+                        results.append({
+                            'chunk': chunk,
+                            'similarity': float(similarity)
+                        })
+            
+            # Sort by similarity (highest first) and limit results
+            results.sort(key=lambda x: x['similarity'], reverse=True)
+            results = results[:limit]
+            
+            # Format response
+            response_data = []
+            for result in results:
+                chunk = result['chunk']
+                response_data.append({
+                    'kitab_name': chunk.kitab_name,
+                    'author': chunk.author,
+                    'ibaroh': chunk.content_arabic,
+                    'terjemahan': self._generate_translation(chunk.content_arabic),
+                    'similarity_score': result['similarity'],
+                    'metadata': chunk.metadata
+                })
+            
+            return Response({
+                'query': query,
+                'results': response_data,
+                'total_found': len(response_data)
+            })
+            
+        except Exception as e:
+            return Response(
+                {'error': f'Search failed: {str(e)}'}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+    
+    def _generate_translation(self, arabic_text):
+        """
+        Generate Indonesian translation of Arabic text.
+        This is a placeholder - in production, you'd use a proper translation service.
+        """
+        # TODO: Implement actual translation using a service like Google Translate API
+        # or a specialized Arabic-Indonesian translation model
+        return f"[Terjemahan dari: {arabic_text[:50]}...]"
 
 class DocumentVersionViewSet(viewsets.ModelViewSet):
     """ViewSet for DocumentVersion model."""
@@ -259,4 +346,15 @@ class DocumentCrossReferenceViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         """Create cross-reference with user information."""
-        serializer.save(created_by=self.request.user) 
+        serializer.save(created_by=self.request.user)
+
+class TextChunkViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for managing text chunks from Islamic books.
+    """
+    queryset = TextChunk.objects.all()
+    serializer_class = TextChunkSerializer
+    filterset_fields = ['kitab_name', 'author']
+    search_fields = ['content_arabic', 'kitab_name', 'author']
+    ordering_fields = ['created_at', 'chunk_index']
+    ordering = ['source_document', 'chunk_index'] 
