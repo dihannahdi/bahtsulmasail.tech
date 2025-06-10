@@ -2,6 +2,7 @@
 substitutions:
   _DEPLOY_TO_PRODUCTION: 'false'
   _PROJECT_ID: 'bahtsul-masail-457713'
+  _IMAGE_TAG: '${SHORT_SHA:-latest}'
 
 # Set deployment flag for main branch
 options:
@@ -14,7 +15,7 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA'
+      - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-frontend:$_IMAGE_TAG'
       - '-f'
       - './frontend/Dockerfile'
       - './frontend'
@@ -25,7 +26,7 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA'
+      - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-backend:$_IMAGE_TAG'
       - './backend'
     id: 'Build Backend'
 
@@ -34,7 +35,7 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA'
+      - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-celery:$_IMAGE_TAG'
       - '-f'
       - './backend/Dockerfile.celery'  # Assuming a separate Dockerfile for Celery
       - './backend'
@@ -42,17 +43,17 @@ steps:
 
   # Push frontend image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA']
+    args: ['push', 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-frontend:$_IMAGE_TAG']
     id: 'Push Frontend Image'
 
   # Push backend image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA']
+    args: ['push', 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-backend:$_IMAGE_TAG']
     id: 'Push Backend Image'
 
   # Push Celery worker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA']
+    args: ['push', 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-celery:$_IMAGE_TAG']
     id: 'Push Celery Image'
 
   # Manual approval step for production deployment
@@ -78,7 +79,7 @@ steps:
       - |
         if [ "$BRANCH_NAME" = "main" ] || [ "$_DEPLOY_TO_PRODUCTION" = "true" ]; then
           gcloud run deploy bahtsulmasail-tech-frontend \
-            --image=gcr.io/$_PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA \
+            --image=gcr.io/$_PROJECT_ID/bahtsulmasail-tech-frontend:$_IMAGE_TAG \
             --region=us-central1 \
             --platform=managed \
             --allow-unauthenticated \
@@ -98,7 +99,7 @@ steps:
       - |
         if [ "$BRANCH_NAME" = "main" ] || [ "$_DEPLOY_TO_PRODUCTION" = "true" ]; then
           gcloud run deploy bahtsulmasail-tech-backend \
-            --image=gcr.io/$_PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA \
+            --image=gcr.io/$_PROJECT_ID/bahtsulmasail-tech-backend:$_IMAGE_TAG \
             --region=us-central1 \
             --platform=managed \
             --allow-unauthenticated \
@@ -122,7 +123,7 @@ steps:
       - |
         if [ "$BRANCH_NAME" = "main" ] || [ "$_DEPLOY_TO_PRODUCTION" = "true" ]; then
           gcloud run deploy bahtsulmasail-tech-celery \
-            --image=gcr.io/$_PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA \
+            --image=gcr.io/$_PROJECT_ID/bahtsulmasail-tech-celery:$_IMAGE_TAG \
             --region=us-central1 \
             --platform=managed \
             --no-allow-unauthenticated \
@@ -158,9 +159,9 @@ steps:
   #   id: 'Run DB Migrations'
 
 images:
-  - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-frontend:$COMMIT_SHA'
-  - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-backend:$COMMIT_SHA'
-  - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-celery:$COMMIT_SHA'
+  - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-frontend:$_IMAGE_TAG'
+  - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-backend:$_IMAGE_TAG'
+  - 'gcr.io/$_PROJECT_ID/bahtsulmasail-tech-celery:$_IMAGE_TAG'
 
 # Replace YOUR_GCP_REGION, YOUR_DB_USER_HERE, YOUR_DB_PASSWORD_SECRET_ID, YOUR_DJANGO_SECRET_KEY_SECRET_ID, YOUR_VPC_CONNECTOR_NAME.
 # Ensure the Django SECRET_KEY is also managed via Secret Manager for production.
