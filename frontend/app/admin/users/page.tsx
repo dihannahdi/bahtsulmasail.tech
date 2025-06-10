@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { fadeUp, stagger, itemVariant, cardVariant } from '../../lib/animations';
+import { fadeUp, itemVariant, containerVariant, stagger, cardVariant } from '@/lib/animations';
 
 // Mock user data
 const users = [

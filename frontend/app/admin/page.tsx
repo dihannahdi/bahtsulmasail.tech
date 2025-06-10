@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { fadeUp, stagger, itemVariant, cardVariant } from '../lib/animations';
+import { fadeUp, itemVariant, containerVariant, stagger, cardVariant } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
