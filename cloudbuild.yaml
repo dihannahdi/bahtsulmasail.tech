@@ -2,7 +2,7 @@
 substitutions:
   _DEPLOY_TO_PRODUCTION: 'false'
   _PROJECT_ID: 'bahtsul-masail-457713'
-  _IMAGE_TAG: '${SHORT_SHA:-latest}'
+  _IMAGE_TAG: 'latest'
 
 # Set deployment flag for main branch
 options:
