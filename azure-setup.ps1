@@ -202,4 +202,4 @@ Write-Host "5. Deploy application using: kubectl apply -f azure-deployment.yaml"
 Write-Host "`n🔗 Useful Commands:" -ForegroundColor Cyan
 Write-Host "Connect to AKS: az aks get-credentials --resource-group $ResourceGroupName --name $aksName" -ForegroundColor White
 Write-Host "Login to ACR: az acr login --name $acrName" -ForegroundColor White
-Write-Host "View secrets: az keyvault secret list --vault-name $keyVaultName" -ForegroundColor White 
+Write-Host "View secrets: az keyvault secret list --vault-name $keyVaultName" -ForegroundColor White
