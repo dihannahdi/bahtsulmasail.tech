@@ -31,7 +31,7 @@ BahtsulMasail.tech is a platform for Islamic jurisprudence discussions with adva
 - Node.js 18+
 - Docker & Docker Compose (optional, but recommended)
 - Git
-- Google Cloud SDK (optional, for cloud services integration)
+- Azure CLI (optional, for cloud services integration)
 
 ### Backend Setup
 
@@ -114,7 +114,7 @@ If you prefer to use Docker for development:
 
 1. **Build and start the containers**:
    ```bash
-   docker-compose up -d --build
+   # Use Azure Container Apps for deployment
    ```
 
 2. **Run migrations**:

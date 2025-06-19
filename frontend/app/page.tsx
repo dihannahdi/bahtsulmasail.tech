@@ -1,10 +1,11 @@
 import { Metadata } from "next";
-import { HeroSection } from "./components/sections/HeroSection";
-import { TraditionSection } from "./components/sections/TraditionSection";
-import { TechnologySection } from "./components/sections/TechnologySection";
-import { FeaturesSection } from "./components/sections/FeaturesSection";
-import { CommunitySection } from "./components/sections/CommunitySection";
-import { CallToActionSection } from "./components/sections/CallToActionSection";
+import LightweightHeroSection from "./components/sections/LightweightHeroSection";
+// Performance optimization: temporarily removed heavy Framer Motion sections
+// import { TraditionSection } from "./components/sections/TraditionSection";
+// import { TechnologySection } from "./components/sections/TechnologySection";
+// import { FeaturesSection } from "./components/sections/FeaturesSection";
+// import { CommunitySection } from "./components/sections/CommunitySection";
+// import { CallToActionSection } from "./components/sections/CallToActionSection";
 
 export const metadata: Metadata = {
   title: "Bahtsul Masail - Islamic Legal Consultation Platform",
@@ -15,12 +16,13 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <HeroSection />
-      <TraditionSection />
+      <LightweightHeroSection />
+      {/* Temporarily removed for performance optimization */}
+      {/* <TraditionSection />
       <TechnologySection />
       <FeaturesSection />
       <CommunitySection />
-      <CallToActionSection />
+      <CallToActionSection /> */}
     </main>
   );
 }

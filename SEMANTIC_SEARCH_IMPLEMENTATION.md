@@ -161,7 +161,7 @@ Features:
 #### Phase 2 Enhancements:
 
 1. **Translation Service Integration**:
-   - Replace placeholder translation with Google Translate API
+   - Replace placeholder translation with Azure Translator service
    - Or integrate specialized Arabic-Indonesian translation model
 
 2. **Advanced Search Features**:

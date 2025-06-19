@@ -151,28 +151,16 @@ else:
         }
     }
 
-# Google Cloud SQL (PostgreSQL) settings
-# These will override the default if the environment variables are set (e.g., in Cloud Run)
+# Azure Database for PostgreSQL settings
+# These will override the default if the environment variables are set (e.g., in Azure Container Apps)
 DB_NAME = os.environ.get("DB_NAME")
 DB_USER = os.environ.get("DB_USER")
 DB_PASSWORD = os.environ.get("DB_PASSWORD")
-DB_HOST = os.environ.get("DB_HOST") # For Cloud SQL Proxy or direct IP: '127.0.0.1' or public IP
+DB_HOST = os.environ.get("DB_HOST") # Azure Database for PostgreSQL hostname
 DB_PORT = os.environ.get("DB_PORT", "5432") # Default PostgreSQL port
-CLOUD_SQL_CONNECTION_NAME = os.environ.get("CLOUD_SQL_CONNECTION_NAME") # e.g., your-project:region:instance
 
-if CLOUD_SQL_CONNECTION_NAME and (os.environ.get("GAE_APPLICATION") or os.environ.get("K_SERVICE")): # Detects Cloud Run or App Engine
-    DATABASES["default"] = {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": DB_NAME,
-        "USER": DB_USER,
-        "PASSWORD": DB_PASSWORD,
-        "HOST": f"/cloudsql/{CLOUD_SQL_CONNECTION_NAME}",
-        "OPTIONS": {
-            "connect_timeout": 10,
-            "options": "-c statement_timeout=30000"
-        },
-    }
-elif DB_HOST and DB_NAME: # For local development using Cloud SQL Proxy or direct IP
+# Azure-specific database configuration
+if DB_HOST and DB_NAME:
     DATABASES["default"] = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": DB_NAME,
@@ -224,38 +212,35 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles" # For collecting static files for deployment
 
-# Media files (User uploads) - Google Cloud Storage Configuration
-GS_BUCKET_NAME = os.environ.get("GS_BUCKET_NAME")
-GS_PROJECT_ID = os.environ.get("GS_PROJECT_ID")
-GS_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-GS_LOCATION = "media"  # Folder in the bucket to store media files
+# Media files (User uploads) - Azure Blob Storage Configuration
+AZURE_ACCOUNT_NAME = os.environ.get("AZURE_ACCOUNT_NAME")
+AZURE_ACCOUNT_KEY = os.environ.get("AZURE_ACCOUNT_KEY")
+AZURE_CONTAINER_NAME = os.environ.get("AZURE_CONTAINER_NAME")
+AZURE_LOCATION = "media"  # Folder in the container to store media files
 
-if GS_BUCKET_NAME:
+if AZURE_ACCOUNT_NAME and AZURE_ACCOUNT_KEY and AZURE_CONTAINER_NAME:
     # Use custom storage classes for media files
     DEFAULT_FILE_STORAGE = "core.storage.MediaStorage"
 
-    # Optionally use GCS for static files too
-    STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    # Optionally use Azure Blob Storage for static files too
+    STATICFILES_STORAGE = "core.storage.AzureBlobStorage"
 
     # Custom storage for document files
     DOCUMENT_STORAGE = "core.storage.DocumentStorage"
 
     # Access control settings
-    GS_DEFAULT_ACL = "private"  # Default to private for security
-    GS_QUERYSTRING_AUTH = True  # Use signed URLs for authenticated access
-    GS_QUERYSTRING_EXPIRE = 3600  # Signed URLs expire after 1 hour
-
-    # Cache control settings
-    GS_CACHE_CONTROL = "public, max-age=86400"  # Cache for 24 hours
+    AZURE_DEFAULT_ACL = "private"  # Default to private for security
+    AZURE_QUERYSTRING_AUTH = True  # Use signed URLs for authenticated access
+    AZURE_QUERYSTRING_EXPIRE = 3600  # Signed URLs expire after 1 hour
 
     # Media URL and root
-    MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/{GS_LOCATION}/"
-    MEDIA_ROOT = GS_LOCATION  # This is relative to the GCS bucket root
+    MEDIA_URL = f"https://{AZURE_ACCOUNT_NAME}.blob.core.windows.net/{AZURE_CONTAINER_NAME}/{AZURE_LOCATION}/"
+    MEDIA_ROOT = AZURE_LOCATION  # This is relative to the Azure container root
 
     # File overwrite settings
-    GS_FILE_OVERWRITE = False  # Don't overwrite files with the same name
+    AZURE_FILE_OVERWRITE = False  # Don't overwrite files with the same name
 else:
-    # Fallback to local media storage if GS_BUCKET_NAME is not set
+    # Fallback to local media storage if Azure Blob Storage is not configured
     MEDIA_URL = "/media/"
     MEDIA_ROOT = BASE_DIR / "mediafiles"
 

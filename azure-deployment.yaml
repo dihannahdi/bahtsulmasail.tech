@@ -1,0 +1,245 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bahtsulmasail-config
+data:
+  # Database Configuration
+  USE_POSTGRESQL: "true"
+  DB_NAME: "bahtsulmasail"
+  DB_USER: "bahtsulmasail@bahtsulmasail-db"
+  DB_PORT: "5432"
+  
+  # Redis Configuration  
+  REDIS_PORT: "6379"
+  
+  # Django Configuration
+  DJANGO_DEBUG: "False"
+  PYTHONUNBUFFERED: "1"
+  
+  # Azure Storage Configuration
+  AZURE_LOCATION: "media"
+  
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bahtsulmasail-frontend
+  labels:
+    app: bahtsulmasail-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bahtsulmasail-frontend
+  template:
+    metadata:
+      labels:
+        app: bahtsulmasail-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: bahtsulmasailregistry.azurecr.io/bahtsulmasail-tech-frontend:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: NEXT_TELEMETRY_DISABLED
+          value: "1"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bahtsulmasail-frontend-service
+spec:
+  selector:
+    app: bahtsulmasail-frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bahtsulmasail-backend
+  labels:
+    app: bahtsulmasail-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bahtsulmasail-backend
+  template:
+    metadata:
+      labels:
+        app: bahtsulmasail-backend
+    spec:
+      containers:
+      - name: backend
+        image: bahtsulmasailregistry.azurecr.io/bahtsulmasail-tech-backend:latest
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: bahtsulmasail-config
+        env:
+        - name: DJANGO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: django-secret-key
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: db-password
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: db-host
+        - name: REDIS_HOST
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: redis-host
+        - name: AZURE_ACCOUNT_NAME
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: azure-account-name
+        - name: AZURE_ACCOUNT_KEY
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: azure-account-key
+        - name: AZURE_CONTAINER_NAME
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: azure-container-name
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /api/health/
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /api/health/
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bahtsulmasail-backend-service
+spec:
+  selector:
+    app: bahtsulmasail-backend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bahtsulmasail-celery
+  labels:
+    app: bahtsulmasail-celery
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bahtsulmasail-celery
+  template:
+    metadata:
+      labels:
+        app: bahtsulmasail-celery
+    spec:
+      containers:
+      - name: celery
+        image: bahtsulmasailregistry.azurecr.io/bahtsulmasail-tech-celery:latest
+        envFrom:
+        - configMapRef:
+            name: bahtsulmasail-config
+        env:
+        - name: DJANGO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: django-secret-key
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: db-password
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: db-host
+        - name: REDIS_HOST
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: redis-host
+        - name: AZURE_ACCOUNT_NAME
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: azure-account-name
+        - name: AZURE_ACCOUNT_KEY
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: azure-account-key
+        - name: AZURE_CONTAINER_NAME
+          valueFrom:
+            secretKeyRef:
+              name: bahtsulmasail-secrets
+              key: azure-container-name
+        - name: PORT
+          value: "8080"
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 120
+          periodSeconds: 60
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 30 

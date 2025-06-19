@@ -95,31 +95,8 @@ export default function LoginPage() {
           </button>
 
           <div className="mt-6 text-center">
-            <div className="flex items-center justify-center space-x-4 mb-4">
-              <button
-                type="button"
-                onClick={() => handleSocialLogin('apple')}
-                className="p-2 bg-[rgba(26,11,46,0.6)] rounded-full border border-gray-700 hover:border-cyan-400 transition-colors"
-                disabled={loading}
-              >
-                <Image src="/apple-icon.svg" alt="Apple" width={24} height={24} />
-              </button>
-              <button
-                type="button"
-                onClick={() => handleSocialLogin('google')}
-                className="p-2 bg-[rgba(26,11,46,0.6)] rounded-full border border-gray-700 hover:border-cyan-400 transition-colors"
-                disabled={loading}
-              >
-                <Image src="/google-icon.svg" alt="Google" width={24} height={24} />
-              </button>
-              <button
-                type="button"
-                onClick={() => handleSocialLogin('facebook')}
-                className="p-2 bg-[rgba(26,11,46,0.6)] rounded-full border border-gray-700 hover:border-cyan-400 transition-colors"
-                disabled={loading}
-              >
-                <Image src="/facebook-icon.svg" alt="Facebook" width={24} height={24} />
-              </button>
+            {/* Social login removed for Azure deployment simplicity */}
+            <div className="mb-4">
             </div>
             <p className="text-gray-400 text-sm">
               Don&apos;t have an account?{' '}

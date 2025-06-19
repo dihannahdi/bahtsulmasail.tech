@@ -282,7 +282,7 @@ class DocumentViewSet(viewsets.ModelViewSet):
         Generate Indonesian translation of Arabic text.
         This is a placeholder - in production, you'd use a proper translation service.
         """
-        # TODO: Implement actual translation using a service like Google Translate API
+        # TODO: Implement actual translation using Azure Translator service
         # or a specialized Arabic-Indonesian translation model
         return f"[Terjemahan dari: {arabic_text[:50]}...]"
 

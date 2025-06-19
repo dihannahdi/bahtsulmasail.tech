@@ -400,7 +400,7 @@ paths:
                   download_url:
                     type: string
                     description: Signed URL for file download
-                    example: "https://storage.googleapis.com/bucket/file.pdf?signature=..."
+                    example: "https://mystorageaccount.blob.core.windows.net/container/file.pdf?sv=..."
 
   /documents/search/:
     get:

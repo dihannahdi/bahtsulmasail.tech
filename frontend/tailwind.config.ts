@@ -172,36 +172,59 @@ const config: Config = {
   					'background-position': 'bottom center'
   				}
   			},
-  			'gradient-xy': {
-  				'0%, 100%': {
-  					'background-size': '400% 400%',
-  					'background-position': 'left center'
-  				},
-  				'50%': {
-  					'background-size': '200% 200%',
-  					'background-position': 'right center'
-  				}
-  						}
+  						'gradient-xy': {
+				'0%, 100%': {
+					'background-size': '400% 400%',
+					'background-position': 'left center'
+				},
+				'50%': {
+					'background-size': '200% 200%',
+					'background-position': 'right center'
+				}
+			},
+			'fadeInUp': {
+				'0%': {
+					opacity: '0',
+					transform: 'translateY(30px)'
+				},
+				'100%': {
+					opacity: '1',
+					transform: 'translateY(0)'
+				}
+			}
 		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			'ping-slow': 'ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite',
-  			'dash': 'dash 1.5s ease-in-out infinite',
-  			float: 'float 3s ease-in-out infinite',
-  			'gradient-x': 'gradient-x 15s ease infinite',
-  			'gradient-y': 'gradient-y 15s ease infinite',
-  			'gradient-xy': 'gradient-xy 15s ease infinite',
-  						'subtle-pan': 'subtlePan 25s ease-in-out infinite',
-			'text-shimmer': 'textShimmer 3s linear infinite'
+  						'dash': 'dash 1.5s ease-in-out infinite',
+			float: 'float 3s ease-in-out infinite',
+			'gradient-x': 'gradient-x 15s ease infinite',
+			'gradient-y': 'gradient-y 15s ease infinite',
+			'gradient-xy': 'gradient-xy 15s ease infinite',
+			'subtle-pan': 'subtlePan 25s ease-in-out infinite',
+			'text-shimmer': 'textShimmer 3s linear infinite',
+			'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+			'pulse-slow': 'pulse 4s ease-in-out infinite'
   		},
-  		transitionDuration: {
-  			DEFAULT: 'var(--transition-duration)'
-  		},
-  		backgroundImage: {
-  			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-  			'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
-  		}
+  				transitionDuration: {
+			DEFAULT: 'var(--transition-duration)'
+		},
+		animationDelay: {
+			'100': '100ms',
+			'200': '200ms',
+			'300': '300ms',
+			'400': '400ms',
+			'500': '500ms',
+			'600': '600ms',
+			'700': '700ms',
+			'800': '800ms',
+			'900': '900ms',
+		},
+		backgroundImage: {
+			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+			'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

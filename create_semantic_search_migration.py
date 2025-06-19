@@ -66,7 +66,7 @@ if __name__ == "__main__":
         if verify_setup():
             print("\n🎉 Semantic search feature is ready for deployment!")
             print("\nNext steps:")
-            print("1. Upload Arabic books to Google Cloud Storage")
+            print("1. Upload Arabic books to Azure Blob Storage")
             print("2. Run: python manage.py process_books --books-dir /path/to/books")
             print("3. Test the semantic search API endpoint")
         else:

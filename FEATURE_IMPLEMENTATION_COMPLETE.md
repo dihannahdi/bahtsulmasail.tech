@@ -31,7 +31,7 @@ The semantic search feature for BahtsulMasail.tech has been **completely impleme
 
 ### 4. **Production Ready** ✅
 - **🐳 Docker Configuration**: All dependencies included
-- **☁️ Cloud Deployment**: Ready for Google Cloud Run
+- **☁️ Cloud Deployment**: Ready for Azure Container Apps
 - **📈 Scalable Architecture**: Handles 100,000+ text chunks
 - **🔒 Secure**: Input validation and error handling
 - **📊 Monitoring**: Health checks and performance metrics
@@ -129,7 +129,7 @@ curl -X POST http://localhost:8000/api/v1/documents/json-search/ \
 ### ✅ Ready for Production
 - **Code Complete**: All features implemented and tested
 - **Docker Ready**: Production-ready container configuration
-- **Cloud Ready**: Works with Google Cloud Run + Cloud SQL
+- **Cloud Ready**: Works with Azure Container Apps + Azure Database for PostgreSQL
 - **Data Ready**: Arabic books processed and searchable
 - **API Ready**: RESTful endpoints working correctly
 - **Frontend Ready**: Search interface fully functional

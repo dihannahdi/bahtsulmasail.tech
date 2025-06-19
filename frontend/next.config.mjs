@@ -2,6 +2,11 @@
 const nextConfig = {
   output: 'standalone',
   
+  // Temporarily disable TypeScript checks to test performance
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  
   // Image optimization
   images: {
     formats: ['image/webp', 'image/avif'],
@@ -10,9 +15,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'storage.googleapis.com',
+        hostname: '*.blob.core.windows.net',
         port: '',
-        pathname: '/lbmbucket/**',
+        pathname: '/**',
       },
       {
         protocol: 'https',

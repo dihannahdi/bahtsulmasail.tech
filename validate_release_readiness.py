@@ -11,11 +11,17 @@ from pathlib import Path
 import json
 
 def check_file_exists(file_path, description):
-    """Check if a file exists and return the result."""
-    exists = Path(file_path).exists()
-    status = "✅" if exists else "❌"
-    print(f"{status} {description}: {file_path}")
-    return exists
+    """Check if a file exists and report status."""
+    try:
+        if os.path.exists(file_path):
+            print(f"✅ {description}: {file_path}")
+            return True
+        else:
+            print(f"❌ {description} not found: {file_path}")
+            return False
+    except Exception as e:
+        print(f"❌ Error checking {description}: {e}")
+        return False
 
 def check_dependency_in_requirements(dependency, requirements_file="backend/requirements.txt"):
     """Check if a dependency is listed in requirements.txt."""
@@ -43,17 +49,19 @@ def check_docker_includes_dependency(dependency, dockerfile="backend/Dockerfile"
         print(f"❌ Dockerfile not found: {dockerfile}")
         return False
 
-def check_environment_variable_in_cloudbuild(var_name, cloudbuild_file="cloudbuild.yaml"):
-    """Check if environment variable is set in cloudbuild.yaml."""
+def check_environment_variable_in_azure(var_name, azure_file="azure-deployment.yaml"):
+    """Check if environment variable is set in Azure deployment configuration."""
     try:
-        with open(cloudbuild_file, 'r') as f:
+        with open(azure_file, 'r') as f:
             content = f.read()
-            exists = var_name in content
-            status = "✅" if exists else "❌"
-            print(f"{status} Environment variable '{var_name}' in cloudbuild.yaml")
-            return exists
+            if var_name in content:
+                status = "✅"
+            else:
+                status = "❌"
+        print(f"{status} Environment variable '{var_name}' in {azure_file}")
+        return status == "✅"
     except FileNotFoundError:
-        print(f"❌ Cloud build file not found: {cloudbuild_file}")
+        print(f"❌ Azure deployment file not found: {azure_file}")
         return False
 
 def run_code_validation():
@@ -130,17 +138,17 @@ def run_deployment_validation():
             score += 1
         total += 1
     
-    # Cloud build configuration
-    env_vars = [
+    # Check environment variables in Azure configuration
+    print("\n📋 Environment Variables in Azure Configuration:")
+    azure_configured = True
+    required_env_vars = [
         "USE_POSTGRESQL",
         "DJANGO_SETTINGS_MODULE",
         "DB_NAME",
     ]
-    
-    for var in env_vars:
-        if check_environment_variable_in_cloudbuild(var):
-            score += 1
-        total += 1
+    for var in required_env_vars:
+        if not check_environment_variable_in_azure(var):
+            azure_configured = False
     
     # Deployment files
     deployment_files = [

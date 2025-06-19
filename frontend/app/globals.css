@@ -19,30 +19,31 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 142 61% 51%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 142 61% 51%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 210 40% 96.1%;
+    --primary: 161.4 93.5% 30.4%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 98%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 98%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 142 61% 51%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 210 40% 98%;
+    --accent-foreground: 222.2 84% 4.9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 142 61% 51%;
+    --ring: 161.4 93.5% 30.4%;
     --radius: 0.5rem;
+    --transition-duration: 150ms;
 
-    /* Islamic theme colors */
-    --islamic-blue-hsl: 217.2 91.2% 59.8%;
-    --islamic-green-hsl: 142 61% 51%;
-    --islamic-gold-hsl: 40 88% 55%;
-    --islamic-purple-hsl: 260 70% 65%;
-    --islamic-teal-hsl: 170 70% 50%;
-    --islamic-earth-hsl: 30 33% 47%;
-    --islamic-dark-hsl: 240 10% 20%;
-    --islamic-maroon-hsl: 0 59% 46%;
+    /* Islamic color scheme - HSL values */
+    --islamic-blue-hsl: 200 70% 45%;
+    --islamic-green-hsl: 161 93% 30%;
+    --islamic-gold-hsl: 45 100% 50%;
+    --islamic-purple-hsl: 270 50% 40%;
+    --islamic-teal-hsl: 180 50% 35%;
+    --islamic-earth-hsl: 25 30% 40%;
+    --islamic-dark-hsl: 220 20% 15%;
+    --islamic-maroon-hsl: 0 60% 30%;
   }
 
   .dark {
@@ -52,19 +53,19 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 142 61% 51%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 142 61% 51%;
+    --primary: 161.4 93.5% 30.4%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 142 61% 51%;
+    --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 142 61% 51%;
+    --ring: 161.4 93.5% 30.4%;
 
     /* Islamic theme colors - darker variants */
     --islamic-blue-hsl: 217.2 91.2% 59.8%;
@@ -652,6 +653,47 @@ body {
 
   .dark .glowing-border:hover::after {
     opacity: 0.4;
+  }
+
+  /* Performance-optimized animation utilities */
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+  .animation-delay-900 {
+    animation-delay: 900ms;
+  }
+
+  /* GPU acceleration for better performance */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Optimized animations that avoid layout thrashing */
+  .animate-optimized {
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 }
 

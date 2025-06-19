@@ -86,20 +86,27 @@ def process_document(self, document_id):
 def extract_text_from_document(document):
     """Extract text from document using OCR."""
     try:
-        from google.cloud import storage as gcs_storage
+        from azure.storage.blob import BlobServiceClient
         import mimetypes
         import pytesseract
         from pdf2image import convert_from_path
         from PIL import Image
         import PyPDF2
         
-        # Download file from GCS
-        client = gcs_storage.Client()
-        bucket = client.bucket(settings.GS_BUCKET_NAME)
-        blob = bucket.blob(document.file_path)
+        # Download file from Azure Blob Storage
+        blob_service_client = BlobServiceClient(
+            account_url=f"https://{settings.AZURE_ACCOUNT_NAME}.blob.core.windows.net",
+            credential=settings.AZURE_ACCOUNT_KEY
+        )
+        blob_client = blob_service_client.get_blob_client(
+            container=settings.AZURE_CONTAINER_NAME,
+            blob=document.file_path
+        )
         
         with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-            blob.download_to_filename(tmp_file.name)
+            blob_data = blob_client.download_blob().readall()
+            tmp_file.write(blob_data)
+            tmp_file.flush()
             file_path = tmp_file.name
         
         mime_type, _ = mimetypes.guess_type(document.file_path)
@@ -250,23 +257,34 @@ def create_analysis_stubs(document):
 def process_document_ocr(self, document_id):
     """Process document OCR asynchronously."""
     try:
-        from google.cloud import storage as gcs_storage
+        from azure.storage.blob import BlobServiceClient
         import tempfile
         import mimetypes
         import pytesseract
         from pdf2image import convert_from_path
         from PIL import Image
         import PyPDF2
+        
         document = Document.objects.get(id=document_id)
         document.ocr_status = 'processing'
         document.save()
-        # Download file from GCS
-        client = gcs_storage.Client()
-        bucket = client.bucket(settings.GS_BUCKET_NAME)
-        blob = bucket.blob(document.file_path)
+        
+        # Download file from Azure Blob Storage
+        blob_service_client = BlobServiceClient(
+            account_url=f"https://{settings.AZURE_ACCOUNT_NAME}.blob.core.windows.net",
+            credential=settings.AZURE_ACCOUNT_KEY
+        )
+        blob_client = blob_service_client.get_blob_client(
+            container=settings.AZURE_CONTAINER_NAME,
+            blob=document.file_path
+        )
+        
         with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-            blob.download_to_filename(tmp_file.name)
+            blob_data = blob_client.download_blob().readall()
+            tmp_file.write(blob_data)
+            tmp_file.flush()
             file_path = tmp_file.name
+        
         mime_type, _ = mimetypes.guess_type(document.file_path)
         ocr_text = ''
         pages_result = []

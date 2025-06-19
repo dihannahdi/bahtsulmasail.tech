@@ -105,14 +105,14 @@ Before you begin, ensure you have the following installed:
 
 **Backend:**
 - Django + Django REST Framework
-- PostgreSQL (Google Cloud SQL)
-- Celery with Redis
-- Google Cloud Storage
+- PostgreSQL (Azure Database for PostgreSQL)
+- Celery with Redis (Azure Cache for Redis)
+- Azure Blob Storage
 
 **Infrastructure:**
-- Google Cloud Run
+- Azure Container Apps
 - Docker & Docker Compose
-- Google Cloud Build (CI/CD)
+- Azure DevOps Pipelines (CI/CD)
 
 ## ⚙️ Configuration
 
@@ -131,7 +131,9 @@ DB_HOST=localhost
 DB_PORT=5432
 REDIS_HOST=localhost
 REDIS_PORT=6379
-GS_BUCKET_NAME=your-gcs-bucket-name
+AZURE_ACCOUNT_NAME=your-azure-storage-account
+AZURE_ACCOUNT_KEY=your-azure-storage-key
+AZURE_CONTAINER_NAME=your-blob-container-name
 ```
 
 **Frontend** (`frontend/.env.local`):
@@ -143,10 +145,11 @@ NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
 
 ```bash
 # Build and run all services
-docker-compose up --build
+# For development - use local setup
+python backend/manage.py runserver
 
 # Run in background
-docker-compose up -d
+# For production - use Azure Container Apps
 ```
 
 ## 📖 Usage Examples
@@ -197,8 +200,8 @@ const searchResults = await fetch('/api/search', {
 │   │   └── utils/         # Utility functions
 │   ├── public/            # Static assets
 │   └── package.json       # Node.js dependencies
-├── docker-compose.yml     # Docker services configuration
-├── cloudbuild.yaml        # Google Cloud Build CI/CD
+├── azure-deployment.yaml  # Azure Container Apps deployment
+├── azure-pipelines.yml    # Azure DevOps CI/CD pipeline
 └── README.md              # This file
 ```
 

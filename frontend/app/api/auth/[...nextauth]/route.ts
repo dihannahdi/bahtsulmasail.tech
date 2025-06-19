@@ -66,7 +66,7 @@ const authOptions: AuthOptions = {
         }
       },
     }),
-    // ...add more providers here, e.g., GoogleProvider, GitHubProvider
+    // TODO: Add Azure AD B2C provider for Azure deployment
   ],
   session: {
     strategy: "jwt", // Using JWT for session strategy

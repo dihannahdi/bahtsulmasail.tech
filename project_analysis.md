@@ -28,7 +28,7 @@ This section details the components and features that are clearly defined and im
 
 ### 4.  **DevOps and Deployment:**
     *   **Containerization:** The presence of `Dockerfile`s for both the frontend and backend shows that the application is designed for containerized deployments, which is a modern standard.
-    *   **CI/CD:** The `cloudbuild.yaml` file indicates that a CI/CD pipeline is in place, automating the build and deployment process to Google Cloud Run.
+    *   **CI/CD:** The `azure-pipelines.yml` file indicates that a CI/CD pipeline is in place, automating the build and deployment process to Azure Container Apps.
 
 ---
 
@@ -51,7 +51,7 @@ This section highlights areas that are either not yet fully implemented or could
     *   **Lack of Tests:** There are no visible test files for either the frontend or the backend in the provided file list (e.g., no `tests.py` with content, no `*.test.tsx` files). A comprehensive testing suite is essential for a project of this complexity.
 
 ### 5.  **Configuration and Environment Management:**
-    *   **Local Setup Complexity:** The local development setup requires manual configuration of several services (Postgres, Redis). While Docker is mentioned as an option, providing a `docker-compose.yml` file would significantly simplify the local development experience.
+    *   **Local Setup Complexity:** The local development setup requires manual configuration of several services (Postgres, Redis). Azure Container Apps provides a robust deployment platform that handles containerization automatically.
 
 ## Recommendations
 
@@ -59,4 +59,4 @@ This section highlights areas that are either not yet fully implemented or could
 2.  **Refactor and Clean Up Frontend Code:** The `DocumentManagementPage` should be refactored to remove unused and redundant code. A clear, single source of truth for state and logic should be established.
 3.  **Implement Authentication and Authorization:** Fully integrate `NextAuth.js` and implement the role-based access control described in the project vision.
 4.  **Introduce a Testing Strategy:** Begin writing unit and integration tests for both the backend and frontend to ensure code quality and prevent regressions.
-5.  **Simplify Local Development:** Create a `docker-compose.yml` file to orchestrate the local development environment, making it easier for developers to get started.
+5.  **Simplify Local Development:** Use the provided Azure development setup to maintain consistency between local and production environments.

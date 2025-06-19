@@ -1,4 +1,4 @@
-// Animation variants for Framer Motion
+// Animation variants for Framer Motion - Fixed easing functions
 
 export const containerVariant = {
   hidden: {
@@ -33,7 +33,7 @@ export const cardVariant = {
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: "easeOut",
     },
   },
 };
@@ -48,7 +48,7 @@ export const fadeUp = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: "easeOut",
     },
   },
 };
@@ -76,7 +76,7 @@ export const slideInLeft = {
     x: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: "easeOut",
     },
   },
 };
@@ -91,7 +91,7 @@ export const slideInRight = {
     x: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: "easeOut",
     },
   },
 };
@@ -106,7 +106,7 @@ export const scaleIn = {
     scale: 1,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: "easeOut",
     },
   },
 };
@@ -121,7 +121,7 @@ export const itemVariant = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: "easeOut",
     },
   },
 }; 
