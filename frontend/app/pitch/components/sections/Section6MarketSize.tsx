@@ -20,24 +20,24 @@ const itemVariants = {
 const marketSegments = [
   {
     name: 'TAM (Total Addressable Market)',
-    value: '$10B+',
-    description: 'Global Islamic Education & Digital Publishing Market.',
+    value: 'Rp 5T+',
+    description: 'Indonesia Islamic Education & Digital Learning Market.',
     icon: <Globe className="w-8 h-8" />,
     color: 'emerald-500',
     size: 'w-96 h-96',
   },
   {
     name: 'SAM (Serviceable Addressable Market)',
-    value: '$2B+',
-    description: 'Academic institutions, research centers, and digital libraries focused on Islamic studies.',
+    value: 'Rp 1.2T+',
+    description: 'Indonesian pesantren, universities, and Islamic research institutions.',
     icon: <Users className="w-6 h-6" />,
     color: 'emerald-400',
     size: 'w-64 h-64',
   },
   {
     name: 'SOM (Serviceable Obtainable Market)',
-    value: '$50M+',
-    description: 'Initial focus on Indonesian & Southeast Asian Pesantren and Universities.',
+    value: 'Rp 150B+',
+    description: 'Initial focus on Java & Sumatra pesantren and Islamic universities.',
     icon: <Target className="w-5 h-5" />,
     color: 'emerald-300',
     size: 'w-40 h-40',
@@ -86,7 +86,7 @@ export default function Section6MarketSize() {
             </motion.div>
           ))}
            <div className="relative z-10 text-center">
-              <p className="text-4xl font-bold text-white">$50M+</p>
+              <p className="text-4xl font-bold text-white">Rp 1.8B+</p>
               <p className="text-lg text-emerald-300">Year 1 Target</p>
             </div>
         </div>

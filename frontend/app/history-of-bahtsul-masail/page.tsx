@@ -537,7 +537,7 @@ export default function SejarahBahtsulMasailPage() {
       variants={pageTransition}
       initial="hidden"
       animate="visible"
-      className="min-h-screen bg-background text-foreground relative overflow-hidden"
+              className="bg-background text-foreground relative overflow-hidden"
     >
       {/* Interactive Progress Bar */}
       <motion.div 

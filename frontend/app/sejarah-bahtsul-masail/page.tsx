@@ -84,7 +84,7 @@ export default function SejarahBahtsulMasailPage() {
       variants={pageTransition}
       initial="hidden"
       animate="visible"
-      className="min-h-screen bg-background text-foreground relative overflow-hidden"
+              className="bg-background text-foreground relative overflow-hidden"
     >
       {/* Islamic Pattern Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">

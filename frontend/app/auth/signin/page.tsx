@@ -80,7 +80,7 @@ function SignInForm() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center min-h-screen bg-background">
       <h1 className="text-3xl font-bold mb-4">Sign In</h1>
       <p className="text-lg text-gray-600">Please sign in to continue.</p>
     </div>

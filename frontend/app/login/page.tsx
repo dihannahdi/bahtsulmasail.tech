@@ -34,7 +34,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1a0b2e] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[9999] min-h-screen bg-[#1a0b2e] flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-[rgba(26,11,46,0.8)] backdrop-blur-lg rounded-3xl p-8 relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-4 right-4">

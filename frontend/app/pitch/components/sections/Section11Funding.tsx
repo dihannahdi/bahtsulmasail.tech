@@ -22,28 +22,28 @@ const fundingBreakdown = [
   { 
     name: 'AI Development & Infrastructure', 
     percentage: 45, 
-    amount: '$675K',
+    amount: 'Rp 225M',
     details: 'Advanced NLP models, semantic search, cloud infrastructure',
     color: 'text-emerald-400' 
   },
   { 
-    name: 'Engineering Team (5 hires)', 
+    name: 'Engineering Team (3 hires)', 
     percentage: 30, 
-    amount: '$450K',
+    amount: 'Rp 150M',
     details: 'Senior ML engineers, full-stack developers, DevOps',
     color: 'text-green-400' 
   },
   { 
     name: 'Content & Partnerships', 
     percentage: 15, 
-    amount: '$225K',
+    amount: 'Rp 75M',
     details: 'Pesantren partnerships, digitization contracts, content acquisition',
     color: 'text-teal-400' 
   },
   { 
     name: 'Marketing & Sales', 
     percentage: 10, 
-    amount: '$150K',
+    amount: 'Rp 50M',
     details: 'User acquisition, conference presence, sales team',
     color: 'text-cyan-400' 
   },
@@ -52,27 +52,27 @@ const fundingBreakdown = [
 // YC Principle: Milestone-driven with revenue targets and timeline
 const keyMilestones = [
   {
-    timeline: "Month 6",
-    title: "Full Platform Launch & 50 Pesantren Partnerships",
-    description: "Complete V2 platform with advanced AI features",
-    metric: "10,000 active users",
-    revenue: "$25K MRR",
+    timeline: "Month 4",
+    title: "Platform Beta & Initial Partnerships",
+    description: "Beta platform with core AI features and first partnerships",
+    metric: "1,000 beta users",
+    revenue: "Rp 50M MRR",
     icon: <Rocket className="w-8 h-8 text-emerald-400" />,
   },
   {
-    timeline: "Month 12", 
-    title: "Regional Market Leadership",
-    description: "Establish dominance in Indonesian Islamic research market",
-    metric: "50,000 active users",
-    revenue: "$100K MRR", 
+    timeline: "Month 8", 
+    title: "Full Launch & Market Validation",
+    description: "Complete platform launch with proven user adoption",
+    metric: "5,000 active users",
+    revenue: "Rp 150M MRR", 
     icon: <Target className="w-8 h-8 text-emerald-400" />,
   },
   {
-    timeline: "Month 18",
-    title: "International Expansion Ready",
-    description: "Proven model ready for Series A and global expansion",
-    metric: "100,000 active users",
-    revenue: "$250K MRR",
+    timeline: "Month 12",
+    title: "Market Leadership & Sustainability",
+    description: "Established market position ready for Series A",
+    metric: "10,000 active users",
+    revenue: "Rp 300M MRR",
     icon: <TrendingUp className="w-8 h-8 text-emerald-400" />,
   },
 ];
@@ -126,13 +126,13 @@ export default function Section11Funding() {
           <div className="relative z-10">
             <h3 className="text-2xl md:text-3xl font-semibold text-white mb-6">We are raising:</h3>
             <div className="text-6xl md:text-8xl font-bold text-gradient bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent mb-6">
-              $1.5M
+              Rp 500M
             </div>
             <div className="text-xl md:text-2xl text-blue-300 font-medium mb-4">
-              Seed Round | 18-Month Runway
+              Seed Round | 12-Month Runway
             </div>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              To achieve market leadership in Islamic jurisprudence research and prepare for Series A international expansion.
+              To achieve market validation and sustainable growth in Indonesian Islamic research market.
             </p>
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function Section11Funding() {
       {/* Milestones Timeline - YC: Revenue-driven milestones */}
       <motion.div variants={itemVariants} className="mb-16">
         <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">
-          18-Month Milestone-Driven Roadmap
+          12-Month Milestone-Driven Roadmap
         </h3>
         
         <div className="space-y-6">
@@ -255,9 +255,9 @@ export default function Section11Funding() {
           
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className="text-center">
-              <div className="text-3xl font-bold text-emerald-400">$10B+</div>
+              <div className="text-3xl font-bold text-emerald-400">Rp 5T+</div>
               <div className="text-lg text-white">Market Opportunity</div>
-              <div className="text-sm text-gray-400">Global religious education & AI wisdom</div>
+              <div className="text-sm text-gray-400">Indonesia religious education & AI</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-blue-400">10x</div>

@@ -19,10 +19,10 @@ const itemVariants = {
 };
 
 const kpis = [
-  { value: 10000, label: "Texts Digitized", icon: <Database /> },
-  { value: 5, label: "Partner Pesantren", icon: <Users /> },
-  { value: 50000, label: "Scholarly Arguments Mapped", icon: <FileText /> },
-  { value: 90, label: "Search Accuracy (%)", icon: <CheckCircle /> },
+  { value: 5000, label: "Texts Digitized", icon: <Database /> },
+  { value: 8, label: "Partner Pesantren", icon: <Users /> },
+  { value: 25000, label: "Scholarly Arguments Mapped", icon: <FileText /> },
+  { value: 85, label: "Search Accuracy (%)", icon: <CheckCircle /> },
 ];
 
 const AnimatedKPI = ({ value, label, icon }: { value: number; label: string; icon: React.ReactNode }) => {
@@ -91,7 +91,7 @@ export default function Section5TractionInDepth() {
               <div className="w-1/2 pl-8 text-left">
                 <motion.div variants={itemVariants} className="p-4 bg-black/40 rounded-lg border border-emerald-900">
                   <p className="font-bold text-emerald-400">Q3 2024</p>
-                  <p className="text-gray-300">Achieved 10,000+ texts digitized</p>
+                  <p className="text-gray-300">Achieved 5,000+ texts digitized</p>
                 </motion.div>
               </div>
             </div>

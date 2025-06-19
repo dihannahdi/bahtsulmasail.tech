@@ -120,7 +120,7 @@ export default function FAQPage() {
       variants={containerVariant}
       initial="hidden"
       animate="visible"
-      className="min-h-screen bg-gradient-to-br from-black to-emerald-950/30 text-foreground pt-12 pb-16 sm:pt-16 sm:pb-24 px-4 md:px-8 relative overflow-hidden"
+      className="bg-gradient-to-br from-black to-emerald-950/30 text-foreground pt-12 pb-16 sm:pt-16 sm:pb-24 px-4 md:px-8 relative overflow-hidden"
     >
       {/* Dynamic background with emerald light effect */}
       <div 

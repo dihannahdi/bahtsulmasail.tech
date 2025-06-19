@@ -65,14 +65,14 @@ export default function Section2TractionTeaser() {
         <motion.div variants={itemVariants} className="mb-12">
           <div className="bg-gradient-to-r from-emerald-900/50 to-black/50 backdrop-blur-md p-8 rounded-2xl border border-emerald-500/40 mb-8">
             <h2 className="text-4xl md:text-6xl font-bold text-emerald-400 mb-4">
-              10,000+ Texts Digitized
+              5,000+ Texts Digitized
             </h2>
             <p className="text-xl md:text-2xl text-emerald-300 font-medium">
               From Historic Pesantren Archives to AI-Powered Research Platform
             </p>
           </div>
           <div className="text-2xl md:text-3xl font-bold text-white">
-            This is why BahtsulMasail.tech is poised to redefine Islamic scholarship.
+            This is why BahtsulMasail.tech is poised to revolutionize Indonesian Islamic scholarship.
           </div>
         </motion.div>
 
@@ -85,19 +85,19 @@ export default function Section2TractionTeaser() {
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-emerald-600"></div>
             <AnimatedStat 
-              value={10000} 
+              value={5000} 
               text="Historic Texts Digitized" 
             />
             <div className="mt-6 space-y-2">
               <div className="flex justify-between text-sm text-emerald-300">
                 <span>Phase 1 Progress</span>
-                <span>70%</span>
+                <span>50%</span>
               </div>
               <div className="w-full h-3 bg-black/60 rounded-full overflow-hidden">
                 <motion.div
                   className="h-full bg-gradient-to-r from-emerald-700 to-emerald-400"
                   initial={{ width: '0%' }}
-                  animate={inView ? { width: '70%' } : { width: '0%' }}
+                  animate={inView ? { width: '50%' } : { width: '0%' }}
                   transition={{ duration: 1.5, delay: 0.8 }}
                 />
               </div>
@@ -111,17 +111,17 @@ export default function Section2TractionTeaser() {
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-emerald-600"></div>
             <AnimatedStat 
-              value={90} 
+              value={85} 
               text="AI Search Relevance" 
               suffix="%" 
             />
             <div className="mt-4 space-y-2">
               <p className="text-lg text-emerald-300 font-medium">
-                Exceeding benchmarks by 25%
+                Exceeding benchmarks by 20%
               </p>
               <div className="bg-emerald-500/10 p-3 rounded-lg">
                 <p className="text-sm text-gray-300">
-                  Validated with 500+ test queries
+                  Validated with 250+ test queries
                 </p>
               </div>
             </div>
@@ -134,7 +134,7 @@ export default function Section2TractionTeaser() {
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-emerald-600"></div>
             <AnimatedStat 
-              value={12} 
+              value={8} 
               text="Pesantren Partnerships" 
             />
             <div className="mt-4 space-y-2">
@@ -143,7 +143,7 @@ export default function Section2TractionTeaser() {
               </p>
               <div className="bg-emerald-500/10 p-3 rounded-lg">
                 <p className="text-sm text-gray-300">
-                  Including Indonesia's top 3 pesantren
+                  Including 2 of Indonesia's top 5 pesantren
                 </p>
               </div>
             </div>
@@ -159,7 +159,7 @@ export default function Section2TractionTeaser() {
             <p className="text-emerald-300 mb-6">Semantic Search Performance</p>
             
             <div className="h-56 md:h-72 w-full flex items-end justify-between gap-2 md:gap-4 p-6 bg-black/30 rounded-lg border border-emerald-500/20">
-              {[30, 45, 58, 65, 73, 90].map((height, index) => {
+              {[25, 35, 48, 58, 68, 85].map((height, index) => {
                 const months = ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
                 const isLatest = index === 5;
                 

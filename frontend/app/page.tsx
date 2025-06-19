@@ -1,28 +1,43 @@
 import { Metadata } from "next";
-import LightweightHeroSection from "./components/sections/LightweightHeroSection";
-// Performance optimization: temporarily removed heavy Framer Motion sections
-// import { TraditionSection } from "./components/sections/TraditionSection";
-// import { TechnologySection } from "./components/sections/TechnologySection";
-// import { FeaturesSection } from "./components/sections/FeaturesSection";
-// import { CommunitySection } from "./components/sections/CommunitySection";
-// import { CallToActionSection } from "./components/sections/CallToActionSection";
+import HeroSection from "./components/home/HeroSection";
+import FeaturesSection from "./components/home/FeaturesSection";
+import ScholarlyAuthoritySection from "./components/home/ScholarlyAuthoritySection";
+import TechnologyShowcaseSection from "./components/home/TechnologyShowcaseSection";
+import GlobalImpactSection from "./components/home/GlobalImpactSection";
+import TrustedBySection from "./components/home/TrustedBySection";
+import CallToActionSection from "./components/home/CallToActionSection";
 
 export const metadata: Metadata = {
-  title: "Bahtsul Masail - Islamic Legal Consultation Platform",
-  description: "A modern platform for Islamic legal consultation and scholarly discourse.",
-  keywords: ["Bahtsul Masail", "Islamic Law", "Legal Consultation", "Islamic Studies", "Fiqh"],
+  title: "BahtsulMasail.tech - Revolutionizing Islamic Legal Discourse",
+  description: "AI-powered platform bridging traditional Islamic scholarship with cutting-edge technology. Semantic search across 1000+ texts, blockchain-verified fatwas, and real-time scholarly collaboration.",
+  keywords: [
+    "Bahtsul Masail", 
+    "Islamic Law", 
+    "AI Islamic Research", 
+    "Blockchain Fatwas", 
+    "Islamic Scholarship", 
+    "Fiqh", 
+    "Islamic Legal Consultation",
+    "Arabic NLP",
+    "Islamic Technology"
+  ],
+  openGraph: {
+    title: "BahtsulMasail.tech - Revolutionary Islamic Legal Discourse Platform",
+    description: "Where traditional Islamic scholarship meets cutting-edge AI technology",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <LightweightHeroSection />
-      {/* Temporarily removed for performance optimization */}
-      {/* <TraditionSection />
-      <TechnologySection />
+    <main className="bg-background text-foreground overflow-hidden">
+      <HeroSection />
       <FeaturesSection />
-      <CommunitySection />
-      <CallToActionSection /> */}
+      <ScholarlyAuthoritySection />
+      <TechnologyShowcaseSection />
+      <GlobalImpactSection />
+      <TrustedBySection />
+      <CallToActionSection />
     </main>
   );
 }

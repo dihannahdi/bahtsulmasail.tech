@@ -27,7 +27,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+    <div className="bg-gray-100 flex flex-col items-center justify-center p-4 min-h-[80vh]">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
         <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">
           Welcome to your Dashboard

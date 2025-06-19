@@ -4,6 +4,8 @@ import React from 'react';
 import { SessionProvider } from 'next-auth/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'next-themes';
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -29,7 +31,13 @@ export default function RootLayoutClient({ children }: RootLayoutClientProps) {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </QueryClientProvider>
     </SessionProvider>

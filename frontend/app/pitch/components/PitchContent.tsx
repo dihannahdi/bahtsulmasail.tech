@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import NetworkBackground from './NetworkBackground';
+
 import PitchHeader from './PitchHeader';
 import Section1Title from './sections/Section1Title';
 import Section2TractionTeaser from './sections/Section2TractionTeaser';
@@ -94,8 +94,6 @@ export default function PitchContent() {
       ref={containerRef}
       className="relative w-full bg-black text-white overflow-x-hidden"
     >
-      <NetworkBackground activeSection={activeSection} />
-      
       <PitchHeader 
         activeSection={activeSection} 
         goToSection={goToSection} 

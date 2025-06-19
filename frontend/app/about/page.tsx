@@ -29,7 +29,7 @@ const itemVariants = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="bg-background text-foreground">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-islamic-green/5 via-transparent to-islamic-green/10" />
